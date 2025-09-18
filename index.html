@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Y0ussef Mahmoud | Full-Stack Developer</title>
+  <meta name="description" content="I’m a passionate Full-Stack Developer and Project Engineer at Shehabco. I build responsive web and mobile apps with Node.js, MySQL, Flutter, RESTful APIs, and Docker. I solve real-world problems with clean, maintainable code and aim to grow as a freelancer and full‑stack engineer." />
+  <meta name="author" content="Y0ussef Mahmoud" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#0b1220" />
+  <meta name="color-scheme" content="light dark" />
+
+  <!-- Prevent flash of wrong theme/lang: set attributes before CSS loads -->
+  <script>
+    (function() {
+      try {
+        var root = document.documentElement;
+        // Language preference: localStorage.lang in ["en","ar"], fallback to browser
+        var lang = (localStorage.getItem('lang') || '').toLowerCase();
+        if (!lang) {
+          var navLang = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
+          lang = navLang.startsWith('ar') ? 'ar' : 'en';
+        }
+        root.lang = lang;
+        root.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+
+        // Theme preference: localStorage.theme in ["light","dark"], fallback to system
+        var theme = (localStorage.getItem('theme') || '').toLowerCase();
+        if (theme !== 'light' && theme !== 'dark') {
+          theme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        root.setAttribute('data-theme', theme);
+      } catch (e) { /* no-op */ }
+    })();
+  </script>
+
+  <!-- Favicon (placeholders – update files later) -->
+  <link id="favicon" rel="icon" type="image/png" sizes="32x32" href="#" /><!--assets/images/favicon-32.png-->
+  <link rel="icon" type="image/png" sizes="16x16" href="#" /><!--assets/images/favicon-16.png-->
+  <link rel="apple-touch-icon" href="#" /><!--assets/images/apple-touch-icon.png-->
+  <!-- <link rel="canonical" href="YOUR_FINAL_SITE_URL_HERE" /> -->
+
+  <!-- i18n alternates (optional — update URLs when deploying) -->
+  <!-- <link rel="alternate" hreflang="en" href="YOUR_SITE_URL?lang=en" /> -->
+  <!-- <link rel="alternate" hreflang="ar" href="YOUR_SITE_URL?lang=ar" /> -->
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="assets/css/style.css" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:locale:alternate" content="ar_EG" />
+  <meta property="og:title" content="Y0ussef Mahmoud | Full-Stack Developer" />
+  <meta property="og:description" content="Full-Stack Developer & Project Engineer at Shehabco. Node.js, MySQL, Flutter, RESTful APIs, Docker." />
+  <!-- <meta property="og:url" content="YOUR_FINAL_SITE_URL_HERE" /> -->
+  <meta property="og:image" content="#" /><!--assets/images/og-image.jpg-->
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Y0ussef Mahmoud | Full-Stack Developer" />
+  <meta name="twitter:description" content="Full-Stack Developer & Project Engineer at Shehabco. Node.js, MySQL, Flutter, RESTful APIs, Docker." />
+  <meta name="twitter:image" content="#" /><!--assets/images/og-image.jpg-->   
+
+  <!-- JSON-LD Schema.org (Person) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Y0ussef Mahmoud",
+    "jobTitle": "Full-Stack Developer / Project Engineer",
+    "email": "mailto:youssef11mahmoud112002@gmail.com",
+    "telephone": "+20 1129334173",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Giza",
+      "addressCountry": "EG"
+    },
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Shehabco"
+    },
+    "sameAs": [
+      "https://www.linkedin.com/in/y0ussefmahmoud/",
+      "https://www.facebook.com/y0ussefmahmoud"
+    ]
+  }
+  </script>
+</head>
+<body>
+  <!-- Header / Navigation -->
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <a href="#home" class="logo" aria-label="Y0ussef homepage">Y0ussef<span class="accent">.</span></a>
+
+      <nav class="nav" id="nav" role="navigation" aria-label="Primary">
+        <ul class="nav-list">
+          <li><a href="#home" data-i18n="nav.home">Home</a></li>
+          <li><a href="#about" data-i18n="nav.about">About</a></li>
+          <li><a href="#skills" data-i18n="nav.skills">Skills</a></li>
+          <li><a href="#services" data-i18n="nav.services">Services</a></li>
+          <li><a href="#projects" data-i18n="nav.projects">Projects</a></li>
+          <li><a href="#education" data-i18n="nav.education">Education</a></li>
+          <li><a href="#experience" data-i18n="nav.experience">Experience</a></li>
+          <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button id="langToggle" class="btn-icon" type="button" aria-label="Switch language">EN</button>
+        <button id="themeToggle" class="btn-icon" type="button" aria-label="Toggle theme" title="Theme">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+        <button id="menu" class="hamburger" type="button" aria-label="Open menu" aria-controls="nav" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero" role="region" aria-label="Hero">
+    <div class="container hero-inner">
+      <div class="hero-content">
+        <h1 class="hero-title">
+          <span data-i18n="hero.greet">Hello, I’m</span>
+          <span class="highlight">Y0ussef</span>
+        </h1>
+        <p class="hero-subtitle" data-i18n="hero.tagline">
+          Full‑Stack Developer & Project Engineer at Shehabco. I build responsive web and mobile apps with Node.js, MySQL, Flutter, REST APIs, and Docker.
+        </p>
+        <div class="hero-actions">
+          <a href="#projects" class="btn btn-primary" data-i18n="hero.ctaPrimary">View Projects</a>
+          <a href="#contact" class="btn btn-ghost" data-i18n="hero.ctaSecondary">Get in Touch</a>
+        </div>
+
+        <ul class="socials" aria-label="Social links">
+          <li><a class="social-link" href="https://www.linkedin.com/in/y0ussefmahmoud/" target="_blank" rel="noreferrer noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a></li>
+          <li><a class="social-link" href="https://www.facebook.com/y0ussefmahmoud" target="_blank" rel="noreferrer noopener" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a></li>
+        </ul>
+      </div>
+
+      <!-- Optional image placeholder: add your photo to assets/images/hero.jpg and uncomment
+      <div class="hero-media">
+        <img src="assets/images/hero.jpg" alt="Y0ussef portrait" loading="lazy" />
+      </div>
+      -->
+    </div>
+  </section>
+
+  
+
+  <!-- About Section -->
+  <section id="about" class="about" role="region" aria-label="About">
+    <div class="container about-inner">
+      <!-- Optional image placeholder: add your photo to assets/images/about.jpg and uncomment
+      <div class="about-media">
+        <img src="assets/images/about.jpg" alt="Y0ussef portrait" loading="lazy" />
+      </div>
+    -->
+
+      <div class="about-content">
+        <h2 class="section-title" data-i18n="about.title">About Me</h2>
+        <p class="about-bio" data-i18n="about.bio">
+          I’m a Full‑Stack Developer and Project Engineer at Shehabco. I build responsive web and mobile apps using Node.js, MySQL, and Flutter, working with RESTful APIs and Docker to deliver scalable, maintainable solutions. I love solving real‑world problems with clean code and continuously learning.
+        </p>
+        <ul class="about-list" aria-label="Details">
+          <li>
+            <span class="about-label" data-i18n="about.email">Email</span>
+            <a href="mailto:youssef11mahmoud112002@gmail.com">youssef11mahmoud112002@gmail.com</a>
+          </li>
+          <li>
+            <span class="about-label" data-i18n="about.phone">Phone</span>
+            <a href="tel:+201129334173">01129334173</a>
+          </li>
+          <li>
+            <span class="about-label" data-i18n="about.location">Location</span>
+            <span>Giza, Egypt</span>
+          </li>
+        </ul>
+
+        <div class="about-actions">
+          <a href="#contact" class="btn btn-primary" data-i18n="about.cta">Contact Me</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="skills" role="region" aria-label="Skills">
+    <div class="container">
+      <h2 class="section-title" data-i18n="skills.title">Skills</h2>
+      <p class="section-subtitle" data-i18n="skills.subtitle">Technologies I work with</p>
+
+      <div class="skills-grid">
+        <div class="skill-group">
+          <h3 class="skill-heading" data-i18n="skills.frontend">Frontend</h3>
+          <ul class="skill-list">
+            <li>HTML5</li>
+            <li>CSS3</li>
+            <li>JavaScript</li>
+            <li>Responsive UI</li>
+          </ul>
+        </div>
+
+        <div class="skill-group">
+          <h3 class="skill-heading" data-i18n="skills.backend">Backend</h3>
+          <ul class="skill-list">
+            <li>Node.js</li>
+            <li>Express</li>
+            <li>REST APIs</li>
+            <li>MySQL</li>
+          </ul>
+        </div>
+
+        <div class="skill-group">
+          <h3 class="skill-heading" data-i18n="skills.mobile">Mobile</h3>
+          <ul class="skill-list">
+            <li>Flutter</li>
+            <li>Dart</li>
+            <li>Clean Architecture</li>
+          </ul>
+        </div>
+
+        <div class="skill-group">
+          <h3 class="skill-heading" data-i18n="skills.tools">Tools</h3>
+          <ul class="skill-list">
+            <li>Docker</li>
+            <li>Git & GitHub</li>
+            <li>Postman</li>
+            <li>Linux</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="services" role="region" aria-label="Services">
+    <div class="container">
+      <h2 class="section-title" data-i18n="services.title">Services</h2>
+      <p class="section-subtitle" data-i18n="services.subtitle">What I can help you with</p>
+
+      <div class="services-grid">
+        <article class="service-card">
+          <div class="service-icon"><i class="fa-solid fa-code"></i></div>
+          <h3 class="service-title" data-i18n="services.web.title">Web Development</h3>
+          <p class="service-desc" data-i18n="services.web.desc">Modern, responsive websites and dashboards built with clean, maintainable code.</p>
+        </article>
+
+        <article class="service-card">
+          <div class="service-icon"><i class="fa-solid fa-mobile-screen"></i></div>
+          <h3 class="service-title" data-i18n="services.mobile.title">Mobile Apps</h3>
+          <p class="service-desc" data-i18n="services.mobile.desc">Cross‑platform apps with Flutter focusing on performance and user experience.</p>
+        </article>
+
+        <article class="service-card">
+          <div class="service-icon"><i class="fa-solid fa-plug"></i></div>
+          <h3 class="service-title" data-i18n="services.api.title">APIs & Integrations</h3>
+          <p class="service-desc" data-i18n="services.api.desc">RESTful APIs, authentication, and third‑party integrations for robust backends.</p>
+        </article>
+
+        <article class="service-card">
+          <div class="service-icon"><i class="fa-brands fa-docker"></i></div>
+          <h3 class="service-title" data-i18n="services.devops.title">Docker & DevOps</h3>
+          <p class="service-desc" data-i18n="services.devops.desc">Containerized deployments and scalable setups using Docker best practices.</p>
+        </article>
+
+        <article class="service-card">
+          <div class="service-icon"><i class="fa-solid fa-database"></i></div>
+          <h3 class="service-title" data-i18n="services.db.title">Database Design</h3>
+          <p class="service-desc" data-i18n="services.db.desc">MySQL schema design, optimization, and data modeling for real‑world scale.</p>
+        </article>
+
+        <article class="service-card">
+          <div class="service-icon"><i class="fa-solid fa-briefcase"></i></div>
+          <h3 class="service-title" data-i18n="services.freelance.title">Freelance Projects</h3>
+          <p class="service-desc" data-i18n="services.freelance.desc">End‑to‑end delivery with clear communication, timelines, and documentation.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="projects" role="region" aria-label="Projects">
+    <div class="container">
+      <h2 class="section-title" data-i18n="projects.title">Projects</h2>
+      <p class="section-subtitle" data-i18n="projects.subtitle">Recent work and selected case studies</p>
+
+      <!-- Completed group -->
+      <div class="project-group">
+        <div class="group-header">
+          <h3 class="group-title" data-i18n="projects.completed">Completed</h3>
+          <span class="count-badge" data-count-for="completed">2</span>
+        </div>
+        <div class="projects-grid">
+          <!-- Project Card (Completed) -->
+          <article class="project-card" data-status="completed">
+            <div class="project-media">
+              <!-- <img src="assets/images/projects/p1.jpg" alt="Project 1" loading="lazy" /> -->
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Node.js API</h3>
+              <p class="project-desc">RESTful API with Node.js, Express, JWT auth, and MySQL.</p>
+              <div class="project-actions">
+                <a href="#" class="btn btn-primary" data-i18n="projects.view">View</a>
+                <a href="#" class="btn" data-i18n="projects.code">Code</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" data-status="completed">
+            <div class="project-media">
+              <!-- <img src="assets/images/projects/p3.jpg" alt="Project 3" loading="lazy" /> -->
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Admin Dashboard</h3>
+              <p class="project-desc">Responsive dashboard with charts, auth, and role management.</p>
+              <div class="project-actions">
+                <a href="#" class="btn btn-primary" data-i18n="projects.view">View</a>
+                <a href="#" class="btn" data-i18n="projects.code">Code</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <!-- In Progress group -->
+      <div class="project-group">
+        <div class="group-header">
+          <h3 class="group-title" data-i18n="projects.inProgress">In Progress</h3>
+          <span class="count-badge" data-count-for="in-progress">1</span>
+        </div>
+        <div class="projects-grid">
+          <article class="project-card" data-status="in-progress">
+            <div class="project-media">
+              <!-- <img src="assets/images/projects/p2.jpg" alt="Project 2" loading="lazy" /> -->
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Flutter App</h3>
+              <p class="project-desc">Cross‑platform mobile app with clean architecture and REST.</p>
+              <div class="project-actions">
+                <a href="#" class="btn btn-primary" data-i18n="projects.view">View</a>
+                <a href="#" class="btn" data-i18n="projects.code">Code</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education Section -->
+  <section id="education" class="education" role="region" aria-label="Education">
+    <div class="container">
+      <h2 class="section-title" data-i18n="education.title">Education</h2>
+      <p class="section-subtitle" data-i18n="education.subtitle">Degrees and certifications</p>
+
+      <ol class="edu-timeline">
+        <li class="edu-item">
+          <div class="edu-header">
+            <h3 class="edu-degree" data-i18n="education.d1.title">B.Sc. in Engineering</h3>
+            <span class="edu-meta">2020–2025 · Giza, EG</span>
+          </div>
+          <p class="edu-desc" data-i18n="education.d1.desc">Core studies in software engineering foundations, data structures, and systems design.</p>
+        </li>
+
+        <li class="edu-item">
+          <div class="edu-header">
+            <h3 class="edu-degree" data-i18n="education.d2.title">Certifications</h3>
+            <span class="edu-meta" data-i18n="education.d2.meta">Selected</span>
+          </div>
+          <p class="edu-desc" data-i18n="education.d2.desc">Docker essentials, REST API design, and Flutter development best practices.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Feedback Section -->
+  <section id="feedback" class="feedback" role="region" aria-label="Feedback">
+    <div class="container">
+      <h2 class="section-title" data-i18n="feedback.title">Feedback</h2>
+      <p class="section-subtitle" data-i18n="feedback.subtitle">What clients and teammates say</p>
+
+      <div class="feedback-grid">
+        <figure class="testimonial-card">
+          <blockquote data-i18n="feedback.t1.text">“Delivered on time with clean, scalable code. Communication was smooth throughout.”</blockquote>
+          <figcaption>
+            <span class="person">Ahmed K.</span>
+            <span class="role" data-i18n="feedback.t1.role">Product Manager</span>
+          </figcaption>
+        </figure>
+
+        <figure class="testimonial-card">
+          <blockquote data-i18n="feedback.t2.text">“Great ownership and technical depth across backend and Flutter.”</blockquote>
+          <figcaption>
+            <span class="person">Sara M.</span>
+            <span class="role" data-i18n="feedback.t2.role">Tech Lead</span>
+          </figcaption>
+        </figure>
+
+        <figure class="testimonial-card">
+          <blockquote data-i18n="feedback.t3.text">“Understood requirements quickly and suggested better architecture decisions.”</blockquote>
+          <figcaption>
+            <span class="person">Mohamed A.</span>
+            <span class="role" data-i18n="feedback.t3.role">Founder</span>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact" role="region" aria-label="Contact">
+    <div class="container">
+      <h2 class="section-title" data-i18n="contact.title">Contact</h2>
+      <p class="section-subtitle" data-i18n="contact.subtitle">Let’s build something great together</p>
+
+      <form id="contactForm" class="contact-form" novalidate>
+        <div class="form-row">
+          <label for="name" data-i18n="contact.name">Name</label>
+          <input id="name" name="name" type="text" autocomplete="name" required placeholder="Your name" />
+        </div>
+        <div class="form-row">
+          <label for="email" data-i18n="contact.email">Email</label>
+          <input id="email" name="email" type="email" autocomplete="email" required placeholder="you@example.com" />
+        </div>
+        <div class="form-row">
+          <label for="message" data-i18n="contact.message">Message</label>
+          <textarea id="message" name="message" rows="5" required placeholder="Tell me about your project..."></textarea>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary" data-i18n="contact.send">Send Message</button>
+        </div>
+        <p class="form-note" data-i18n="contact.note">No backend connected yet — this button is a placeholder for now.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a href="#home" class="logo">Y0ussef<span class="accent">.</span></a>
+        <p class="footer-tag" data-i18n="footer.tag">Building scalable web and mobile solutions.</p>
+      </div>
+
+      <nav class="footer-nav" aria-label="Footer">
+        <h3 class="footer-title" data-i18n="footer.links">Links</h3>
+        <ul>
+          <li><a href="#about" data-i18n="nav.about">About</a></li>
+          <li><a href="#skills" data-i18n="nav.skills">Skills</a></li>
+          <li><a href="#services" data-i18n="nav.services">Services</a></li>
+          <li><a href="#projects" data-i18n="nav.projects">Projects</a></li>
+          <li><a href="#education" data-i18n="nav.education">Education</a></li>
+          <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="footer-socials">
+        <h3 class="footer-title" data-i18n="footer.follow">Follow</h3>
+        <ul class="socials">
+          <li><a class="social-link" href="https://www.linkedin.com/in/y0ussefmahmoud/" target="_blank" rel="noreferrer noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a></li>
+          <li><a class="social-link" href="https://www.facebook.com/y0ussefmahmoud" target="_blank" rel="noreferrer noopener" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p class="copyright">  Y0ussef Mahmoud. <span data-i18n="footer.rights">All rights reserved.</span></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="assets/js/script.js" defer></script>
+</body>
+</html>
