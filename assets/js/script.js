@@ -118,7 +118,7 @@
       'hero.ctaSecondary': 'تواصل معي',
       // About
       'about.title': 'نبذة عني',
-      'about.bio': 'أنا مطوّر فل‑ستاك ومهندس مشاريع لدى شهابكو. أبني تطبيقات ويب وموبايل سريعة الاستجابة باستخدام Node.js وMySQL وFlutter، وأعمل مع واجهات REST وDocker لتقديم حلول قابلة للتوسّع وسهلة الصيانة. أحب حلّ المشكلات الواقعية بكود نظيف وأحرص على التعلّم المستمر.',
+      'about.bio': 'أنا مطوّر فل‑ستاك ومهندس مشروع لدى شهابكو. أبني تطبيقات ويب وموبايل سريعة الاستجابة باستخدام Node.js وMySQL وFlutter، وأعمل مع واجهات REST وDocker لتقديم حلول قابلة للتوسّع وسهلة الصيانة. أحب حلّ المشكلات الواقعية بكود نظيف وأحرص على التعلّم المستمر.',
       'about.email': 'البريد الإلكتروني',
       'about.phone': 'الهاتف',
       'about.location': 'الموقع',
@@ -460,11 +460,46 @@
           error = (docEl.lang === 'ar') ? 'صيغة البريد غير صحيحة.' : 'Invalid email format.';
         }
         if (statusEl) {
-          statusEl.textContent = error || (docEl.lang === 'ar' ? 'تم إرسال النموذج (تجريبي).' : 'Form submitted (placeholder).');
+          statusEl.textContent = error;
           statusEl.classList.toggle('is-error', Boolean(error));
-          statusEl.classList.toggle('is-success', !error);
+          statusEl.classList.remove('is-success');
         }
-        if (!error) form.reset();
+        if (error) return;
+
+        const isFormspree = typeof form.action === 'string' && form.action.includes('formspree.io/f/');
+        if (isFormspree) {
+          // Submit via AJAX to stay on page
+          const data = new FormData(form);
+          fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } })
+            .then(async (res) => {
+              if (res.ok) {
+                if (statusEl) {
+                  statusEl.textContent = (docEl.lang === 'ar') ? 'تم الإرسال بنجاح. شكراً لتواصلك!' : 'Message sent successfully. Thank you!';
+                  statusEl.classList.remove('is-error');
+                  statusEl.classList.add('is-success');
+                }
+                form.reset();
+              } else {
+                const body = await res.json().catch(() => ({}));
+                throw new Error((body && body.error) || 'Request failed');
+              }
+            })
+            .catch(() => {
+              if (statusEl) {
+                statusEl.textContent = (docEl.lang === 'ar') ? 'تعذّر الإرسال، حاول لاحقاً.' : 'Could not send message, please try again later.';
+                statusEl.classList.add('is-error');
+                statusEl.classList.remove('is-success');
+              }
+            });
+        } else {
+          // Placeholder fallback
+          if (statusEl) {
+            statusEl.textContent = (docEl.lang === 'ar') ? 'تم إرسال النموذج (تجريبي).' : 'Form submitted (placeholder).';
+            statusEl.classList.remove('is-error');
+            statusEl.classList.add('is-success');
+          }
+          form.reset();
+        }
       });
     }
   }

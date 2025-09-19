@@ -39,11 +39,10 @@
   <link id="favicon" rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16.png" />
   <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png" />
-  <!-- <link rel="canonical" href="YOUR_FINAL_SITE_URL_HERE" /> -->
-
-  <!-- i18n alternates (optional — update URLs when deploying) -->
-  <!-- <link rel="alternate" hreflang="en" href="YOUR_SITE_URL?lang=en" /> -->
-  <!-- <link rel="alternate" hreflang="ar" href="YOUR_SITE_URL?lang=ar" /> -->
+  <!-- Replace YOUR_DOMAIN with your production domain (e.g., https://youssef.dev) -->
+  <link rel="canonical" href="https://YOUR_DOMAIN/" />
+  <link rel="alternate" hreflang="en" href="https://YOUR_DOMAIN/?lang=en" />
+  <link rel="alternate" hreflang="ar" href="https://YOUR_DOMAIN/?lang=ar" />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -68,7 +67,7 @@
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Y0ussef Mahmoud | Full-Stack Developer" />
-  <meta name="twitter:description" content="Full-Stack Developer & Project Engineer at Shehabco. Node.js, MySQL, Flutter, REST APIs, Docker." />
+  <meta name="twitter:description" content="Full-Stack Developer & Project Engineer at Shehabco. Node.js, MySQL, REST APIs, Docker, Flutter, Dart, Web Development, Mobile Apps, Egypt" />
   <meta name="twitter:image" content="assets/images/og-image-1200x630.jpg" />
   <meta name="keywords" content="Full-Stack Developer, Node.js, Express, MySQL, REST APIs, Docker, Flutter, Dart, Web Development, Mobile Apps, Egypt" />
 
@@ -141,7 +140,7 @@
           <span class="highlight">Y0ussef</span>
         </h1>
         <p class="hero-subtitle" data-i18n="hero.tagline">
-          Full‑Stack Developer & Project Engineer at Shehabco. I build responsive web and mobile apps with Node.js, MySQL, Flutter, REST APIs, and Docker.
+          Full‑Stack Developer & Project Engineer at Shehabco.
         </p>
         <div class="hero-actions">
           <a href="#projects" class="btn btn-primary" data-i18n="hero.ctaPrimary">View Projects</a>
@@ -468,7 +467,8 @@
       <h2 class="section-title" data-i18n="contact.title">Contact</h2>
       <p class="section-subtitle" data-i18n="contact.subtitle">Let’s build something great together</p>
 
-      <form id="contactForm" class="contact-form" novalidate>
+      <!-- To enable Formspree, set your FORMSPREE_ID in assets/js/script.js and keep this action attribute -->
+      <form id="contactForm" class="contact-form" action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST" novalidate>
         <div class="form-row">
           <label for="name" data-i18n="contact.name">Name</label>
           <input id="name" name="name" type="text" autocomplete="name" required placeholder="Your name" data-i18n-placeholder="contact.ph_name" />
@@ -481,11 +481,18 @@
           <label for="message" data-i18n="contact.message">Message</label>
           <textarea id="message" name="message" rows="5" required placeholder="Tell me about your project..." data-i18n-placeholder="contact.ph_message"></textarea>
         </div>
+        <!-- Anti-spam honeypot (bots tend to fill hidden fields). Formspree will ignore unknown fields. -->
+        <div style="position:absolute; left:-10000px; top:auto; width:1px; height:1px; overflow:hidden;" aria-hidden="true">
+          <label for="hp">Leave this field empty</label>
+          <input id="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" />
+        </div>
+        <!-- Optional subject to help inbox filtering -->
+        <input type="hidden" name="_subject" value="New message from portfolio contact form" />
         <div class="form-actions">
           <button type="submit" class="btn btn-primary" data-i18n="contact.send">Send Message</button>
         </div>
         <p id="formStatus" class="form-status" role="status" aria-live="polite"></p>
-        <p class="form-note" data-i18n="contact.note">No backend connected yet — this button is a placeholder for now.</p>
+        <p class="form-note">If Formspree ID is configured, your message will be sent. Otherwise this form works in demo mode.</p>
       </form>
     </div>
   </section>
