@@ -68,7 +68,7 @@
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Y0ussef Mahmoud | Full-Stack Developer" />
-  <meta name="twitter:description" content="Full-Stack Developer & Project Engineer at Shehabco. Node.js, MySQL, Flutter, RESTful APIs, Docker." />
+  <meta name="twitter:description" content="Full-Stack Developer & Project Engineer at Shehabco. Node.js, MySQL, Flutter, REST APIs, Docker." />
   <meta name="twitter:image" content="#" /><!--assets/images/og-image.jpg-->   
 
   <!-- JSON-LD Schema.org (Person) -->
@@ -110,7 +110,7 @@
           <li><a href="#services" data-i18n="nav.services">Services</a></li>
           <li><a href="#projects" data-i18n="nav.projects">Projects</a></li>
           <li><a href="#education" data-i18n="nav.education">Education</a></li>
-          <li><a href="#experience" data-i18n="nav.experience">Experience</a></li>
+          <!-- <li><a href="#experience" data-i18n="nav.experience">Experience</a></li> -->
           <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
         </ul>
       </nav>
@@ -145,6 +145,14 @@
 
         <ul class="socials" aria-label="Social links">
           <li><a class="social-link" href="https://www.linkedin.com/in/y0ussefmahmoud/" target="_blank" rel="noreferrer noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a></li>
+          <li><a class="social-link" href="https://github.com/y0ussefmahmoud" target="_blank" rel="noreferrer noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a></li>
+          <li>
+            <a class="social-link" href="https://www.upwork.com/freelancers/~01838199ccfa64f13e" target="_blank" rel="noreferrer noopener" aria-label="Upwork">
+              <svg aria-hidden="true" viewBox="0 0 24 24" width="1em" height="1em" focusable="false">
+                <path fill="currentColor" d="M18.53 6.06a5.47 5.47 0 0 0-5.47 5.47v.44a12.3 12.3 0 0 1-1.66-3.28L9 5.5H6.75v5.47a2.19 2.19 0 0 1-4.38 0V5.5H0v5.47a4.38 4.38 0 1 0 8.75 0V9.1c.4 1.01.9 2 1.5 2.93l-1.75 6.46h2.4l1.2-4.45c.93.86 2.16 1.4 3.53 1.4a5.47 5.47 0 1 0 0-10.93Zm0 8.2a2.73 2.73 0 0 1-2.73-2.73v-1.64h2.73a2.73 2.73 0 1 1 0 5.47Z"/>
+              </svg>
+            </a>
+          </li>
           <li><a class="social-link" href="https://www.facebook.com/y0ussefmahmoud" target="_blank" rel="noreferrer noopener" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a></li>
         </ul>
       </div>
@@ -309,11 +317,12 @@
               <!-- <img src="assets/images/projects/p1.jpg" alt="Project 1" loading="lazy" /> -->
             </div>
             <div class="project-body">
+              <span class="status-badge" data-i18n="projects.completed">Completed</span>
               <h3 class="project-title">Node.js API</h3>
               <p class="project-desc">RESTful API with Node.js, Express, JWT auth, and MySQL.</p>
               <div class="project-actions">
-                <a href="#" class="btn btn-primary" data-i18n="projects.view">View</a>
-                <a href="#" class="btn" data-i18n="projects.code">Code</a>
+                <a href="#projects" class="btn btn-primary" data-i18n="projects.view">View</a>
+                <a href="#projects" class="btn" data-i18n="projects.code">Code</a>
               </div>
             </div>
           </article>
@@ -323,11 +332,12 @@
               <!-- <img src="assets/images/projects/p3.jpg" alt="Project 3" loading="lazy" /> -->
             </div>
             <div class="project-body">
+              <span class="status-badge" data-i18n="projects.completed">Completed</span>
               <h3 class="project-title">Admin Dashboard</h3>
               <p class="project-desc">Responsive dashboard with charts, auth, and role management.</p>
               <div class="project-actions">
-                <a href="#" class="btn btn-primary" data-i18n="projects.view">View</a>
-                <a href="#" class="btn" data-i18n="projects.code">Code</a>
+                <a href="#projects" class="btn btn-primary" data-i18n="projects.view">View</a>
+                <a href="#projects" class="btn" data-i18n="projects.code">Code</a>
               </div>
             </div>
           </article>
@@ -346,11 +356,12 @@
               <!-- <img src="assets/images/projects/p2.jpg" alt="Project 2" loading="lazy" /> -->
             </div>
             <div class="project-body">
+              <span class="status-badge" data-i18n="projects.inProgress">In Progress</span>
               <h3 class="project-title">Flutter App</h3>
               <p class="project-desc">Cross‑platform mobile app with clean architecture and REST.</p>
               <div class="project-actions">
-                <a href="#" class="btn btn-primary" data-i18n="projects.view">View</a>
-                <a href="#" class="btn" data-i18n="projects.code">Code</a>
+                <a href="#projects" class="btn btn-primary" data-i18n="projects.view">View</a>
+                <a href="#projects" class="btn" data-i18n="projects.code">Code</a>
               </div>
             </div>
           </article>
@@ -428,15 +439,15 @@
       <form id="contactForm" class="contact-form" novalidate>
         <div class="form-row">
           <label for="name" data-i18n="contact.name">Name</label>
-          <input id="name" name="name" type="text" autocomplete="name" required placeholder="Your name" />
+          <input id="name" name="name" type="text" autocomplete="name" required placeholder="Your name" data-i18n-placeholder="contact.ph_name" />
         </div>
         <div class="form-row">
           <label for="email" data-i18n="contact.email">Email</label>
-          <input id="email" name="email" type="email" autocomplete="email" required placeholder="you@example.com" />
+          <input id="email" name="email" type="email" autocomplete="email" required placeholder="you@example.com" data-i18n-placeholder="contact.ph_email" />
         </div>
         <div class="form-row">
           <label for="message" data-i18n="contact.message">Message</label>
-          <textarea id="message" name="message" rows="5" required placeholder="Tell me about your project..."></textarea>
+          <textarea id="message" name="message" rows="5" required placeholder="Tell me about your project..." data-i18n-placeholder="contact.ph_message"></textarea>
         </div>
         <div class="form-actions">
           <button type="submit" class="btn btn-primary" data-i18n="contact.send">Send Message</button>
@@ -462,6 +473,7 @@
           <li><a href="#services" data-i18n="nav.services">Services</a></li>
           <li><a href="#projects" data-i18n="nav.projects">Projects</a></li>
           <li><a href="#education" data-i18n="nav.education">Education</a></li>
+          <!-- <li><a href="#experience" data-i18n="nav.experience">Experience</a></li> -->
           <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
         </ul>
       </nav>
@@ -470,6 +482,14 @@
         <h3 class="footer-title" data-i18n="footer.follow">Follow</h3>
         <ul class="socials">
           <li><a class="social-link" href="https://www.linkedin.com/in/y0ussefmahmoud/" target="_blank" rel="noreferrer noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a></li>
+          <li><a class="social-link" href="https://github.com/y0ussefmahmoud" target="_blank" rel="noreferrer noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a></li>
+          <li>
+            <a class="social-link" href="https://www.upwork.com/freelancers/~01838199ccfa64f13e" target="_blank" rel="noreferrer noopener" aria-label="Upwork">
+              <svg aria-hidden="true" viewBox="0 0 24 24" width="1em" height="1em" focusable="false">
+                <path fill="currentColor" d="M18.53 6.06a5.47 5.47 0 0 0-5.47 5.47v.44a12.3 12.3 0 0 1-1.66-3.28L9 5.5H6.75v5.47a2.19 2.19 0 0 1-4.38 0V5.5H0v5.47a4.38 4.38 0 1 0 8.75 0V9.1c.4 1.01.9 2 1.5 2.93l-1.75 6.46h2.4l1.2-4.45c.93.86 2.16 1.4 3.53 1.4a5.47 5.47 0 1 0 0-10.93Zm0 8.2a2.73 2.73 0 0 1-2.73-2.73v-1.64h2.73a2.73 2.73 0 1 1 0 5.47Z"/>
+              </svg>
+            </a>
+          </li>
           <li><a class="social-link" href="https://www.facebook.com/y0ussefmahmoud" target="_blank" rel="noreferrer noopener" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a></li>
         </ul>
       </div>
@@ -480,6 +500,11 @@
       </div>
     </div>
   </footer>
+
+  <!-- Back to Top Button -->
+  <button id="backToTop" class="back-to-top" aria-label="Back to top" title="Back to top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
 
   <!-- Scripts -->
   <script src="assets/js/script.js" defer></script>

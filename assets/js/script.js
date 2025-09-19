@@ -78,6 +78,9 @@
       'contact.message': 'Message',
       'contact.send': 'Send Message',
       'contact.note': 'No backend connected yet — this button is a placeholder for now.',
+      'contact.ph_name': 'Your name',
+      'contact.ph_email': 'you@example.com',
+      'contact.ph_message': 'Tell me about your project...',
       // Footer
       'footer.tag': 'Building scalable web and mobile solutions.',
       'footer.links': 'Links',
@@ -159,6 +162,9 @@
       'contact.message': 'الرسالة',
       'contact.send': 'إرسال الرسالة',
       'contact.note': 'لا يوجد باك إند حالياً — هذا الزر تجريبي مؤقتاً.',
+      'contact.ph_name': 'اسمك',
+      'contact.ph_email': 'you@example.com',
+      'contact.ph_message': 'حدّثني عن مشروعك...',
       // Footer
       'footer.tag': 'بناء حلول ويب وموبايل قابلة للتوسّع.',
       'footer.links': 'روابط',
@@ -187,6 +193,11 @@
     $$('[data-i18n]').forEach(el => {
       const key = el.getAttribute('data-i18n');
       if (dict[key]) el.textContent = dict[key];
+    });
+    // Apply placeholders i18n
+    $$('[data-i18n-placeholder]').forEach(el => {
+      const key = el.getAttribute('data-i18n-placeholder');
+      if (dict[key] && 'placeholder' in el) el.placeholder = dict[key];
     });
   }
 
@@ -248,10 +259,87 @@
     });
   }
 
+  // --- Scrollspy ---
+  function initScrollspy() {
+    const sections = $$('section[id]');
+    const links = $$('.nav-list a[href^="#"]');
+    const map = new Map();
+    links.forEach(a => {
+      const id = a.getAttribute('href').slice(1);
+      const sec = document.getElementById(id);
+      if (sec) map.set(sec, a);
+    });
+    const opts = { root: null, rootMargin: '0px 0px -60% 0px', threshold: 0.2 };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const link = map.get(entry.target);
+        if (!link) return;
+        if (entry.isIntersecting) {
+          links.forEach(l => l.classList.remove('active'));
+          link.classList.add('active');
+        }
+      });
+    }, opts);
+    sections.forEach(sec => observer.observe(sec));
+  }
+
+  // --- Escape key to close menu ---
+  function bindEscapeToCloseMenu() {
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && nav && nav.classList.contains('open')) {
+        nav.classList.remove('open');
+        if (menuBtn) menuBtn.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+
+  // --- Back to Top ---
+  function initBackToTop() {
+    const btn = document.getElementById('backToTop');
+    if (!btn) return;
+    const showAt = 320;
+    const onScroll = () => {
+      if (window.scrollY > showAt) btn.classList.add('show');
+      else btn.classList.remove('show');
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    btn.addEventListener('click', () => {
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      window.scrollTo({ top: 0, behavior: prefersReduced ? 'auto' : 'smooth' });
+    });
+  }
+
+  // --- Reveal on scroll ---
+  function initRevealAnimations() {
+    const targets = document.querySelectorAll(
+      '.section-title, .section-subtitle, .service-card, .project-card, .testimonial-card, .skill-group, .edu-item'
+    );
+    if (!('IntersectionObserver' in window)) {
+      targets.forEach(el => el.classList.add('reveal-visible'));
+      return;
+    }
+    targets.forEach((el, idx) => {
+      el.classList.add('reveal');
+      // optional simple stagger
+      el.style.transitionDelay = `${Math.min(idx % 8, 4) * 40}ms`;
+    });
+    const obs = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('reveal-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.15 });
+    targets.forEach(el => obs.observe(el));
+  }
+
   // --- Bind Events ---
   function bindEvents() {
     if (menuBtn) menuBtn.addEventListener('click', toggleMenu);
     if (nav) nav.addEventListener('click', closeMenuOnNavigate);
+    bindEscapeToCloseMenu();
 
     if (themeBtn) {
       themeBtn.addEventListener('click', () => {
@@ -274,6 +362,9 @@
     applyTranslations((docEl.lang || 'en').toLowerCase());
     syncThemeIcon();
     updateProjectCounts();
+    initScrollspy();
+    initBackToTop();
+    initRevealAnimations();
 
     // Footer year
     const yearEl = document.getElementById('year');
