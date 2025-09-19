@@ -29,7 +29,7 @@
       'nav.contact': 'Contact',
       // Hero
       'hero.greet': "Hello, I’m",
-      'hero.tagline': 'Full‑Stack Developer & Project Engineer at Shehabco. I build responsive web and mobile apps with Node.js, MySQL, Flutter, REST APIs, and Docker.',
+      'hero.tagline': 'Full‑Stack Developer building scalable web and mobile apps.',
       'hero.ctaPrimary': 'View Projects',
       'hero.ctaSecondary': 'Get in Touch',
       // About
@@ -113,7 +113,7 @@
       'nav.contact': 'تواصل',
       // Hero
       'hero.greet': 'مرحباً، أنا',
-      'hero.tagline': 'مطوّر فل‑ستاك ومهندس مشاريع لدى شهابكو. أبني تطبيقات ويب وموبايل سريعة الاستجابة باستخدام Node.js وMySQL وFlutter، وأعمل مع واجهات REST وDocker لتقديم حلول قابلة للتوسّع وموثوقة.',
+      'hero.tagline': 'مطوّر أبني تطبيقات ويب وموبايل قابلة للتوسّع.',
       'hero.ctaPrimary': 'استعرض المشاريع',
       'hero.ctaSecondary': 'تواصل معي',
       // About
@@ -315,7 +315,7 @@
   // --- Reveal on scroll ---
   function initRevealAnimations() {
     const targets = document.querySelectorAll(
-      '.section-title, .section-subtitle, .service-card, .project-card, .testimonial-card, .skill-group, .edu-item'
+      '.section-title, .section-subtitle, .service-card, .project-card, .testimonial-card, .skill-group, .edu-item, .hero-media img, .about-media img, .project-media img'
     );
     if (!('IntersectionObserver' in window)) {
       targets.forEach(el => el.classList.add('reveal-visible'));
@@ -344,6 +344,32 @@
     const buttons = Array.from(toolbar.querySelectorAll('.filter-btn'));
     const cards = Array.from(document.querySelectorAll('.project-card'));
 
+    function setButtonState(activeBtn) {
+      buttons.forEach(b => {
+        const isActive = b === activeBtn;
+        b.classList.toggle('is-active', isActive);
+        b.setAttribute('aria-pressed', String(isActive));
+      });
+    }
+
+    function updateGroupVisibility() {
+      const groups = Array.from(document.querySelectorAll('.project-group'));
+      groups.forEach(group => {
+        const visible = group.querySelector('.project-card:not(.is-hidden)');
+        group.classList.toggle('is-empty', !visible);
+      });
+    }
+
+    let countRaf = 0;
+    function refreshCounts() {
+      if (countRaf) return;
+      countRaf = requestAnimationFrame(() => {
+        updateProjectCounts();
+        updateGroupVisibility();
+        countRaf = 0;
+      });
+    }
+
     function applyFilter(filter) {
       const [type, value] = filter === 'all' ? ['all', ''] : filter.split(':');
       cards.forEach(card => {
@@ -352,21 +378,28 @@
           show = (card.getAttribute('data-status') === value);
         } else if (type === 'tech') {
           const techs = (card.getAttribute('data-tech') || '').toLowerCase();
-          show = techs.split(',').map(t => t.trim()).filter(Boolean).includes(value);
+          const arr = techs.split(',').map(t => t.trim()).filter(Boolean);
+          show = arr.includes(value);
         }
-        card.classList.toggle('is-hidden', !show && type !== 'all');
+        card.classList.toggle('is-hidden', type !== 'all' && !show);
       });
-      updateProjectCounts();
+      refreshCounts();
     }
 
     toolbar.addEventListener('click', (e) => {
       const btn = e.target.closest('.filter-btn');
       if (!btn) return;
-      buttons.forEach(b => b.classList.remove('is-active'));
-      btn.classList.add('is-active');
+      setButtonState(btn);
       const filter = btn.getAttribute('data-filter') || 'all';
       applyFilter(filter);
     });
+
+    // Initialize default state
+    const initial = toolbar.querySelector('.filter-btn.is-active') || buttons[0];
+    if (initial) {
+      setButtonState(initial);
+      applyFilter(initial.getAttribute('data-filter') || 'all');
+    }
   }
 
   // --- Bind Events ---
