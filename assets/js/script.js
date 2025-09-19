@@ -250,7 +250,8 @@
     const counters = { 'completed': 0, 'in-progress': 0 };
     document.querySelectorAll('.project-card').forEach(card => {
       const status = card.getAttribute('data-status');
-      if (status && counters.hasOwnProperty(status)) counters[status]++;
+      const hidden = card.classList.contains('is-hidden') || card.style.display === 'none';
+      if (!hidden && status && counters.hasOwnProperty(status)) counters[status]++;
     });
     Object.keys(counters).forEach(key => {
       document.querySelectorAll(`.count-badge[data-count-for="${key}"]`).forEach(badge => {
@@ -275,8 +276,9 @@
         const link = map.get(entry.target);
         if (!link) return;
         if (entry.isIntersecting) {
-          links.forEach(l => l.classList.remove('active'));
+          links.forEach(l => { l.classList.remove('active'); l.removeAttribute('aria-current'); });
           link.classList.add('active');
+          link.setAttribute('aria-current', 'page');
         }
       });
     }, opts);
@@ -335,6 +337,38 @@
     targets.forEach(el => obs.observe(el));
   }
 
+  // --- Projects Filter ---
+  function initProjectsFilter() {
+    const toolbar = document.querySelector('.projects-filter');
+    if (!toolbar) return;
+    const buttons = Array.from(toolbar.querySelectorAll('.filter-btn'));
+    const cards = Array.from(document.querySelectorAll('.project-card'));
+
+    function applyFilter(filter) {
+      const [type, value] = filter === 'all' ? ['all', ''] : filter.split(':');
+      cards.forEach(card => {
+        let show = true;
+        if (type === 'status') {
+          show = (card.getAttribute('data-status') === value);
+        } else if (type === 'tech') {
+          const techs = (card.getAttribute('data-tech') || '').toLowerCase();
+          show = techs.split(',').map(t => t.trim()).filter(Boolean).includes(value);
+        }
+        card.classList.toggle('is-hidden', !show && type !== 'all');
+      });
+      updateProjectCounts();
+    }
+
+    toolbar.addEventListener('click', (e) => {
+      const btn = e.target.closest('.filter-btn');
+      if (!btn) return;
+      buttons.forEach(b => b.classList.remove('is-active'));
+      btn.classList.add('is-active');
+      const filter = btn.getAttribute('data-filter') || 'all';
+      applyFilter(filter);
+    });
+  }
+
   // --- Bind Events ---
   function bindEvents() {
     if (menuBtn) menuBtn.addEventListener('click', toggleMenu);
@@ -358,6 +392,11 @@
 
   // --- Init ---
   function init() {
+    // Language via query param has priority on first load
+    const qsLang = new URLSearchParams(window.location.search).get('lang');
+    if (qsLang && (qsLang.toLowerCase() === 'ar' || qsLang.toLowerCase() === 'en')) {
+      setLang(qsLang.toLowerCase());
+    }
     applyLangLabel();
     applyTranslations((docEl.lang || 'en').toLowerCase());
     syncThemeIcon();
@@ -365,6 +404,7 @@
     initScrollspy();
     initBackToTop();
     initRevealAnimations();
+    initProjectsFilter();
 
     // Footer year
     const yearEl = document.getElementById('year');
@@ -373,10 +413,25 @@
     // Contact form placeholder handler
     const form = document.getElementById('contactForm');
     if (form) {
+      const statusEl = document.getElementById('formStatus');
+      const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       form.addEventListener('submit', function (e) {
         e.preventDefault();
-        alert(docEl.lang === 'ar' ? 'تم إرسال النموذج (تجريبي).' : 'Form submitted (placeholder).');
-        form.reset();
+        const name = form.name.value.trim();
+        const email = form.email.value.trim();
+        const message = form.message.value.trim();
+        let error = '';
+        if (!name || !email || !message) {
+          error = (docEl.lang === 'ar') ? 'من فضلك أكمل كل الحقول المطلوبة.' : 'Please fill in all required fields.';
+        } else if (!emailRe.test(email)) {
+          error = (docEl.lang === 'ar') ? 'صيغة البريد غير صحيحة.' : 'Invalid email format.';
+        }
+        if (statusEl) {
+          statusEl.textContent = error || (docEl.lang === 'ar' ? 'تم إرسال النموذج (تجريبي).' : 'Form submitted (placeholder).');
+          statusEl.classList.toggle('is-error', Boolean(error));
+          statusEl.classList.toggle('is-success', !error);
+        }
+        if (!error) form.reset();
       });
     }
   }

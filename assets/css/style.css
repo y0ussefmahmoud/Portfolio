@@ -38,6 +38,22 @@ body {
   padding-inline: 20px;
 }
 .accent { color: var(--primary); }
+/* Skip link */
+.skip-link {
+  position: absolute;
+  inset-inline-start: 16px;
+  inset-block-start: -40px;
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  z-index: 1000;
+}
+.skip-link:focus {
+  inset-block-start: 16px;
+}
 
 /* Header */
 .site-header {
@@ -190,6 +206,7 @@ body {
   position: relative;
   transition: transform .18s ease, box-shadow .18s ease, background-color .18s ease, border-color .18s ease, color .18s ease;
 }
+.btn-sm { height: 36px; padding: 0 12px; font-weight: 600; }
 .btn-primary {
   background: linear-gradient(135deg, var(--primary), color-mix(in oklab, var(--primary), #ffffff 20%));
   border-color: transparent;
@@ -302,6 +319,18 @@ body {
 
 /* Projects */
 .projects { padding-block: clamp(40px, 7vw, 80px); }
+.projects-filter { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0 18px; }
+.filter-btn {
+  height: 36px;
+  padding: 0 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+}
+.filter-btn:hover { border-color: color-mix(in oklab, var(--primary), var(--border)); color: var(--primary); }
+.filter-btn.is-active { background: color-mix(in oklab, var(--primary) 10%, var(--surface)); border-color: color-mix(in oklab, var(--primary) 40%, var(--border)); }
 .project-group { margin-top: 22px; }
 .group-header {
   display: flex;
@@ -343,6 +372,18 @@ body {
 .project-title { margin: 0; font-size: 1.1rem; }
 .project-desc { margin: 0; color: var(--muted); }
 .project-actions { display: flex; gap: 10px; }
+.badges { display: flex; flex-wrap: wrap; gap: 6px; }
+.badge {
+  display: inline-flex;
+  align-items: center;
+  height: 28px;
+  padding: 0 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: color-mix(in oklab, var(--surface) 85%, var(--bg));
+  color: var(--muted);
+  font-size: .85rem;
+}
 
 @media (max-width: 992px) { .projects-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 640px) { .projects-grid { grid-template-columns: 1fr; } }
@@ -383,6 +424,9 @@ body {
 }
 .form-actions { margin-top: 4px; }
 .form-note { color: var(--muted); margin: 8px 0 0; font-size: .95rem; }
+.form-status { min-height: 20px; margin: 8px 0 0; font-size: .95rem; }
+.form-status.is-success { color: #16c784; }
+.form-status.is-error { color: #ff4d4f; }
 
 /* Footer */
 .site-footer { margin-top: 16px; border-top: 1px solid var(--border); background: color-mix(in oklab, var(--bg) 92%, transparent); }
