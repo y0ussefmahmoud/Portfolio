@@ -295,6 +295,22 @@
     });
   }
 
+  // --- Close menu when clicking outside ---
+  function bindClickOutsideToCloseMenu() {
+    document.addEventListener('click', (e) => {
+      if (!nav || !menuBtn || !nav.classList.contains('open')) return;
+      
+      // Check if click is outside both nav and menu button
+      const isClickInsideNav = nav.contains(e.target);
+      const isClickOnMenuBtn = menuBtn.contains(e.target);
+      
+      if (!isClickInsideNav && !isClickOnMenuBtn) {
+        nav.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+
   // --- Back to Top ---
   function initBackToTop() {
     const btn = document.getElementById('backToTop');
@@ -402,11 +418,25 @@
     }
   }
 
+  // --- Performance helpers ---
+  function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+      const later = () => {
+        clearTimeout(timeout);
+        func(...args);
+      };
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+    };
+  }
+
   // --- Bind Events ---
   function bindEvents() {
     if (menuBtn) menuBtn.addEventListener('click', toggleMenu);
     if (nav) nav.addEventListener('click', closeMenuOnNavigate);
     bindEscapeToCloseMenu();
+    bindClickOutsideToCloseMenu();
 
     if (themeBtn) {
       themeBtn.addEventListener('click', () => {
@@ -466,7 +496,7 @@
         }
         if (error) return;
 
-        const isFormspree = typeof form.action === 'string' && form.action.includes('formspree.io/f/');
+        const isFormspree = typeof form.action === 'string' && form.action.includes('formspree.io/f/') && !form.action.includes('#');
         if (isFormspree) {
           // Submit via AJAX to stay on page
           const data = new FormData(form);
@@ -504,7 +534,35 @@
     }
   }
 
+  // --- Create close button for mobile menu ---
+  function createMobileMenuCloseButton() {
+    if (!nav) return;
+    
+    // Check if button already exists
+    let closeBtn = nav.querySelector('.nav-close-btn');
+    if (closeBtn) return;
+    
+    // Create close button
+    closeBtn = document.createElement('button');
+    closeBtn.id = 'closeMenu';
+    closeBtn.className = 'nav-close-btn';
+    closeBtn.type = 'button';
+    closeBtn.setAttribute('aria-label', 'Close menu');
+    closeBtn.setAttribute('title', 'Close menu');
+    closeBtn.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+    
+    // Insert as first child of nav
+    nav.insertBefore(closeBtn, nav.firstChild);
+    
+    // Add click event
+    closeBtn.addEventListener('click', () => {
+      nav.classList.remove('open');
+      if (menuBtn) menuBtn.setAttribute('aria-expanded', 'false');
+    });
+  }
+
   // Kickoff
   bindEvents();
   init();
+  createMobileMenuCloseButton();
 })();

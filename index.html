@@ -39,10 +39,10 @@
   <link id="favicon" rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16.png" />
   <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png" />
-  <!-- Replace YOUR_DOMAIN with your production domain (e.g., https://youssef.dev) -->
-  <link rel="canonical" href="https://YOUR_DOMAIN/" />
-  <link rel="alternate" hreflang="en" href="https://YOUR_DOMAIN/?lang=en" />
-  <link rel="alternate" hreflang="ar" href="https://YOUR_DOMAIN/?lang=ar" />
+  <!-- Canonical and alternate language links -->
+  <link rel="canonical" href="https://y0ussefmahmoud.github.io/" />
+  <link rel="alternate" hreflang="en" href="https://y0ussefmahmoud.github.io/?lang=en" />
+  <link rel="alternate" hreflang="ar" href="https://y0ussefmahmoud.github.io/?lang=ar" />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -61,14 +61,17 @@
   <meta property="og:locale:alternate" content="ar_EG" />
   <meta property="og:title" content="Y0ussef Mahmoud | Full-Stack Developer" />
   <meta property="og:description" content="Full-Stack Developer & Project Engineer at Shehabco. Node.js, MySQL, Flutter, RESTful APIs, Docker." />
-  <!-- <meta property="og:url" content="YOUR_FINAL_SITE_URL_HERE" /> -->
-  <meta property="og:image" content="assets/images/og-image-1200x630.jpg" />
+  <meta property="og:url" content="https://y0ussefmahmoud.github.io/" />
+  <meta property="og:image" content="assets/images/hero-800x1000.webp" />
+  <meta property="og:image:width" content="800" />
+  <meta property="og:image:height" content="1000" />
+  <meta property="og:image:type" content="image/webp" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Y0ussef Mahmoud | Full-Stack Developer" />
   <meta name="twitter:description" content="Full-Stack Developer & Project Engineer at Shehabco. Node.js, MySQL, REST APIs, Docker, Flutter, Dart, Web Development, Mobile Apps, Egypt" />
-  <meta name="twitter:image" content="assets/images/og-image-1200x630.jpg" />
+  <meta name="twitter:image" content="assets/images/hero-800x1000.webp" />
   <meta name="keywords" content="Full-Stack Developer, Node.js, Express, MySQL, REST APIs, Docker, Flutter, Dart, Web Development, Mobile Apps, Egypt" />
 
   <!-- JSON-LD Schema.org (Person) -->
@@ -161,7 +164,7 @@
         </ul>
 
         <div class="hero-media">
-          <img src="assets/images/hero-800x1000.webp" width="800" height="1000" alt="Y0ussef portrait" loading="lazy" />
+          <img src="assets/images/hero-800x1000.webp" width="800" height="1000" alt="Y0ussef Mahmoud - Full-Stack Developer portrait photo" loading="eager" />
         </div>
         
       </div>
@@ -467,8 +470,8 @@
       <h2 class="section-title" data-i18n="contact.title">Contact</h2>
       <p class="section-subtitle" data-i18n="contact.subtitle">Let’s build something great together</p>
 
-      <!-- To enable Formspree, set your FORMSPREE_ID in assets/js/script.js and keep this action attribute -->
-      <form id="contactForm" class="contact-form" action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST" novalidate>
+      <!-- Contact form - replace with your Formspree ID when ready -->
+      <form id="contactForm" class="contact-form" action="#" method="POST" novalidate>
         <div class="form-row">
           <label for="name" data-i18n="contact.name">Name</label>
           <input id="name" name="name" type="text" autocomplete="name" required placeholder="Your name" data-i18n-placeholder="contact.ph_name" />
@@ -492,7 +495,7 @@
           <button type="submit" class="btn btn-primary" data-i18n="contact.send">Send Message</button>
         </div>
         <p id="formStatus" class="form-status" role="status" aria-live="polite"></p>
-        <p class="form-note">If Formspree ID is configured, your message will be sent. Otherwise this form works in demo mode.</p>
+        <p class="form-note">This form is currently in demo mode. To enable email functionality, configure Formspree integration.</p>
       </form>
     </div>
   </section>
