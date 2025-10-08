@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Y0ussef Mahmoud - Portfolio (React.js)</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .status {
+            font-size: 1.2rem;
+            margin: 1rem 0;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+        }
+        .react-logo {
+            font-size: 3rem;
+            animation: spin 2s linear infinite;
+        }
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            margin: 10px;
+            transition: transform 0.3s ease;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="react-logo">⚛️</div>
+        <h1>Y0ussef Mahmoud</h1>
+        <h2>Portfolio Website (React.js)</h2>
+        
+        <div class="status">
+            <h3>🚧 React.js App Under Deployment</h3>
+            <p>The full React.js portfolio is being deployed. This is a temporary page.</p>
+        </div>
+        
+        <div>
+            <h3>📋 Current Status:</h3>
+            <p>✅ React.js app developed and ready</p>
+            <p>🔄 GitHub Pages deployment in progress</p>
+            <p>⚡ Full portfolio coming soon!</p>
+        </div>
+        
+        <div>
+            <a href="https://github.com/Y0ussefMahmoud/Portfolio" class="btn">📂 View Source Code</a>
+            <a href="mailto:youssef11mahmoud112002@gmail.com" class="btn">📧 Contact Me</a>
+        </div>
+        
+        <div style="margin-top: 2rem; font-size: 0.9rem; opacity: 0.8;">
+            <p>🛠️ Built with React.js + TypeScript + Styled Components</p>
+            <p>🎨 Modern, Responsive, Multi-language Portfolio</p>
+        </div>
+    </div>
+    
+    <script>
+        // Redirect to React app if it becomes available
+        setTimeout(() => {
+            fetch('./static/js/main.js')
+                .then(() => {
+                    window.location.reload();
+                })
+                .catch(() => {
+                    console.log('React app not yet deployed');
+                });
+        }, 5000);
+    </script>
+</body>
+</html>
