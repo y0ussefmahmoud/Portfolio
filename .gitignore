@@ -50,6 +50,9 @@ pids
 *.tmp
 *.temp
 
+# Dependencies
+node_modules/
+
 # Build outputs
 dist/
 build/
