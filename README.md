@@ -1,92 +1,121 @@
-# Y0ussef Mahmoud - Portfolio Website
+# Y0ussef Mahmoud - Portfolio Website (React.js)
 
-A modern, responsive portfolio website for a Full-Stack Developer showcasing skills, projects, and experience.
+A modern, responsive portfolio website built with **React.js** and **TypeScript**, showcasing my skills and projects as a Full-Stack Developer.
 
 ## Features
 
-- 🌓 **Dark/Light Theme Toggle** - Automatic system preference detection with manual override
-- 🌍 **Bilingual Support** - English and Arabic with RTL support
-- 📱 **Fully Responsive** - Mobile-first design that works on all devices
-- ♿ **Accessible** - WCAG compliant with proper ARIA labels and keyboard navigation
-- ⚡ **Performance Optimized** - Fast loading with optimized images and CSS
-- 🎨 **Modern Design** - Clean, professional design with smooth animations
-- 📧 **Contact Form** - Integrated with Formspree for email functionality
+- **React.js + TypeScript**: Modern development stack
+- **Styled Components**: Dynamic styling with theme support
+- **Fully Responsive**: Perfect on all devices and screen sizes
+- **Dark/Light Theme**: Toggle between themes
+- **Multi-language**: English and Arabic support
+- **Performance Optimized**: Fast loading and smooth animations
+- **Accessible**: WCAG compliant design
+- **SEO Optimized**: Meta tags and structured data
+
+## Tech Stack
+
+### Frontend
+- **React.js 18** - UI Library
+- **TypeScript** - Type Safety
+- **Styled Components** - CSS-in-JS
+- **React Hooks** - State Management
+
+### Tools & Build
+- **Create React App** - Build Tool
+- **ESLint** - Code Linting
+- **Git** - Version Control
+
+## Installation & Setup
+
+### Prerequisites
+- Node.js (v16 or higher)
+- npm or yarn
+
+### Quick Start
+
+```bash
+# Clone the repository
+git clone https://github.com/Y0ussefMahmoud/Portfolio.git
+
+# Navigate to project directory
+cd Portfolio
+
+# Install dependencies
+npm install
+
+# Start development server
+npm start
+
+# Build for production
+npm run build
+```
+
+## Deployment
+
+### GitHub Pages
+```bash
+# Build the project
+npm run build
+
+# Deploy to GitHub Pages
+# (Configure your repository settings for GitHub Pages)
+```
+
+### Netlify/Vercel
+- Connect your GitHub repository
+- Set build command: `npm run build`
+- Set publish directory: `build`
+
+## Project Structure
+
+```
+Portfolio/
+├── public/          # Static files
+│   ├── images/      # Optimized images
+│   └── index.html   # HTML template
+├── src/
+│   ├── components/  # React components
+│   ├── i18n/        # Internationalization
+│   ├── theme/       # Theme configuration
+│   └── App.tsx      # Main App component
+├── package.json     # Dependencies
+└── README.md        # This file
+```
 
 ## Sections
 
-- **Hero** - Introduction with social links
-- **About** - Personal information and background
-- **Skills** - Technical skills organized by category
-- **Services** - Services offered as a developer
-- **Projects** - Portfolio projects with filtering functionality
-- **Education** - Academic background and certifications
-- **Testimonials** - Client feedback and recommendations
-- **Contact** - Contact form and information
+1. **Hero** - Introduction with call-to-action
+2. **About** - Personal and professional background  
+3. **Skills** - Technical expertise showcase
+4. **Services** - Services I provide
+5. **Projects** - Portfolio of completed work
+6. **Education** - Academic background
+7. **Testimonials** - Client feedback
+8. **Contact** - Contact form and information
 
-## Technologies Used
+## Live Demo
 
-- **HTML5** - Semantic markup with proper accessibility
-- **CSS3** - Modern CSS with custom properties and grid/flexbox
-- **Vanilla JavaScript** - No frameworks, pure JS for better performance
-- **Font Awesome** - Icons
-- **Google Fonts** - Poppins and Nunito font families
+**[View Live Portfolio](https://y0ussefmahmoud.github.io/Portfolio/)**
 
-## Setup Instructions
+## Contributing
 
-1. Clone or download the repository
-2. Open `index.html` in your browser
-3. For contact form functionality:
-   - Sign up at [Formspree](https://formspree.io/)
-   - Replace `#` in the form action with your Formspree endpoint
-   - Update the form action in `index.html`
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-## Customization
+## Contact
 
-### Colors
-Edit the CSS custom properties in `assets/css/style.css`:
-```css
-:root {
-  --primary: #2f6fed;  /* Primary brand color */
-  --accent: #00d3a7;   /* Accent color */
-  /* ... other colors */
-}
-```
-
-### Content
-- Update personal information in `index.html`
-- Replace project images in `assets/images/`
-- Modify the translations in `assets/js/script.js`
-
-### Images
-Replace the placeholder images with your own:
-- `hero-800x1000.webp` - Your photo for the hero section
-- `about-1000x600.webp` - About section image (optional)
-- Project images (1200x675 recommended)
-- `og-image-1200x630.jpg` - Social media preview image
-
-## Browser Support
-
-- Chrome 90+
-- Firefox 88+
-- Safari 14+
-- Edge 90+
-
-## Performance
-
-- Lighthouse Score: 95+ (Performance, Accessibility, Best Practices, SEO)
-- First Contentful Paint: < 1.5s
-- Largest Contentful Paint: < 2.5s
+- **Email**: youssef11mahmoud112002@gmail.com
+- **LinkedIn**: [Y0ussef Mahmoud](https://linkedin.com/in/y0ussefmahmoud)
+- **GitHub**: [Y0ussefMahmoud](https://github.com/Y0ussefMahmoud)
 
 ## License
 
 This project is open source and available under the [MIT License](LICENSE).
 
-## Contact
-
-- **Email**: youssef11mahmoud112002@gmail.com
-- **LinkedIn**: [y0ussefmahmoud](https://www.linkedin.com/in/y0ussefmahmoud/)
-- **GitHub**: [y0ussefmahmoud](https://github.com/y0ussefmahmoud)
-
 ---
 
-Built with ❤️ by Y0ussef Mahmoud
+**Built with ❤️ and ⚛️ React.js by Y0ussef Mahmoud**
