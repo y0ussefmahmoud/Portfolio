@@ -1,9 +1,9 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import { Translations } from '../../i18n/translations';
-import LazyImage from '../LazyImage/LazyImage';
-import AnimatedSection from '../Animations/AnimatedSection';
-import { smoothScrollTo } from '../../utils/smoothScroll';
+// import LazyImage from '../LazyImage/LazyImage';
+// import AnimatedSection from '../Animations/AnimatedSection';
+// import { smoothScrollTo } from '../../utils/smoothScroll';
 
 const fadeInUp = keyframes`
   from {
@@ -419,10 +419,10 @@ const Hero: React.FC<HeroProps> = ({ translations }) => {
               <Tagline>{translations.hero.tagline}</Tagline>
               
               <ButtonGroup>
-                <Button variant="primary" onClick={() => smoothScrollTo('projects')}>
+                <Button variant="primary" onClick={scrollToProjects}>
                   {translations.hero.ctaPrimary}
                 </Button>
-                <Button variant="secondary" onClick={() => smoothScrollTo('contact')}>
+                <Button variant="secondary" onClick={scrollToContact}>
                   {translations.hero.ctaSecondary}
                 </Button>
               </ButtonGroup>
@@ -462,7 +462,7 @@ const Hero: React.FC<HeroProps> = ({ translations }) => {
             </ImageContent>
         </HeroContent>
 
-        <ScrollIndicator onClick={() => smoothScrollTo('about')}>
+        <ScrollIndicator onClick={scrollToAbout}>
           <ScrollText>Explore More</ScrollText>
           <ScrollArrow>↓</ScrollArrow>
         </ScrollIndicator>

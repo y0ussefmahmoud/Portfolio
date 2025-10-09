@@ -6,7 +6,7 @@ import About from './components/About/About-simple';
 import Skills from './components/Skills/Skills-simple';
 import Services from './components/Services/Services-enhanced';
 import Projects from './components/Projects/Projects-enhanced';
-// import Education from './components/Education/Education-simple';
+import Education from './components/Education/Education-simple';
 // import Testimonials from './components/Testimonials/Testimonials-simple';
 import Contact from './components/Contact/Contact-simple';
 import Footer from './components/Footer/Footer';
@@ -263,9 +263,9 @@ function App() {
           <Skills translations={t} />
           <Services translations={t} />
           <Projects translations={t} />
+          <Education translations={t} />
           <Contact translations={t} />
-          {/* <Education translations={t} />
-          <Feedback translations={t} /> */}
+          {/* <Feedback translations={t} /> */}
         </main>
         
         <Footer translations={t} />
