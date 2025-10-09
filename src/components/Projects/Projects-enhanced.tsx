@@ -249,7 +249,7 @@ const Projects: React.FC<ProjectsProps> = ({ translations }) => {
         title: 'My Portfolio',
         description: 'My Portfolio with Html, Css & JavaScript.',
         tech: ['HTML5', 'CSS3', 'JavaScript', 'Responsive'],
-        image: '/images/My-Portfolio-1200x675.webp',
+        image: `${process.env.PUBLIC_URL}/images/My-Portfolio-1200x675.webp`,
         viewLink: 'https://y0ussefmahmoud.github.io/Portfolio/',
         codeLink: 'https://github.com/y0ussefmahmoud/Portfolio'
       },
@@ -258,7 +258,7 @@ const Projects: React.FC<ProjectsProps> = ({ translations }) => {
         title: 'Node.js API',
         description: 'RESTful API with Node.js, Express, JWT auth, and MySQL.',
         tech: ['Node.js', 'Express', 'JWT', 'MySQL'],
-        image: '/images/node-api-1200x675.webp',
+        image: `${process.env.PUBLIC_URL}/images/node-api-1200x675.webp`,
         viewLink: '#',
         codeLink: '#'
       },
@@ -267,7 +267,7 @@ const Projects: React.FC<ProjectsProps> = ({ translations }) => {
         title: 'Admin Dashboard',
         description: 'Responsive dashboard with charts, auth, and role management.',
         tech: ['React', 'TypeScript', 'Charts', 'Auth'],
-        image: '/images/admin-dashboard-1200x675.webp',
+        image: `${process.env.PUBLIC_URL}/images/admin-dashboard-1200x675.webp`,
         viewLink: '#',
         codeLink: '#'
       }
@@ -278,7 +278,7 @@ const Projects: React.FC<ProjectsProps> = ({ translations }) => {
         title: 'Y0 Hardware',
         description: 'E-commerce website for computer hardware with modern design.',
         tech: ['HTML5', 'CSS3', 'JavaScript', 'E-commerce'],
-        image: '/images/Y0-Hardware-1200x675.webp',
+        image: `${process.env.PUBLIC_URL}/images/Y0-Hardware-1200x675.webp`,
         viewLink: '#',
         codeLink: '#'
       },
@@ -287,7 +287,7 @@ const Projects: React.FC<ProjectsProps> = ({ translations }) => {
         title: 'Flutter App',
         description: 'Cross‑platform mobile app with clean architecture and REST.',
         tech: ['Flutter', 'Dart', 'Clean Architecture', 'REST'],
-        image: '/images/flutter-app-1200x675.webp',
+        image: `${process.env.PUBLIC_URL}/images/flutter-app-1200x675.webp`,
         viewLink: '#',
         codeLink: '#'
       },
@@ -296,7 +296,7 @@ const Projects: React.FC<ProjectsProps> = ({ translations }) => {
         title: 'Y0 AI Assistant',
         description: 'AI-powered chat assistant with modern UI and smart features.',
         tech: ['Next.js', 'TypeScript', 'OpenAI', 'NestJS'],
-        image: '/images/ai-assistant-1200x675.webp',
+        image: `${process.env.PUBLIC_URL}/images/ai-assistant-1200x675.webp`,
         viewLink: '#',
         codeLink: '#'
       }

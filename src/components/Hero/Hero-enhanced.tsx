@@ -91,13 +91,15 @@ const HeroContent = styled.div`
 
   @media (max-width: ${props => props.theme.breakpoints.tablet}) {
     grid-template-columns: 1fr;
-    gap: 3rem;
+    gap: 2rem;
     text-align: center;
-    margin-bottom: 4rem;
+    margin-bottom: 3rem;
   }
 
   @media (max-width: ${props => props.theme.breakpoints.mobile}) {
-    margin-bottom: 3rem;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    padding: 0 1rem;
   }
 `;
 
@@ -121,39 +123,31 @@ const Greeting = styled.p`
 const Name = styled.h1`
   font-size: 3.5rem;
   font-weight: 700;
+  color: ${props => props.theme.colors.textPrimary};
   margin-bottom: 1rem;
-  background: linear-gradient(
-    135deg,
-    ${props => props.theme.colors.primary},
-    ${props => props.theme.colors.accent}
-  );
-  background-size: 200% 200%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: ${gradient} 3s ease infinite;
+  line-height: 1.2;
 
   @media (max-width: ${props => props.theme.breakpoints.tablet}) {
-    font-size: 2.5rem;
+    font-size: 3rem;
   }
 
   @media (max-width: ${props => props.theme.breakpoints.mobile}) {
-    font-size: 2rem;
+    font-size: 2.2rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 1.8rem;
   }
 `;
 
 const Tagline = styled.p`
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   color: ${props => props.theme.colors.textSecondary};
   margin-bottom: 2rem;
   line-height: 1.6;
 
-  @media (max-width: ${props => props.theme.breakpoints.tablet}) {
-    font-size: 1.25rem;
-  }
-
   @media (max-width: ${props => props.theme.breakpoints.mobile}) {
-    font-size: 1.125rem;
+    font-size: 1.1rem;
   }
 `;
 
@@ -292,8 +286,13 @@ const ProfileImageContainer = styled.div`
   }
 
   @media (max-width: ${props => props.theme.breakpoints.mobile}) {
-    width: 220px;
-    height: 220px;
+    width: 200px;
+    height: 200px;
+  }
+
+  @media (max-width: 480px) {
+    width: 180px;
+    height: 180px;
   }
 `;
 
@@ -443,7 +442,7 @@ const Hero: React.FC<HeroProps> = ({ translations }) => {
           <ImageContent>
             <ProfileImageContainer>
               <ProfileImage 
-                src="/images/hero-800x1000.webp" 
+                src={`${process.env.PUBLIC_URL}/images/hero-800x1000.webp`}
                 alt="Y0ussef Mahmoud - Full-Stack Developer"
                 onError={(e) => {
                   // Fallback to placeholder if image fails to load
