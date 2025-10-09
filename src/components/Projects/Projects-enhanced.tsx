@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Translations } from '../../i18n/translations';
-import EnhancedProjectCard from '../ProjectCard/ProjectCard';
-import AnimatedSection from '../Animations/AnimatedSection';
+// import EnhancedProjectCard from '../ProjectCard/ProjectCard';
+// import AnimatedSection from '../Animations/AnimatedSection';
 
 const ProjectsSection = styled.section`
   padding: 5rem 0;

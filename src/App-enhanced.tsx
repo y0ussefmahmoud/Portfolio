@@ -8,7 +8,7 @@ import Services from './components/Services/Services-enhanced';
 import Projects from './components/Projects/Projects-enhanced';
 // import Education from './components/Education/Education-simple';
 // import Testimonials from './components/Testimonials/Testimonials-simple';
-// import Contact from './components/Contact/Contact-simple';
+import Contact from './components/Contact/Contact-simple';
 import Footer from './components/Footer/Footer';
 import SEOHead from './components/SEO/SEOHead';
 import AccessibilitySkipLink from './components/Accessibility/SkipLink';
@@ -263,9 +263,9 @@ function App() {
           <Skills translations={t} />
           <Services translations={t} />
           <Projects translations={t} />
+          <Contact translations={t} />
           {/* <Education translations={t} />
-          <Feedback translations={t} />
-          <Contact translations={t} /> */}
+          <Feedback translations={t} /> */}
         </main>
         
         <Footer translations={t} />

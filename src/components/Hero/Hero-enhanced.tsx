@@ -413,8 +413,7 @@ const Hero: React.FC<HeroProps> = ({ translations }) => {
     <HeroSection id="home">
       <Container>
         <HeroContent>
-          <AnimatedSection animation="fadeInLeft" delay={0.1}>
-            <TextContent>
+          <TextContent>
               <Greeting>{translations.hero.greet}</Greeting>
               <Name>Y0ussef Mahmoud</Name>
               <Tagline>{translations.hero.tagline}</Tagline>
@@ -443,27 +442,30 @@ const Hero: React.FC<HeroProps> = ({ translations }) => {
                 </SocialLink>
               </SocialLinks>
             </TextContent>
-          </AnimatedSection>
 
-          <AnimatedSection animation="fadeInRight" delay={0.3}>
-            <ImageContent>
+          <ImageContent>
               <ProfileImageContainer>
-                <LazyImage
-                  src={`${process.env.PUBLIC_URL}/images/hero-800x1000.webp`}
-                  alt="Y0ussef Mahmoud - Full-Stack Developer & Project Engineer"
-                  placeholder="👨‍💻"
-                />
+              <ProfileImage 
+                src={`${process.env.PUBLIC_URL}/images/hero-800x1000.webp`}
+                alt="Y0ussef Mahmoud - Full-Stack Developer & Project Engineer"
+                onError={(e) => {
+                  console.log('Image failed to load, using placeholder');
+                  e.currentTarget.style.display = 'none';
+                  const placeholder = e.currentTarget.nextElementSibling as HTMLElement;
+                  if (placeholder) placeholder.style.display = 'flex';
+                }}
+              />
+              <ProfilePlaceholder style={{ display: 'none' }}>
+                👨‍💻
+              </ProfilePlaceholder>
               </ProfileImageContainer>
             </ImageContent>
-          </AnimatedSection>
         </HeroContent>
 
-        <AnimatedSection animation="fadeInUp" delay={0.6}>
-          <ScrollIndicator onClick={() => smoothScrollTo('about')}>
-            <ScrollText>Explore More</ScrollText>
-            <ScrollArrow>↓</ScrollArrow>
-          </ScrollIndicator>
-        </AnimatedSection>
+        <ScrollIndicator onClick={() => smoothScrollTo('about')}>
+          <ScrollText>Explore More</ScrollText>
+          <ScrollArrow>↓</ScrollArrow>
+        </ScrollIndicator>
       </Container>
     </HeroSection>
   );

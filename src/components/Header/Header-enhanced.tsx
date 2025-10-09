@@ -27,8 +27,16 @@ const HeaderInner = styled.div`
   align-items: center;
   justify-content: space-between;
 
+  @media (max-width: ${props => props.theme.breakpoints.tablet}) {
+    padding: 0 1.5rem;
+  }
+
   @media (max-width: ${props => props.theme.breakpoints.mobile}) {
     padding: 0 1rem;
+  }
+
+  @media (max-width: 480px) {
+    padding: 0 0.75rem;
   }
 `;
 
