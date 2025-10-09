@@ -428,16 +428,34 @@ const Hero: React.FC<HeroProps> = ({ translations }) => {
               </ButtonGroup>
 
               <SocialLinks>
-                <SocialLink href="https://github.com/y0ussefmahmoud" target="_blank" rel="noopener noreferrer">
+                <SocialLink 
+                  href="https://github.com/y0ussefmahmoud" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  aria-label="Visit my GitHub profile"
+                >
                   📱
                 </SocialLink>
-                <SocialLink href="https://linkedin.com/in/y0ussefmahmoud" target="_blank" rel="noopener noreferrer">
+                <SocialLink 
+                  href="https://linkedin.com/in/y0ussefmahmoud" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  aria-label="Connect with me on LinkedIn"
+                >
                   💼
                 </SocialLink>
-                <SocialLink href="mailto:y0ussefmahmoud@gmail.com">
+                <SocialLink 
+                  href="mailto:y0ussefmahmoud@gmail.com"
+                  aria-label="Send me an email"
+                >
                   ✉️
                 </SocialLink>
-                <SocialLink href="https://twitter.com/y0ussefmahmoud" target="_blank" rel="noopener noreferrer">
+                <SocialLink 
+                  href="https://twitter.com/y0ussefmahmoud" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  aria-label="Follow me on Twitter"
+                >
                   🐦
                 </SocialLink>
               </SocialLinks>

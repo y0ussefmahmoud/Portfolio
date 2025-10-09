@@ -223,6 +223,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, status, index }) => 
                 target="_blank"
                 rel="noopener noreferrer"
                 variant="primary"
+                aria-label={`View live demo of ${project.title}`}
               >
                 🚀 Live Demo
               </ActionButton>
@@ -233,6 +234,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, status, index }) => 
                 target="_blank"
                 rel="noopener noreferrer"
                 variant="secondary"
+                aria-label={`View source code of ${project.title}`}
               >
                 📂 Source Code
               </ActionButton>

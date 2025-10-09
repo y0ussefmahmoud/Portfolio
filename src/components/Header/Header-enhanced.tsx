@@ -7,10 +7,12 @@ const HeaderContainer = styled.header<{ isScrolled: boolean }>`
   top: 0;
   left: 0;
   right: 0;
+  min-height: 64px;
   background: ${props => props.isScrolled 
-    ? `${props.theme.colors.bgPrimary}ee` 
+    ? `${props.theme.colors.bgPrimary}f2` 
     : 'transparent'};
-  backdrop-filter: ${props => props.isScrolled ? 'blur(10px)' : 'none'};
+  backdrop-filter: ${props => props.isScrolled ? 'blur(10px) saturate(180%)' : 'none'};
+  -webkit-backdrop-filter: ${props => props.isScrolled ? 'blur(10px) saturate(180%)' : 'none'};
   border-bottom: ${props => props.isScrolled 
     ? `1px solid ${props.theme.colors.border}` 
     : 'none'};

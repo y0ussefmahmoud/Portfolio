@@ -5,6 +5,7 @@ import { Translations } from '../../i18n/translations';
 const AboutSection = styled.section`
   padding: 5rem 0;
   background: ${props => props.theme.colors.bgSecondary};
+  scroll-margin-top: 100px;
 `;
 
 const Container = styled.div`
