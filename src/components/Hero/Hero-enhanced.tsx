@@ -1,11 +1,15 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import { Translations } from '../../i18n/translations';
+import LazyImage from '../LazyImage/LazyImage';
+import AnimatedSection from '../Animations/AnimatedSection';
+import { smoothScrollTo } from '../../utils/smoothScroll';
 
 const fadeInUp = keyframes`
   from {
     opacity: 0;
     transform: translateY(30px);
+{{ ... }}
   }
   to {
     opacity: 1;
@@ -409,59 +413,57 @@ const Hero: React.FC<HeroProps> = ({ translations }) => {
     <HeroSection id="home">
       <Container>
         <HeroContent>
-          <TextContent>
-            <Greeting>{translations.hero.greet}</Greeting>
-            <Name>Y0ussef Mahmoud</Name>
-            <Tagline>{translations.hero.tagline}</Tagline>
-            
-            <ButtonGroup>
-              <Button variant="primary" onClick={scrollToProjects}>
-                {translations.hero.ctaPrimary}
-              </Button>
-              <Button variant="secondary" onClick={scrollToContact}>
-                {translations.hero.ctaSecondary}
-              </Button>
-            </ButtonGroup>
+          <AnimatedSection animation="fadeInLeft" delay={0.1}>
+            <TextContent>
+              <Greeting>{translations.hero.greet}</Greeting>
+              <Name>Y0ussef Mahmoud</Name>
+              <Tagline>{translations.hero.tagline}</Tagline>
+              
+              <ButtonGroup>
+                <Button variant="primary" onClick={() => smoothScrollTo('projects')}>
+                  {translations.hero.ctaPrimary}
+                </Button>
+                <Button variant="secondary" onClick={() => smoothScrollTo('contact')}>
+                  {translations.hero.ctaSecondary}
+                </Button>
+              </ButtonGroup>
 
-            <SocialLinks>
-              <SocialLink href="https://github.com/y0ussefmahmoud" target="_blank" rel="noopener noreferrer">
-                📱
-              </SocialLink>
-              <SocialLink href="https://linkedin.com/in/y0ussefmahmoud" target="_blank" rel="noopener noreferrer">
-                💼
-              </SocialLink>
-              <SocialLink href="mailto:y0ussefmahmoud@gmail.com">
-                ✉️
-              </SocialLink>
-              <SocialLink href="https://twitter.com/y0ussefmahmoud" target="_blank" rel="noopener noreferrer">
-                🐦
-              </SocialLink>
-            </SocialLinks>
-          </TextContent>
+              <SocialLinks>
+                <SocialLink href="https://github.com/y0ussefmahmoud" target="_blank" rel="noopener noreferrer">
+                  📱
+                </SocialLink>
+                <SocialLink href="https://linkedin.com/in/y0ussefmahmoud" target="_blank" rel="noopener noreferrer">
+                  💼
+                </SocialLink>
+                <SocialLink href="mailto:y0ussefmahmoud@gmail.com">
+                  ✉️
+                </SocialLink>
+                <SocialLink href="https://twitter.com/y0ussefmahmoud" target="_blank" rel="noopener noreferrer">
+                  🐦
+                </SocialLink>
+              </SocialLinks>
+            </TextContent>
+          </AnimatedSection>
 
-          <ImageContent>
-            <ProfileImageContainer>
-              <ProfileImage 
-                src={`${process.env.PUBLIC_URL}/images/hero-800x1000.webp`}
-                alt="Y0ussef Mahmoud - Full-Stack Developer"
-                onError={(e) => {
-                  // Fallback to placeholder if image fails to load
-                  e.currentTarget.style.display = 'none';
-                  const placeholder = e.currentTarget.nextElementSibling as HTMLElement;
-                  if (placeholder) placeholder.style.display = 'flex';
-                }}
-              />
-              <ProfilePlaceholder style={{ display: 'none' }}>
-                👨‍💻
-              </ProfilePlaceholder>
-            </ProfileImageContainer>
-          </ImageContent>
+          <AnimatedSection animation="fadeInRight" delay={0.3}>
+            <ImageContent>
+              <ProfileImageContainer>
+                <LazyImage
+                  src={`${process.env.PUBLIC_URL}/images/hero-800x1000.webp`}
+                  alt="Y0ussef Mahmoud - Full-Stack Developer & Project Engineer"
+                  placeholder="👨‍💻"
+                />
+              </ProfileImageContainer>
+            </ImageContent>
+          </AnimatedSection>
         </HeroContent>
 
-        <ScrollIndicator onClick={scrollToAbout}>
-          <ScrollText>Explore More</ScrollText>
-          <ScrollArrow>↓</ScrollArrow>
-        </ScrollIndicator>
+        <AnimatedSection animation="fadeInUp" delay={0.6}>
+          <ScrollIndicator onClick={() => smoothScrollTo('about')}>
+            <ScrollText>Explore More</ScrollText>
+            <ScrollArrow>↓</ScrollArrow>
+          </ScrollIndicator>
+        </AnimatedSection>
       </Container>
     </HeroSection>
   );

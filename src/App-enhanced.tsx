@@ -4,17 +4,18 @@ import Header from './components/Header/Header-enhanced';
 import Hero from './components/Hero/Hero-enhanced';
 import About from './components/About/About-simple';
 import Skills from './components/Skills/Skills-simple';
+import Services from './components/Services/Services-enhanced';
+import Projects from './components/Projects/Projects-enhanced';
+// import Education from './components/Education/Education-simple';
+// import Testimonials from './components/Testimonials/Testimonials-simple';
+// import Contact from './components/Contact/Contact-simple';
+import Footer from './components/Footer/Footer';
+import SEOHead from './components/SEO/SEOHead';
+import AccessibilitySkipLink from './components/Accessibility/SkipLink';
 import { lightTheme, darkTheme } from './theme/theme';
 import { translations } from './i18n/translations';
 
-import Services from './components/Services/Services-enhanced';
-import Projects from './components/Projects/Projects-enhanced';
-import Education from './components/Education/Education-enhanced';
-import Feedback from './components/Feedback/Feedback-enhanced';
-import Contact from './components/Contact/Contact-enhanced';
-
-// Simple Footer and BackToTop components
-const Footer = ({ translations }: any) => (
+const FooterComponent = ({ translations }: any) => (
   <footer style={{ 
     padding: '2rem 0', 
     textAlign: 'center', 
@@ -234,12 +235,19 @@ function App() {
   }
 
   return (
-    <ThemeProvider theme={currentTheme}>
-      <GlobalStyle theme={currentTheme} />
+    <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
+      <GlobalStyle />
+      <SEOHead 
+        title={language === 'ar' ? 'يوسف محمود - مطور Full-Stack' : 'Y0ussef Mahmoud - Full-Stack Developer Portfolio'}
+        description={language === 'ar' 
+          ? 'مطور Full-Stack شغوف. خبير في React.js, Node.js, TypeScript, MySQL, Flutter. بناء تطبيقات ويب حديثة.'
+          : 'Passionate Full-Stack Developer & Project Engineer. Expert in React.js, Node.js, TypeScript, MySQL, Flutter. Building modern web and mobile applications.'
+        }
+      />
       <AppContainer>
-        <SkipLink href="#home">
+        <AccessibilitySkipLink href="#main">
           {language === 'ar' ? 'انتقل إلى المحتوى' : 'Skip to content'}
-        </SkipLink>
+        </AccessibilitySkipLink>
         
         <Header 
           isDarkMode={isDarkMode}
@@ -255,9 +263,9 @@ function App() {
           <Skills translations={t} />
           <Services translations={t} />
           <Projects translations={t} />
-          <Education translations={t} />
+          {/* <Education translations={t} />
           <Feedback translations={t} />
-          <Contact translations={t} />
+          <Contact translations={t} /> */}
         </main>
         
         <Footer translations={t} />
