@@ -2,9 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Translations } from '../../i18n/translations';
 
-const HeaderContainer = styled.header.withConfig({
-  shouldForwardProp: (prop) => prop !== 'isScrolled',
-})<{ isScrolled: boolean }>`
+const HeaderContainer = styled.header<{ isScrolled: boolean }>`
   position: fixed;
   top: 0;
   left: 0;
@@ -57,9 +55,7 @@ const Logo = styled.a`
   }
 `;
 
-const Nav = styled.nav.withConfig({
-  shouldForwardProp: (prop) => prop !== 'isOpen',
-})<{ isOpen: boolean }>`
+const Nav = styled.nav<{ isOpen: boolean }>`
   display: flex;
   align-items: center;
   gap: 2rem;
@@ -96,9 +92,7 @@ const NavList = styled.ul`
 
 const NavItem = styled.li``;
 
-const NavLink = styled.a.withConfig({
-  shouldForwardProp: (prop) => prop !== 'isActive',
-})<{ isActive?: boolean }>`
+const NavLink = styled.a<{ isActive?: boolean }>`
   color: ${props => props.isActive 
     ? props.theme.colors.primary 
     : props.theme.colors.textPrimary};
