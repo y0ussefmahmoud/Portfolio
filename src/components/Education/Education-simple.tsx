@@ -265,6 +265,13 @@ const Education: React.FC<EducationProps> = ({ translations }) => {
 
   const certifications = [
     {
+      name: "Comming Soon",
+      issuer: "Compony",
+      date: "2026",
+      icon: "🌐"
+    }
+    /*
+    ,{
       name: "Full-Stack Web Development",
       issuer: "Meta (Facebook)",
       date: "2023",
@@ -299,7 +306,7 @@ const Education: React.FC<EducationProps> = ({ translations }) => {
       issuer: "Amazon Web Services",
       date: "2023",
       icon: "☁️"
-    }
+    }*/
   ];
 
   return (
