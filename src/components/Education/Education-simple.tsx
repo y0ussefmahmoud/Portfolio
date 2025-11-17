@@ -238,15 +238,17 @@ const Education: React.FC<EducationProps> = ({ translations }) => {
   const educationData = [
     {
       year: "2020 - 2024",
-      institution: "Faculty of Engineering - Ain Shams University",
-      degree: "Bachelor of Computer Engineering",
+      institution: "Egyptian Korean Faculty of Technological Industry and Energy",
+      degree: "Bachelor of Software Engineering",
       description: "Specialized in Computer Engineering with focus on software development, algorithms, and system design.",
       achievements: [
         "Relevant Coursework: Data Structures, Algorithms, Database Systems",
         "Software Engineering, Web Development, Mobile Development",
         "Computer Networks, Operating Systems, Computer Architecture"
       ]
-    },
+    }
+    /*
+    ,
     {
       year: "2017 - 2020",
       institution: "Helwan STEM High School",
@@ -258,6 +260,7 @@ const Education: React.FC<EducationProps> = ({ translations }) => {
         "Participated in Science Olympiad and Programming Competitions"
       ]
     }
+    */
   ];
 
   const certifications = [
