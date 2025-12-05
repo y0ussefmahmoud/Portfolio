@@ -5,7 +5,7 @@ import Hero from './components/Hero/Hero-enhanced';
 import About from './components/About/About-simple';
 import Skills from './components/Skills/Skills-simple';
 import Services from './components/Services/Services-enhanced';
-import Projects from './components/Projects/Projects-enhanced';
+import Projects from './components/Projects/Projects';
 import Education from './components/Education/Education-simple';
 // import Testimonials from './components/Testimonials/Testimonials-simple';
 import Contact from './components/Contact/Contact-simple';

@@ -1,42 +1,45 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Translations } from '../../i18n/translations';
+// import EnhancedProjectCard from '../ProjectCard/ProjectCard';
+// import AnimatedSection from '../Animations/AnimatedSection';
 
 const ProjectsSection = styled.section`
   padding: 5rem 0;
   background: ${props => props.theme.colors.bgPrimary};
+  scroll-margin-top: 100px;
 `;
 
 const Container = styled.div`
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 2rem;
-  
+
   @media (max-width: ${props => props.theme.breakpoints.mobile}) {
     padding: 0 1rem;
   }
 `;
 
-const SectionTitle = styled.h2`
+const Title = styled.h2`
   font-size: 2.5rem;
   font-weight: 700;
-  text-align: center;
-  margin-bottom: 1rem;
   color: ${props => props.theme.colors.textPrimary};
-  
+  margin-bottom: 1rem;
+  text-align: center;
+
   @media (max-width: ${props => props.theme.breakpoints.mobile}) {
     font-size: 2rem;
   }
 `;
 
-const SectionSubtitle = styled.p`
-  text-align: center;
+const Subtitle = styled.p`
   font-size: 1.125rem;
   color: ${props => props.theme.colors.textSecondary};
   margin-bottom: 3rem;
+  text-align: center;
 `;
 
-const ProjectsFilter = styled.div`
+const FilterBar = styled.div`
   display: flex;
   justify-content: center;
   gap: 1rem;
@@ -45,53 +48,110 @@ const ProjectsFilter = styled.div`
 `;
 
 const FilterButton = styled.button<{ isActive: boolean }>`
-  padding: 0.5rem 1.5rem;
-  border: 2px solid ${props => props.isActive ? props.theme.colors.primary : props.theme.colors.border};
-  background: ${props => props.isActive ? props.theme.colors.primary : 'transparent'};
-  color: ${props => props.isActive ? 'white' : props.theme.colors.textPrimary};
+  padding: 0.75rem 1.5rem;
+  border: none;
   border-radius: 2rem;
-  cursor: pointer;
   font-weight: 500;
+  cursor: pointer;
   transition: all 0.3s ease;
   
-  &:hover {
-    border-color: ${props => props.theme.colors.primary};
-    color: ${props => props.isActive ? 'white' : props.theme.colors.primary};
-  }
+  ${props => props.isActive ? `
+    background: ${props.theme.colors.primary};
+    color: white;
+  ` : `
+    background: ${props.theme.colors.bgSecondary};
+    color: ${props.theme.colors.textPrimary};
+    border: 1px solid ${props.theme.colors.border};
+    
+    &:hover {
+      background: ${props.theme.colors.primary}20;
+      color: ${props.theme.colors.primary};
+    }
+  `}
+`;
+
+const ProjectGroup = styled.div`
+  margin-bottom: 3rem;
+`;
+
+const GroupHeader = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+`;
+
+const GroupTitle = styled.h3`
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: ${props => props.theme.colors.textPrimary};
+`;
+
+const CountBadge = styled.span`
+  background: ${props => props.theme.colors.primary};
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
 `;
 
 const ProjectsGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 2rem;
+
+  @media (max-width: ${props => props.theme.breakpoints.mobile}) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const ProjectCard = styled.article`
   background: ${props => props.theme.colors.bgSecondary};
   border-radius: 1rem;
   overflow: hidden;
-  box-shadow: 0 4px 20px ${props => props.theme.colors.shadow};
-  transition: transform 0.3s ease;
-  
+  border: 1px solid ${props => props.theme.colors.border};
+  transition: all 0.3s ease;
+
   &:hover {
-    transform: translateY(-10px);
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px ${props => props.theme.colors.shadow};
   }
 `;
 
 const ProjectMedia = styled.div`
   position: relative;
+  width: 100%;
+  height: 200px;
   overflow: hidden;
-  
-  img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-  }
-  
-  &:hover img {
+  background: ${props => props.theme.colors.primary}20;
+`;
+
+const ProjectImage = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+  display: block;
+
+  &:hover {
     transform: scale(1.05);
   }
+
+  &:not([src]), &[src=""] {
+    display: none;
+  }
+`;
+
+const ProjectImagePlaceholder = styled.div`
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, ${props => props.theme.colors.primary}20, ${props => props.theme.colors.accent}20);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  color: ${props => props.theme.colors.primary};
 `;
 
 const ProjectBody = styled.div`
@@ -103,43 +163,42 @@ const StatusBadge = styled.span<{ status: 'completed' | 'in-progress' }>`
   padding: 0.25rem 0.75rem;
   border-radius: 1rem;
   font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
+  font-weight: 500;
   margin-bottom: 1rem;
   
   ${props => props.status === 'completed' ? `
-    background: rgba(16, 185, 129, 0.1);
-    color: #10b981;
+    background: #10b981;
+    color: white;
   ` : `
-    background: rgba(245, 158, 11, 0.1);
-    color: #f59e0b;
+    background: #f59e0b;
+    color: white;
   `}
 `;
 
 const ProjectTitle = styled.h3`
   font-size: 1.25rem;
   font-weight: 600;
-  margin-bottom: 0.75rem;
   color: ${props => props.theme.colors.textPrimary};
+  margin-bottom: 0.5rem;
 `;
 
 const ProjectDesc = styled.p`
   color: ${props => props.theme.colors.textSecondary};
-  line-height: 1.6;
   margin-bottom: 1rem;
+  line-height: 1.6;
 `;
 
-const Badges = styled.div`
+const TechBadges = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
   margin-bottom: 1.5rem;
 `;
 
-const Badge = styled.span`
-  padding: 0.25rem 0.75rem;
+const TechBadge = styled.span`
   background: ${props => props.theme.colors.primary}20;
   color: ${props => props.theme.colors.primary};
+  padding: 0.25rem 0.75rem;
   border-radius: 1rem;
   font-size: 0.75rem;
   font-weight: 500;
@@ -150,23 +209,22 @@ const ProjectActions = styled.div`
   gap: 1rem;
 `;
 
-const Button = styled.a<{ variant?: 'primary' | 'secondary' }>`
-  display: inline-flex;
-  align-items: center;
-  padding: 0.5rem 1.5rem;
+const ActionButton = styled.a<{ variant?: 'primary' | 'secondary' }>`
+  padding: 0.75rem 1.5rem;
   border-radius: 0.5rem;
   text-decoration: none;
-  font-weight: 600;
-  font-size: 0.875rem;
+  font-weight: 500;
+  text-align: center;
   transition: all 0.3s ease;
+  cursor: pointer;
   
   ${props => props.variant === 'primary' ? `
     background: ${props.theme.colors.primary};
     color: white;
     
     &:hover {
+      background: ${props.theme.colors.accent};
       transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(47, 111, 237, 0.3);
     }
   ` : `
     background: transparent;
@@ -174,22 +232,11 @@ const Button = styled.a<{ variant?: 'primary' | 'secondary' }>`
     border: 1px solid ${props.theme.colors.border};
     
     &:hover {
+      background: ${props.theme.colors.bgPrimary};
       border-color: ${props.theme.colors.primary};
-      color: ${props.theme.colors.primary};
     }
   `}
 `;
-
-interface Project {
-  id: string;
-  title: string;
-  desc: string;
-  image: string;
-  status: 'completed' | 'in-progress';
-  technologies: string[];
-  viewLink?: string;
-  codeLink?: string;
-}
 
 interface ProjectsProps {
   translations: Translations;
@@ -198,106 +245,215 @@ interface ProjectsProps {
 const Projects: React.FC<ProjectsProps> = ({ translations }) => {
   const [activeFilter, setActiveFilter] = useState('all');
 
-  const projectsData: Project[] = [
-    {
-      id: '1',
-      title: 'My Portfolio',
-      desc: 'My Portfolio with Html, Css & JavaScript.',
-      image: 'assets/images/My-Portfolio-1200x675.webp',
-      status: 'completed',
-      technologies: ['Html', 'CSS', 'JavaScript'],
-      viewLink: 'https://y0ussefmahmoud.github.io/Portfolio/',
-      codeLink: '#'
-    },
-    {
-      id: '2',
-      title: 'Y0 Hardware',
-      desc: 'Y0 Hardware with clean architecture.',
-      image: 'assets/images/Y0-Hardware-1200x675.webp',
-      status: 'in-progress',
-      technologies: ['Html', 'CSS', 'JavaScript', 'REST'],
-      viewLink: '#',
-      codeLink: '#'
-    },
-    {
-      id: '3',
-      title: 'Y0 AI Assistant',
-      desc: 'AI Assistant app with clean architecture.',
-      image: 'assets/images/ai-assistant-1200x675.webp',
-      status: 'in-progress',
-      technologies: ['React.js', 'Node.js', 'OpenAI', 'PostgreSQL'],
-      viewLink: '#',
-      codeLink: '#'
-    }
-  ];
+  const projectsData = {
+    completed: [
+      {
+        id: 1,
+        title: 'My Portfolio',
+        description: 'My Portfolio with Html, Css & JavaScript.',
+        tech: ['HTML5', 'CSS3', 'JavaScript', 'Responsive'],
+        image: `${process.env.PUBLIC_URL}/images/My-Portfolio-1200x675.webp`,
+        viewLink: 'https://y0ussefmahmoud.github.io/Portfolio/',
+        codeLink: 'https://github.com/y0ussefmahmoud/Portfolio'
+      }/*,
+      {
+        id: 2,
+        title: 'Node.js API',
+        description: 'RESTful API with Node.js, Express, JWT auth, and MySQL.',
+        tech: ['Node.js', 'Express', 'JWT', 'MySQL'],
+        image: `${process.env.PUBLIC_URL}/images/node-api-1200x675.webp`,
+        viewLink: '#',
+        codeLink: '#'
+      },
+      {
+        id: 3,
+        title: 'Admin Dashboard',
+        description: 'Responsive dashboard with charts, auth, and role management.',
+        tech: ['React', 'TypeScript', 'Charts', 'Auth'],
+        image: `${process.env.PUBLIC_URL}/images/admin-dashboard-1200x675.webp`,
+        viewLink: '#',
+        codeLink: '#'
+      }*/
+    ],
+    inProgress: [
+      {
+        id: 4,
+        title: 'Y0 Hardware',
+        description: 'E-commerce website for computer hardware with modern design.',
+        tech: ['HTML5', 'CSS3', 'JavaScript', 'E-commerce'],
+        image: `${process.env.PUBLIC_URL}/images/Y0-Hardware-1200x675.webp`,
+        viewLink: '#',
+        codeLink: '#'
+      }/*,
+      {
+        id: 5,
+        title: 'Flutter App',
+        description: 'Cross‑platform mobile app with clean architecture and REST.',
+        tech: ['Flutter', 'Dart', 'Clean Architecture', 'REST'],
+        image: `${process.env.PUBLIC_URL}/images/flutter-app-1200x675.webp`,
+        viewLink: '#',
+        codeLink: '#'
+      }*/,
+      {
+        id: 6,
+        title: 'Y0 AI Assistant',
+        description: 'AI-powered chat assistant with modern UI and smart features.',
+        tech: ['Next.js', 'TypeScript', 'OpenAI', 'NestJS'],
+        image: `${process.env.PUBLIC_URL}/images/ai-assistant-1200x675.webp`,
+        viewLink: '#',
+        codeLink: '#'
+      }
+    ]
+  };
 
-  const filteredProjects = projectsData.filter(project => {
-    if (activeFilter === 'all') return true;
-    if (activeFilter === 'completed') return project.status === 'completed';
-    if (activeFilter === 'in-progress') return project.status === 'in-progress';
-    return true;
-  });
+  const getFilteredProjects = () => {
+    if (activeFilter === 'all') {
+      return { completed: projectsData.completed, inProgress: projectsData.inProgress };
+    } else if (activeFilter === 'completed') {
+      return { completed: projectsData.completed, inProgress: [] };
+    } else {
+      return { completed: [], inProgress: projectsData.inProgress };
+    }
+  };
+
+  const filteredProjects = getFilteredProjects();
 
   return (
     <ProjectsSection id="projects">
       <Container>
-        <SectionTitle>{translations.projects.title}</SectionTitle>
-        <SectionSubtitle>{translations.projects.subtitle}</SectionSubtitle>
-        
-        <ProjectsFilter>
+        <Title>{translations.projects.title}</Title>
+        <Subtitle>{translations.projects.subtitle}</Subtitle>
+
+        <FilterBar>
           <FilterButton 
-            isActive={activeFilter === 'all'} 
+            isActive={activeFilter === 'all'}
             onClick={() => setActiveFilter('all')}
           >
             All
           </FilterButton>
           <FilterButton 
-            isActive={activeFilter === 'completed'} 
+            isActive={activeFilter === 'completed'}
             onClick={() => setActiveFilter('completed')}
           >
             {translations.projects.completed}
           </FilterButton>
           <FilterButton 
-            isActive={activeFilter === 'in-progress'} 
+            isActive={activeFilter === 'in-progress'}
             onClick={() => setActiveFilter('in-progress')}
           >
             {translations.projects.inProgress}
           </FilterButton>
-        </ProjectsFilter>
-        
-        <ProjectsGrid>
-          {filteredProjects.map((project) => (
-            <ProjectCard key={project.id}>
-              <ProjectMedia>
-                <img 
-                  src={project.image} 
-                  alt={`${project.title} project cover`}
-                  loading="lazy"
-                />
-              </ProjectMedia>
-              <ProjectBody>
-                <StatusBadge status={project.status}>
-                  {project.status === 'completed' ? translations.projects.completed : translations.projects.inProgress}
-                </StatusBadge>
-                <ProjectTitle>{project.title}</ProjectTitle>
-                <ProjectDesc>{project.desc}</ProjectDesc>
-                <Badges>
-                  {project.technologies.map((tech, index) => (
-                    <Badge key={index}>{tech}</Badge>
-                  ))}
-                </Badges>
-                <ProjectActions>
-                  <Button href={project.viewLink} variant="primary">
-                    {translations.projects.view}
-                  </Button>
-                  <Button href={project.codeLink} variant="secondary">
-                    {translations.projects.code}
-                  </Button>
-                </ProjectActions>
-              </ProjectBody>
-            </ProjectCard>
-          ))}
-        </ProjectsGrid>
+        </FilterBar>
+
+        {filteredProjects.completed.length > 0 && (
+          <ProjectGroup>
+            <GroupHeader>
+              <GroupTitle>{translations.projects.completed}</GroupTitle>
+              <CountBadge>{filteredProjects.completed.length}</CountBadge>
+            </GroupHeader>
+            <ProjectsGrid>
+              {filteredProjects.completed.map((project) => (
+                <ProjectCard key={project.id}>
+                  <ProjectMedia>
+                    <ProjectImage 
+                      src={project.image} 
+                      alt={`${project.title} project cover`}
+                      loading="lazy"
+                      onError={(e) => {
+                        e.currentTarget.style.display = 'none';
+                        const placeholder = e.currentTarget.nextElementSibling as HTMLElement;
+                        if (placeholder) placeholder.style.display = 'flex';
+                      }}
+                    />
+                    <ProjectImagePlaceholder style={{ display: 'none' }}>
+                      {project.id === 1 ? '🌐' : project.id === 2 ? '🔧' : project.id === 3 ? '📊' : '💼'}
+                    </ProjectImagePlaceholder>
+                  </ProjectMedia>
+                  <ProjectBody>
+                    <StatusBadge status="completed">
+                      {translations.projects.completed}
+                    </StatusBadge>
+                    <ProjectTitle>{project.title}</ProjectTitle>
+                    <ProjectDesc>{project.description}</ProjectDesc>
+                    <TechBadges>
+                      {project.tech.map((tech, index) => (
+                        <TechBadge key={index}>{tech}</TechBadge>
+                      ))}
+                    </TechBadges>
+                    <ProjectActions>
+                      <ActionButton 
+                        variant="primary" 
+                        href={project.viewLink}
+                        target={project.viewLink !== '#' ? '_blank' : undefined}
+                        rel={project.viewLink !== '#' ? 'noopener noreferrer' : undefined}
+                      >
+                        {translations.projects.view}
+                      </ActionButton>
+                      <ActionButton 
+                        variant="secondary" 
+                        href={project.codeLink}
+                        target={project.codeLink !== '#' ? '_blank' : undefined}
+                        rel={project.codeLink !== '#' ? 'noopener noreferrer' : undefined}
+                      >
+                        {translations.projects.code}
+                      </ActionButton>
+                    </ProjectActions>
+                  </ProjectBody>
+                </ProjectCard>
+              ))}
+            </ProjectsGrid>
+          </ProjectGroup>
+        )}
+
+        {filteredProjects.inProgress.length > 0 && (
+          <ProjectGroup>
+            <GroupHeader>
+              <GroupTitle>{translations.projects.inProgress}</GroupTitle>
+              <CountBadge>{filteredProjects.inProgress.length}</CountBadge>
+            </GroupHeader>
+            <ProjectsGrid>
+              {filteredProjects.inProgress.map((project) => (
+                <ProjectCard key={project.id}>
+                  <ProjectMedia>
+                    <ProjectImage 
+                      src={project.image} 
+                      alt={`${project.title} project cover`}
+                      loading="lazy"
+                      onError={(e) => {
+                        e.currentTarget.style.display = 'none';
+                        const placeholder = e.currentTarget.nextElementSibling as HTMLElement;
+                        if (placeholder) placeholder.style.display = 'flex';
+                      }}
+                    />
+                    <ProjectImagePlaceholder style={{ display: 'none' }}>
+                      {project.id === 4 ? '🖥️' : project.id === 5 ? '📱' : project.id === 6 ? '🤖' : '⚡'}
+                    </ProjectImagePlaceholder>
+                  </ProjectMedia>
+                  <ProjectBody>
+                    <StatusBadge status="in-progress">
+                      {translations.projects.inProgress}
+                    </StatusBadge>
+                    <ProjectTitle>{project.title}</ProjectTitle>
+                    <ProjectDesc>{project.description}</ProjectDesc>
+                    <TechBadges>
+                      {project.tech.map((tech, index) => (
+                        <TechBadge key={index}>{tech}</TechBadge>
+                      ))}
+                    </TechBadges>
+                    <ProjectActions>
+                      <ActionButton variant="primary" href={project.viewLink}>
+                        {translations.projects.view}
+                      </ActionButton>
+                      <ActionButton variant="secondary" href={project.codeLink}>
+                        {translations.projects.code}
+                      </ActionButton>
+                    </ProjectActions>
+                  </ProjectBody>
+                </ProjectCard>
+              ))}
+            </ProjectsGrid>
+          </ProjectGroup>
+        )}
       </Container>
     </ProjectsSection>
   );
