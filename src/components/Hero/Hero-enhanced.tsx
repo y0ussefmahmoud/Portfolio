@@ -9,7 +9,6 @@ const fadeInUp = keyframes`
   from {
     opacity: 0;
     transform: translateY(30px);
-{{ ... }}
   }
   to {
     opacity: 1;
