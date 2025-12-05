@@ -255,7 +255,7 @@ const Projects: React.FC<ProjectsProps> = ({ translations }) => {
         image: `${process.env.PUBLIC_URL}/images/My-Portfolio-1200x675.webp`,
         viewLink: 'https://y0ussefmahmoud.github.io/Portfolio/',
         codeLink: 'https://github.com/y0ussefmahmoud/Portfolio'
-      },
+      }/*,
       {
         id: 2,
         title: 'Node.js API',
@@ -273,7 +273,7 @@ const Projects: React.FC<ProjectsProps> = ({ translations }) => {
         image: `${process.env.PUBLIC_URL}/images/admin-dashboard-1200x675.webp`,
         viewLink: '#',
         codeLink: '#'
-      }
+      }*/
     ],
     inProgress: [
       {
@@ -284,7 +284,7 @@ const Projects: React.FC<ProjectsProps> = ({ translations }) => {
         image: `${process.env.PUBLIC_URL}/images/Y0-Hardware-1200x675.webp`,
         viewLink: '#',
         codeLink: '#'
-      },
+      }/*,
       {
         id: 5,
         title: 'Flutter App',
@@ -293,7 +293,7 @@ const Projects: React.FC<ProjectsProps> = ({ translations }) => {
         image: `${process.env.PUBLIC_URL}/images/flutter-app-1200x675.webp`,
         viewLink: '#',
         codeLink: '#'
-      },
+      }*/,
       {
         id: 6,
         title: 'Y0 AI Assistant',

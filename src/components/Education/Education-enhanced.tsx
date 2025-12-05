@@ -171,7 +171,7 @@ const Education: React.FC<EducationProps> = ({ translations }) => {
     {
       id: 1,
       title: translations.education.d1.title,
-      meta: '2020–2025 · Giza, EG',
+      meta: '2020–2024 · Giza, EG',
       description: translations.education.d1.desc,
       type: 'degree'
     },
