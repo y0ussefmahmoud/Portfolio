@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Y0ussef Mahmoud - Portfolio Website built with React.js",
   "private": true,
+  "type": "module",
   "dependencies": {
     "@radix-ui/react-separator": "^1.1.8",
     "@radix-ui/react-slot": "^1.2.4",
