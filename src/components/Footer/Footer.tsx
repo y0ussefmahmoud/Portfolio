@@ -1,32 +1,34 @@
-import React from 'react';
-import styled from 'styled-components';
+/**
+ * Footer Component
+ * 
+ * Simple footer with copyright information and tagline.
+ * Displays current year dynamically.
+ * 
+ * @component
+ */
+
+import React, { memo } from 'react';
 import { Translations } from '../../i18n/translations';
 
-const FooterSection = styled.footer`
-  padding: 3rem 0 1rem;
-  background: ${props => props.theme.colors.bgPrimary};
-  border-top: 1px solid ${props => props.theme.colors.border};
-`;
-
-const Container = styled.div`
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
-`;
-
+/**
+ * Props for Footer component
+ * 
+ * @interface FooterProps
+ * @property {Translations} translations - Translation object for current language
+ */
 interface FooterProps {
   translations: Translations;
 }
 
 const Footer: React.FC<FooterProps> = ({ translations }) => {
   return (
-    <FooterSection>
-      <Container>
+    <footer className="py-12 pb-4 bg-background border-t border-border">
+      <div className="max-w-6xl mx-auto px-8 text-center">
         <p>{translations.footer.tag}</p>
         <p>&copy; {new Date().getFullYear()} Y0ussef Mahmoud. {translations.footer.rights}</p>
-      </Container>
-    </FooterSection>
+      </div>
+    </footer>
   );
 };
 
-export default Footer;
+export default memo(Footer);

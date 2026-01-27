@@ -8,9 +8,23 @@ export interface Translations {
     education: string;
     contact: string;
   };
+  windowTitles: {
+    about: string;
+    skills: string;
+    services: string;
+    projects: string;
+    education: string;
+    contact: string;
+  };
   hero: {
     greet: string;
+    name: string;
     tagline: string;
+    availability: string;
+    badges: {
+      primary: string;
+      secondary: string;
+    };
     ctaPrimary: string;
     ctaSecondary: string;
   };
@@ -125,9 +139,23 @@ export const translations: { en: Translations; ar: Translations } = {
       education: 'Education',
       contact: 'Contact',
     },
+    windowTitles: {
+      about: '~/about-me',
+      skills: '~/my-skills',
+      services: '~/services-offered',
+      projects: '~/featured-projects',
+      education: '~/education-background',
+      contact: '~/contact-me',
+    },
     hero: {
       greet: 'Hello, I\'m',
+      name: 'Y0ussef Mahmoud',
       tagline: 'Full‑Stack Developer & Project Engineer at Shehabco.',
+      availability: 'Available for Freelance & Full-time',
+      badges: {
+        primary: 'Node.js Expert',
+        secondary: 'React & Flutter',
+      },
       ctaPrimary: 'View Projects',
       ctaSecondary: 'Get in Touch',
     },
@@ -240,9 +268,23 @@ export const translations: { en: Translations; ar: Translations } = {
       education: 'التعليم',
       contact: 'التواصل',
     },
+    windowTitles: {
+      about: '~/نبذة-عني',
+      skills: '~/مهاراتي',
+      services: '~/الخدمات-المقدمة',
+      projects: '~/المشاريع-المميزة',
+      education: '~/خلفيتي-التعليمية',
+      contact: '~/تواصل-معي',
+    },
     hero: {
       greet: 'مرحباً، أنا',
+      name: 'يوسف محمود',
       tagline: 'مطور Full-Stack ومهندس مشاريع في شهابكو.',
+      availability: 'متاح للعمل الحر والدوام الكامل',
+      badges: {
+        primary: 'خبير Node.js',
+        secondary: 'React و Flutter',
+      },
       ctaPrimary: 'عرض المشاريع',
       ctaSecondary: 'تواصل معي',
     },

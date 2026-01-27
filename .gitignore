@@ -55,4 +55,17 @@ node_modules/
 
 # Build outputs
 dist/
-build/
+static/
+
+# Source maps
+*.map
+
+# Testing
+/coverage
+
+# Build artifacts
+asset-manifest.json
+
+# Cache
+.cache
+node_modules

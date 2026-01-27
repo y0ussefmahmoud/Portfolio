@@ -14,7 +14,7 @@ This document outlines all the performance, accessibility, and SEO improvements 
 
 **Files Modified**:
 - `src/components/About/About-simple.tsx`
-- `src/components/Skills/Skills-simple.tsx`
+- `src/components/Skills.tsx`
 - `src/components/Services/Services-enhanced.tsx`
 - `src/components/Projects/Projects-enhanced.tsx`
 - `src/components/Education/Education-simple.tsx`

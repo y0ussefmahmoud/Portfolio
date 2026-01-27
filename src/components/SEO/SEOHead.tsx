@@ -1,5 +1,30 @@
+/**
+ * SEOHead Component
+ * 
+ * Manages SEO meta tags dynamically for better search engine optimization.
+ * Features:
+ * - Updates document title
+ * - Sets meta description and keywords
+ * - Configures Open Graph tags for social media
+ * - Sets Twitter Card meta tags
+ * - Supports custom images and URLs
+ * 
+ * @component
+ */
+
 import React, { useEffect } from 'react';
 
+/**
+ * Props for SEOHead component
+ * 
+ * @interface SEOHeadProps
+ * @property {string} [title] - Page title (default: portfolio title)
+ * @property {string} [description] - Meta description for SEO
+ * @property {string} [image] - Social media preview image URL
+ * @property {string} [url] - Canonical URL of the page
+ * @property {string} [type] - Open Graph type (default: "website")
+ * @property {string[]} [keywords] - SEO keywords array
+ */
 interface SEOHeadProps {
   title?: string;
   description?: string;
