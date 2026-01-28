@@ -214,7 +214,7 @@ const Hero: React.FC<HeroProps> = ({ translations, onNavigate }) => {
           <div className="absolute inset-0 bg-primary/20 rounded-full blur-[100px] animate-pulse" />
 
           <img
-            src="/images/hero-800x1000.webp"
+            src="/Portfolio-V2.0/images/hero-800x1000.webp"
             alt="Y0ussef Mahmoud - Full-Stack Developer"
             className="relative z-10 w-full h-full object-cover rounded-3xl shadow-2xl border border-white/10"
             style={{
