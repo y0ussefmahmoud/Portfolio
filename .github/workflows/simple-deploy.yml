@@ -14,10 +14,11 @@ jobs:
     - name: Setup Node
       uses: actions/setup-node@v3
       with:
-        node-version: '18'
+        node-version: '20'
+        cache: 'npm'
         
-    - name: Install
-      run: npm install
+    - name: Clean install
+      run: npm ci
       
     - name: Build
       run: npm run build
