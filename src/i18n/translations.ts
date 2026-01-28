@@ -79,6 +79,19 @@ export interface Translations {
     inProgress: string;
     view: string;
     code: string;
+    viewDetails: string;
+    projectDetails: string;
+    videoDemo: string;
+    imageGallery: string;
+    techStack: string;
+    challenges: string;
+    solutions: string;
+    features: string;
+    statistics: string;
+    projectLinks: string;
+    downloadPDF: string;
+    watchOnYoutube: string;
+    projectMeta: string;
   };
   education: {
     title: string;
@@ -210,6 +223,19 @@ export const translations: { en: Translations; ar: Translations } = {
       inProgress: 'In Progress',
       view: 'View',
       code: 'Code',
+      viewDetails: 'View Details',
+      projectDetails: 'Project Details',
+      videoDemo: 'Video Demo',
+      imageGallery: 'Image Gallery',
+      techStack: 'Tech Stack',
+      challenges: 'Challenges',
+      solutions: 'Solutions',
+      features: 'Features',
+      statistics: 'Statistics',
+      projectLinks: 'Project Links',
+      downloadPDF: 'Download PDF',
+      watchOnYoutube: 'Watch on YouTube',
+      projectMeta: 'Project Metadata',
     },
     education: {
       title: 'Education',
@@ -339,6 +365,19 @@ export const translations: { en: Translations; ar: Translations } = {
       inProgress: 'قيد التطوير',
       view: 'عرض',
       code: 'الكود',
+      viewDetails: 'عرض التفاصيل',
+      projectDetails: 'تفاصيل المشروع',
+      videoDemo: 'فيديو توضيحي',
+      imageGallery: 'معرض الصور',
+      techStack: 'مكدس التقني',
+      challenges: 'التحديات',
+      solutions: 'الحلول',
+      features: 'المميزات',
+      statistics: 'الإحصائيات',
+      projectLinks: 'روابط المشروع',
+      downloadPDF: 'تحميل PDF',
+      watchOnYoutube: 'مشاهدة على يوتيوب',
+      projectMeta: 'بيانات المشروع',
     },
     education: {
       title: 'التعليم',

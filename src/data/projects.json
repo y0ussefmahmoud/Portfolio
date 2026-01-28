@@ -1,0 +1,164 @@
+{
+  "projects": [
+    {
+      "id": "traycer",
+      "title": "Traycer",
+      "description": "Advanced mobile application for tracking and analyzing user behavior patterns with real-time analytics.",
+      "tech": ["React Native", "TypeScript", "Node.js", "MongoDB", "Redux"],
+      "image": "/assets/projects/traycer/hero.jpg",
+      "viewLink": "https://traycer.app",
+      "codeLink": "https://github.com/y0ussefmahmoud/traycer",
+      "status": "completed",
+      "details": {
+        "video": {
+          "url": "/assets/projects/traycer/video/demo.mp4",
+          "thumbnail": "/assets/projects/traycer/video/thumbnail.jpg",
+          "title": "Traycer App Demo"
+        },
+        "gallery": [
+          {
+            "url": "/assets/projects/traycer/gallery/screenshot-1.jpg",
+            "caption": "Main dashboard showing user analytics",
+            "alt": "Traycer dashboard interface"
+          },
+          {
+            "url": "/assets/projects/traycer/gallery/screenshot-2.jpg",
+            "caption": "Real-time tracking visualization",
+            "alt": "Real-time tracking screen"
+          },
+          {
+            "url": "/assets/projects/traycer/gallery/screenshot-3.jpg",
+            "caption": "Detailed analytics reports",
+            "alt": "Analytics reports page"
+          },
+          {
+            "url": "/assets/projects/traycer/gallery/screenshot-4.jpg",
+            "caption": "User behavior patterns",
+            "alt": "Behavior patterns visualization"
+          },
+          {
+            "url": "/assets/projects/traycer/gallery/screenshot-5.jpg",
+            "caption": "Settings and configuration",
+            "alt": "App settings screen"
+          }
+        ],
+        "challenges": [
+          {
+            "title": "Real-time Data Processing",
+            "description": "Implementing efficient real-time data processing for millions of events per second while maintaining low latency and high accuracy."
+          },
+          {
+            "title": "Cross-platform Performance",
+            "description": "Optimizing performance across iOS and Android platforms with different hardware capabilities and OS limitations."
+          },
+          {
+            "title": "Privacy and Security",
+            "description": "Ensuring user data privacy and security while providing detailed analytics and insights."
+          }
+        ],
+        "solutions": [
+          {
+            "title": "Event Streaming Architecture",
+            "description": "Implemented Apache Kafka-based event streaming system with partitioned topics for parallel processing and load balancing."
+          },
+          {
+            "title": "Native Performance Optimization",
+            "description": "Used React Native's native modules for performance-critical operations and implemented platform-specific optimizations."
+          },
+          {
+            "title": "End-to-End Encryption",
+            "description": "Implemented AES-256 encryption for data at rest and TLS 1.3 for data in transit, with user-controlled data retention policies."
+          }
+        ],
+        "features": [
+          {
+            "icon": "activity",
+            "title": "Real-time Analytics",
+            "description": "Monitor user behavior patterns and interactions in real-time with comprehensive dashboards."
+          },
+          {
+            "icon": "trending-up",
+            "title": "Predictive Insights",
+            "description": "AI-powered predictions and recommendations based on historical data and machine learning models."
+          },
+          {
+            "icon": "shield",
+            "title": "Privacy First",
+            "description": "Enterprise-grade security with user-controlled data sharing and privacy settings."
+          },
+          {
+            "icon": "smartphone",
+            "title": "Cross-platform",
+            "description": "Seamless experience across iOS and Android with native performance and platform-specific features."
+          }
+        ],
+        "stats": [
+          {
+            "value": 50000,
+            "label": "Active Users",
+            "suffix": "+"
+          },
+          {
+            "value": 99.9,
+            "label": "Uptime",
+            "suffix": "%"
+          },
+          {
+            "value": 150,
+            "label": "Data Points",
+            "suffix": "M"
+          },
+          {
+            "value": 24,
+            "label": "Response Time",
+            "suffix": "ms"
+          }
+        ],
+        "links": {
+          "playStore": "https://play.google.com/store/apps/details?id=com.traycer.app",
+          "github": "https://github.com/y0ussefmahmoud/traycer",
+          "pdf": "/assets/projects/traycer/case-study.pdf",
+          "youtube": "https://youtube.com/watch?v=traycer-demo",
+          "website": "https://traycer.app"
+        },
+        "meta": {
+          "date": "2024-03-15",
+          "duration": "6 months",
+          "linesOfCode": 45000
+        }
+      }
+    ],
+    "otherProjects": [
+      {
+        "id": "portfolio-v3",
+        "title": "Portfolio V3.0",
+        "description": "Modern portfolio website with React 18, TypeScript, and Framer Motion animations.",
+        "tech": ["React 18", "TypeScript", "Framer Motion", "Tailwind CSS", "shadcn/ui"],
+        "image": "/assets/projects/portfolio-v3/hero.jpg",
+        "viewLink": "https://y0ussefmahmoud.com",
+        "codeLink": "https://github.com/y0ussefmahmoud/portfolio-v3",
+        "status": "in-progress"
+      },
+      {
+        "id": "taskmaster",
+        "title": "TaskMaster Pro",
+        "description": "Project management tool with team collaboration features and real-time updates.",
+        "tech": ["Vue.js", "Node.js", "Socket.io", "PostgreSQL", "Docker"],
+        "image": "/assets/projects/taskmaster/hero.jpg",
+        "viewLink": "https://taskmaster.app",
+        "codeLink": "https://github.com/y0ussefmahmoud/taskmaster",
+        "status": "completed"
+      },
+      {
+        "id": "weatherdash",
+        "title": "Weather Dashboard",
+        "description": "Beautiful weather application with detailed forecasts and interactive maps.",
+        "tech": ["React", "TypeScript", "OpenWeather API", "Chart.js", "Mapbox"],
+        "image": "/assets/projects/weatherdash/hero.jpg",
+        "viewLink": "https://weatherdash.app",
+        "codeLink": "https://github.com/y0ussefmahmoud/weatherdash",
+        "status": "completed"
+      }
+    ]
+  }
+}
