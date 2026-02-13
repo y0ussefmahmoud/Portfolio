@@ -1,4 +1,5 @@
 import * as React from 'react';
+//import { projects } from '@/data/projects';
 import { motion } from 'framer-motion';
 import { ExternalLink, Github } from 'lucide-react';
 
@@ -31,7 +32,7 @@ const Projects: React.FC<ProjectsProps> = ({ translations }) => {
   const [activeFilter, setActiveFilter] = React.useState<'all' | 'completed' | 'in-progress'>('all');
   const [selectedProject, setSelectedProject] = React.useState<Project | null>(null);
 
-<<<<<<< HEAD
+  // HEAD
   const projectsData: Record<'completed' | 'inProgress', Project[]> = {
     completed: [
       {
@@ -42,6 +43,7 @@ const Projects: React.FC<ProjectsProps> = ({ translations }) => {
         image: '/Portfolio/images/My-Portfolio-V2.0.0-1200x675.webp',
         viewLink: 'https://y0ussefmahmoud.github.io/Portfolio/',
         codeLink: 'https://github.com/y0ussefmahmoud/Portfolio',
+        status: 'completed'
       },
       {
         id: 2,
@@ -51,6 +53,7 @@ const Projects: React.FC<ProjectsProps> = ({ translations }) => {
         image: '/Portfolio/images/daily-life-tracker-app.webp',
         viewLink: '#',
         codeLink: 'https://github.com/y0ussefmahmoud/Daily-Life-Tracker-app',
+        status: 'completed'
       },/*
       {
         id: 3,
@@ -62,7 +65,7 @@ const Projects: React.FC<ProjectsProps> = ({ translations }) => {
         codeLink: 'https://github.com/y0ussefmahmoud/Portfolio',
       },*/
     ],
-    inProgress: [/*
+    inProgress: [
       {
         id: 4,
         title: 'Y0 Hardware',
@@ -71,7 +74,8 @@ const Projects: React.FC<ProjectsProps> = ({ translations }) => {
         image: '/Portfolio/images/Y0-Hardware-1200x675.webp',
         viewLink: '#',
         codeLink: '#',
-      },
+        status: 'in-progress'
+      },/*
       {
         id: 5,
         title: 'Emg Ems Simulation',
@@ -102,13 +106,13 @@ const Projects: React.FC<ProjectsProps> = ({ translations }) => {
       },*/
     ],
   };
-=======
+
   // Merge projects and otherProjects arrays
   const allProjects: Project[] = [
     ...(projectsData as any).projects,
     ...(projectsData as any).otherProjects
   ];
->>>>>>> e204a8433ac09fd9da61ac67f2ad525cfba9f260
+  // e204a8433ac09fd9da61ac67f2ad525cfba9f260
 
   const filtered = React.useMemo(() => {
     if (activeFilter === 'completed') {
@@ -137,7 +141,7 @@ const Projects: React.FC<ProjectsProps> = ({ translations }) => {
         whileHover={{ y: -4 }}
         className="h-full"
       >
-        <Card className="group h-full overflow-hidden border-border/60 bg-card/60 backdrop-blur supports-[backdrop-filter]:bg-card/50">
+        <Card className="group h-full overflow-hidden border-border/60 bg-card/60 backdrop-blur 'supports-[backdrop-filter]:bg-card/50'">
           <CardHeader className="space-y-3">
             <div className="flex items-start justify-between gap-3">
               <h3 className="text-base font-semibold leading-tight tracking-tight text-foreground">

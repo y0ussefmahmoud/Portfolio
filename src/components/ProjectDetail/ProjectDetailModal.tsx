@@ -137,7 +137,7 @@ const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         {project.details.features.map((feature, index) => (
                           <div key={index} className="flex gap-3">
-                            <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                            <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center 'flex-shrink-0'">
                               <span className="text-primary">{feature.icon}</span>
                             </div>
                             <div>

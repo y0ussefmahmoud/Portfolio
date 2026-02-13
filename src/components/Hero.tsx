@@ -210,7 +210,7 @@ const Hero: React.FC<HeroProps> = ({ translations, onNavigate }) => {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8, delay: 0.2 }}
       >
-        <div className="relative w-[450px] h-[450px] mx-auto">
+        <div className="relative 'w-450px' 'h-450px' mx-auto">
           <div className="absolute inset-0 bg-primary/20 rounded-full blur-[100px] animate-pulse" />
 
           <img

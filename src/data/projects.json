@@ -127,7 +127,7 @@
           "linesOfCode": 45000
         }
       }
-    ],
+    ,
     "otherProjects": [
       {
         "id": "portfolio-v3",
@@ -161,4 +161,5 @@
       }
     ]
   }
+]
 }
