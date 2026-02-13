@@ -11,22 +11,14 @@ import {
   CardHeader,
 } from '@/components/ui/card';
 import { Translations } from '@/i18n/translations';
+import { Project } from '@/types/project';
+import projectsData from '@/data/projects.json';
+import ProjectDetailModal from '@/components/ProjectDetail/ProjectDetailModal';
 
 interface ProjectsProps {
   translations: Translations;
 }
 
-type ProjectStatus = 'completed' | 'in-progress';
-
-type Project = {
-  id: number;
-  title: string;
-  description: string;
-  tech: string[];
-  image: string;
-  viewLink?: string;
-  codeLink?: string;
-};
 
 const isValidExternalLink = (url?: string) => Boolean(url && url !== '#');
 
@@ -37,7 +29,9 @@ const cardVariants = {
 
 const Projects: React.FC<ProjectsProps> = ({ translations }) => {
   const [activeFilter, setActiveFilter] = React.useState<'all' | 'completed' | 'in-progress'>('all');
+  const [selectedProject, setSelectedProject] = React.useState<Project | null>(null);
 
+<<<<<<< HEAD
   const projectsData: Record<'completed' | 'inProgress', Project[]> = {
     completed: [
       {
@@ -68,7 +62,7 @@ const Projects: React.FC<ProjectsProps> = ({ translations }) => {
         codeLink: 'https://github.com/y0ussefmahmoud/Portfolio',
       },*/
     ],
-    inProgress: [
+    inProgress: [/*
       {
         id: 4,
         title: 'Y0 Hardware',
@@ -105,23 +99,30 @@ const Projects: React.FC<ProjectsProps> = ({ translations }) => {
         image: '/Portfolio/images/ai-assistant-1200x675.webp',
         viewLink: '#',
         codeLink: '#',
-      },
+      },*/
     ],
   };
+=======
+  // Merge projects and otherProjects arrays
+  const allProjects: Project[] = [
+    ...(projectsData as any).projects,
+    ...(projectsData as any).otherProjects
+  ];
+>>>>>>> e204a8433ac09fd9da61ac67f2ad525cfba9f260
 
   const filtered = React.useMemo(() => {
     if (activeFilter === 'completed') {
-      return { completed: projectsData.completed, inProgress: [] as Project[] };
+      return allProjects.filter(p => p.status === 'completed');
     }
 
     if (activeFilter === 'in-progress') {
-      return { completed: [] as Project[], inProgress: projectsData.inProgress };
+      return allProjects.filter(p => p.status === 'in-progress');
     }
 
-    return { completed: projectsData.completed, inProgress: projectsData.inProgress };
+    return allProjects;
   }, [activeFilter]);
 
-  const renderProjectCard = (project: Project, status: ProjectStatus) => {
+  const renderProjectCard = (project: Project) => {
     const viewEnabled = isValidExternalLink(project.viewLink);
     const codeEnabled = isValidExternalLink(project.codeLink);
 
@@ -143,10 +144,10 @@ const Projects: React.FC<ProjectsProps> = ({ translations }) => {
                 {project.title}
               </h3>
               <Badge
-                variant={status === 'completed' ? 'default' : 'secondary'}
+                variant={project.status === 'completed' ? 'default' : 'secondary'}
                 className="shrink-0"
               >
-                {status === 'completed'
+                {project.status === 'completed'
                   ? translations.projects.completed
                   : translations.projects.inProgress}
               </Badge>
@@ -177,15 +178,25 @@ const Projects: React.FC<ProjectsProps> = ({ translations }) => {
           </CardContent>
 
           <CardFooter className="flex gap-2">
+            {project.details && (
+              <Button 
+                variant="outline" 
+                onClick={() => setSelectedProject(project)}
+                className="flex-1"
+              >
+                <ExternalLink className="h-4 w-4" />
+                {translations.projects.viewDetails}
+              </Button>
+            )}
             {viewEnabled ? (
-              <Button asChild className="flex-1">
+              <Button asChild className={project.details ? "flex-1" : "flex-1"}>
                 <a href={project.viewLink} target="_blank" rel="noopener noreferrer">
                   <ExternalLink className="h-4 w-4" />
                   {translations.projects.view}
                 </a>
               </Button>
             ) : (
-              <Button disabled className="flex-1">
+              <Button disabled className={project.details ? "flex-1" : "flex-1"}>
                 <ExternalLink className="h-4 w-4" />
                 {translations.projects.view}
               </Button>
@@ -246,45 +257,21 @@ const Projects: React.FC<ProjectsProps> = ({ translations }) => {
           </Button>
         </div>
 
-        <div className="mt-8 space-y-10">
-          {filtered.completed.length > 0 && (
-            <div className="space-y-4">
-              <div className="flex items-center justify-between gap-3">
-                <h3 className="text-lg font-semibold text-foreground">
-                  {translations.projects.completed}
-                </h3>
-                <Badge className="shrink-0">{filtered.completed.length}</Badge>
-              </div>
-
-              <motion.div
-                initial={false}
-                className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
-              >
-                {filtered.completed.map((p) => renderProjectCard(p, 'completed'))}
-              </motion.div>
-            </div>
-          )}
-
-          {filtered.inProgress.length > 0 && (
-            <div className="space-y-4">
-              <div className="flex items-center justify-between gap-3">
-                <h3 className="text-lg font-semibold text-foreground">
-                  {translations.projects.inProgress}
-                </h3>
-                <Badge className="shrink-0" variant="secondary">
-                  {filtered.inProgress.length}
-                </Badge>
-              </div>
-
-              <motion.div
-                initial={false}
-                className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
-              >
-                {filtered.inProgress.map((p) => renderProjectCard(p, 'in-progress'))}
-              </motion.div>
-            </div>
-          )}
+        <div className="mt-8">
+          <motion.div
+            initial={false}
+            className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
+          >
+            {filtered.map((p) => renderProjectCard(p))}
+          </motion.div>
         </div>
+
+        <ProjectDetailModal
+          project={selectedProject}
+          isOpen={selectedProject !== null}
+          onClose={() => setSelectedProject(null)}
+          translations={translations}
+        />
       </div>
     </section>
   );

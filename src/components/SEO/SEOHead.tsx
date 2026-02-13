@@ -37,7 +37,11 @@ interface SEOHeadProps {
 const SEOHead: React.FC<SEOHeadProps> = ({
   title = "Y0ussef Mahmoud - Full-Stack Developer Portfolio",
   description = "Passionate Full-Stack Developer & Project Engineer at Shehabco. Expert in React.js, Node.js, TypeScript, MySQL, Flutter, and modern web technologies. Building responsive web and mobile applications with clean, maintainable code.",
+<<<<<<< HEAD
   image = "/Portfolio/images/hero-800x1000.webp",
+=======
+  image = "images/hero-800x1000.webp",
+>>>>>>> e204a8433ac09fd9da61ac67f2ad525cfba9f260
   url = "https://y0ussefmahmoud.github.io/Portfolio/",
   type = "website",
   keywords = [
