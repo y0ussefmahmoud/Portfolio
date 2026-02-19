@@ -1,8 +1,6 @@
 import * as React from 'react';
-//import { projects } from '@/data/projects';
 import { motion } from 'framer-motion';
 import { ExternalLink, Github } from 'lucide-react';
-
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import {
@@ -20,7 +18,6 @@ interface ProjectsProps {
   translations: Translations;
 }
 
-
 const isValidExternalLink = (url?: string) => Boolean(url && url !== '#');
 
 const cardVariants = {
@@ -32,99 +29,61 @@ const Projects: React.FC<ProjectsProps> = ({ translations }) => {
   const [activeFilter, setActiveFilter] = React.useState<'all' | 'completed' | 'in-progress'>('all');
   const [selectedProject, setSelectedProject] = React.useState<Project | null>(null);
 
-  // HEAD
-  const projectsData: Record<'completed' | 'inProgress', Project[]> = {
-    completed: [
-      {
-        id: 1,
-        title: 'My Portfolio',
-        description: 'My Portfolio with Html, Css & JavaScript.',
-        tech: ['HTML5', 'CSS3', 'JavaScript', 'Responsive'],
-        image: '/Portfolio/images/My-Portfolio-V2.0.0-1200x675.webp',
-        viewLink: 'https://y0ussefmahmoud.github.io/Portfolio/',
-        codeLink: 'https://github.com/y0ussefmahmoud/Portfolio',
-        status: 'completed'
-      },
-      {
-        id: 2,
-        title: 'Daily Life Tracker app',
-        description: 'Daily Life Tracker app , A Flutter app for tracking daily life with task, project, and statistics management..',
-        tech: ['Flutter', 'Supabase', 'Provider', 'Google Fonts'],
-        image: '/Portfolio/images/daily-life-tracker-app.webp',
-        viewLink: '#',
-        codeLink: 'https://github.com/y0ussefmahmoud/Daily-Life-Tracker-app',
-        status: 'completed'
-      },/*
-      {
-        id: 3,
-        title: 'My Portfolio',
-        description: 'My Portfolio with Html, Css & JavaScript.',
-        tech: ['Flutter', 'CSS3', 'Provider', 'Google Fonts'],
-        image: '/Portfolio/images/My-Portfolio-V2.0.0-1200x675.webp',
-        viewLink: 'https://y0ussefmahmoud.github.io/Portfolio/',
-        codeLink: 'https://github.com/y0ussefmahmoud/Portfolio',
-      },*/
-    ],
-    inProgress: [
-      {
-        id: 4,
-        title: 'Y0 Hardware',
-        description: 'E-commerce website for computer hardware with modern design.',
-        tech: ['HTML5', 'CSS3', 'JavaScript', 'E-commerce'],
-        image: '/Portfolio/images/Y0-Hardware-1200x675.webp',
-        viewLink: '#',
-        codeLink: '#',
-        status: 'in-progress'
-      },/*
-      {
-        id: 5,
-        title: 'Emg Ems Simulation',
-        description: 'Healthcare app with Flutter and Clean Architecture + IOT system.',
-        tech: ['Flutter', 'Dart', 'Clean Architecture', 'IOT'],
-        image: '/Portfolio/images/Emg-ems.webp',
-        viewLink: '#',
-        codeLink: '#',
-      },
-      {
-        id: 7,
-        title: 'Dubai key website',
-        description:
-          'Dubai key website is E-commerce website for computer hardware with modern design.',
-        tech: ['React', 'TypeScript', 'E-commerce'],
-        image: '/Portfolio/images/Dubai-key-website.webp',
-        viewLink: '#',
-        codeLink: '#',
-      },
-      {
-        id: 6,
-        title: 'Y0 AI Assistant',
-        description: 'AI-powered chat assistant with modern UI and smart features.',
-        tech: ['Next.js', 'TypeScript', 'OpenAI', 'NestJS'],
-        image: '/Portfolio/images/ai-assistant-1200x675.webp',
-        viewLink: '#',
-        codeLink: '#',
-      },*/
-    ],
-  };
+  // ✅ تحميل البيانات مع安全检查
+  const loadProjects = React.useMemo(() => {
+    try {
+      // التحقق من وجود البيانات
+      if (!projectsData) {
+        console.error('❌ projectsData غير موجود');
+        return [];
+      }
 
-  // Merge projects and otherProjects arrays
-  const allProjects: Project[] = [
-    ...(projectsData as any).projects,
-    ...(projectsData as any).otherProjects
-  ];
-  // e204a8433ac09fd9da61ac67f2ad525cfba9f260
+      // التحقق من أن projects مصفوفة
+      const projects = Array.isArray(projectsData.projects) ? projectsData.projects : [];
+      
+      // التحقق من أن otherProjects مصفوفة
+      const otherProjects = Array.isArray((projectsData as any).otherProjects) 
+        ? (projectsData as any).otherProjects 
+        : [];
 
+      // دمج المشاريع
+      const allProjects = [...projects, ...otherProjects];
+      
+      console.log('✅ تم تحميل المشاريع:', allProjects.length);
+      return allProjects;
+
+    } catch (error) {
+      console.error('❌ خطأ في تحميل المشاريع:', error);
+      return [];
+    }
+  }, []);
+
+  // ✅ تصفية المشاريع حسب الحالة
   const filtered = React.useMemo(() => {
     if (activeFilter === 'completed') {
-      return allProjects.filter(p => p.status === 'completed');
+      return loadProjects.filter(p => p.status === 'completed');
     }
-
     if (activeFilter === 'in-progress') {
-      return allProjects.filter(p => p.status === 'in-progress');
+      return loadProjects.filter(p => p.status === 'in-progress');
     }
+    return loadProjects;
+  }, [activeFilter, loadProjects]);
 
-    return allProjects;
-  }, [activeFilter]);
+  // ✅ إذا مفيش مشاريع، عرض رسالة
+  if (loadProjects.length === 0) {
+    return (
+      <section id="projects" className="bg-transparent">
+        <div className="mx-auto max-w-6xl text-center py-20">
+          <h2 className="text-3xl font-bold text-foreground mb-4">
+            {translations.projects.title}
+          </h2>
+          <p className="text-muted-foreground">
+            جاري تحميل المشاريع...
+          </p>
+        </div>
+      </section>
+    );
+  }
 
   const renderProjectCard = (project: Project) => {
     const viewEnabled = isValidExternalLink(project.viewLink);
@@ -162,6 +121,9 @@ const Projects: React.FC<ProjectsProps> = ({ translations }) => {
                 src={project.image}
                 alt={`${project.title} project cover`}
                 loading="lazy"
+                onError={(e) => {
+                  e.currentTarget.src = '/placeholder-image.jpg';
+                }}
                 className="h-44 w-full object-cover transition-transform duration-300 ease-out group-hover:scale-[1.03]"
               />
             </div>
@@ -188,20 +150,20 @@ const Projects: React.FC<ProjectsProps> = ({ translations }) => {
                 onClick={() => setSelectedProject(project)}
                 className="flex-1"
               >
-                <ExternalLink className="h-4 w-4" />
-                {translations.projects.viewDetails}
+                <ExternalLink className="h-4 w-4 mr-2" />
+                {translations.projects.viewDetails || 'التفاصيل'}
               </Button>
             )}
             {viewEnabled ? (
               <Button asChild className={project.details ? "flex-1" : "flex-1"}>
                 <a href={project.viewLink} target="_blank" rel="noopener noreferrer">
-                  <ExternalLink className="h-4 w-4" />
+                  <ExternalLink className="h-4 w-4 mr-2" />
                   {translations.projects.view}
                 </a>
               </Button>
             ) : (
               <Button disabled className={project.details ? "flex-1" : "flex-1"}>
-                <ExternalLink className="h-4 w-4" />
+                <ExternalLink className="h-4 w-4 mr-2" />
                 {translations.projects.view}
               </Button>
             )}
@@ -209,13 +171,13 @@ const Projects: React.FC<ProjectsProps> = ({ translations }) => {
             {codeEnabled ? (
               <Button asChild variant="outline" className="flex-1">
                 <a href={project.codeLink} target="_blank" rel="noopener noreferrer">
-                  <Github className="h-4 w-4" />
+                  <Github className="h-4 w-4 mr-2" />
                   {translations.projects.code}
                 </a>
               </Button>
             ) : (
               <Button disabled variant="outline" className="flex-1">
-                <Github className="h-4 w-4" />
+                <Github className="h-4 w-4 mr-2" />
                 {translations.projects.code}
               </Button>
             )}

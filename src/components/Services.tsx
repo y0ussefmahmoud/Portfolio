@@ -154,9 +154,9 @@ const Services: React.FC<ServicesProps> = ({ translations }) => {
                 whileHover={{ y: -4 }}
                 className="h-full"
               >
-                <Card className="group h-full overflow-hidden border-border/60 bg-card/60 backdrop-blur supports-[backdrop-filter]:bg-card/50">
+                <Card className="group h-full overflow-hidden border-border/60 bg-card/60 backdrop-blur supports-backdrop-filter:bg-card/50">
                   <CardHeader>
-                    <div className="w-16 h-16 mx-auto rounded-full bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center">
+                    <div className="w-16 h-16 mx-auto rounded-full bg-linear-to-br from-primary to-primary/60 flex items-center justify-center">
                       <Icon className="h-8 w-8 text-primary-foreground" />
                     </div>
                     <h3 className="text-lg font-semibold text-foreground text-center mt-4">

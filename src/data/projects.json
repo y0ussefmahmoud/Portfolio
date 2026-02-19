@@ -1,19 +1,19 @@
 {
   "projects": [
     {
-      "id": "traycer",
-      "title": "Traycer",
-      "description": "Advanced mobile application for tracking and analyzing user behavior patterns with real-time analytics.",
-      "tech": ["React Native", "TypeScript", "Node.js", "MongoDB", "Redux"],
-      "image": "/assets/projects/traycer/hero.jpg",
-      "viewLink": "https://traycer.app",
-      "codeLink": "https://github.com/y0ussefmahmoud/traycer",
+      "id": "My Portfolio",
+      "title": "My Portfolio V2.0",
+      "description": "My Portfolio with Html, Css & JavaScript.",
+      "tech": ["React 18", "TypeScript",  "Next.js", "Tailwind CSS"],
+      "image": "/Portfolio/images/My-Portfolio-V2.0.0-1200x675.webp",
+      "viewLink": "https://y0ussefmahmoud.github.io/Portfolio/",
+      "codeLink": "https://github.com/y0ussefmahmoud/Portfolio",
       "status": "completed",
       "details": {
         "video": {
-          "url": "/assets/projects/traycer/video/demo.mp4",
-          "thumbnail": "/assets/projects/traycer/video/thumbnail.jpg",
-          "title": "Traycer App Demo"
+          "url": "#",
+          "thumbnail": "#",
+          "title": "Portfolio Demo"
         },
         "gallery": [
           {
@@ -127,39 +127,29 @@
           "linesOfCode": 45000
         }
       }
-    ,
-    "otherProjects": [
-      {
-        "id": "portfolio-v3",
-        "title": "Portfolio V3.0",
-        "description": "Modern portfolio website with React 18, TypeScript, and Framer Motion animations.",
-        "tech": ["React 18", "TypeScript", "Framer Motion", "Tailwind CSS", "shadcn/ui"],
-        "image": "/assets/projects/portfolio-v3/hero.jpg",
-        "viewLink": "https://y0ussefmahmoud.com",
-        "codeLink": "https://github.com/y0ussefmahmoud/portfolio-v3",
-        "status": "in-progress"
-      },
-      {
-        "id": "taskmaster",
-        "title": "TaskMaster Pro",
-        "description": "Project management tool with team collaboration features and real-time updates.",
-        "tech": ["Vue.js", "Node.js", "Socket.io", "PostgreSQL", "Docker"],
-        "image": "/assets/projects/taskmaster/hero.jpg",
-        "viewLink": "https://taskmaster.app",
-        "codeLink": "https://github.com/y0ussefmahmoud/taskmaster",
-        "status": "completed"
-      },
-      {
-        "id": "weatherdash",
-        "title": "Weather Dashboard",
-        "description": "Beautiful weather application with detailed forecasts and interactive maps.",
-        "tech": ["React", "TypeScript", "OpenWeather API", "Chart.js", "Mapbox"],
-        "image": "/assets/projects/weatherdash/hero.jpg",
-        "viewLink": "https://weatherdash.app",
-        "codeLink": "https://github.com/y0ussefmahmoud/weatherdash",
-        "status": "completed"
-      }
-    ]
-  }
-]
+    }
+  ],
+  "otherProjects": [
+    
+    {
+      "id": "Daily Life Tracker app",
+      "title": "Daily Life Tracker app",
+      "description": "Daily Life Tracker app , A Flutter app for tracking daily life with task, project, and statistics management.",
+      "tech": ["Flutter", "Supabase", "Provider", "Google Fonts"],
+      "image": "/Portfolio/images/daily-life-tracker-app.webp",
+      "viewLink": "#",
+      "codeLink": "https://github.com/y0ussefmahmoud/Daily-Life-Tracker-app",
+      "status": "completed"
+    },
+    {
+      "id": "Y0 Hardware",
+      "title": "Y0 Hardware",
+      "description": "E-commerce website for computer hardware with modern design.",
+      "tech": ["React", "TypeScript", "E-commerce"],
+      "image": "/Portfolio/images/Y0-Hardware-1200x675.webp",
+      "viewLink": "https://y0ussefmahmoud.github.io/Y0-Hardware/",
+      "codeLink": "#",
+      "status": "in-progress"
+    }
+  ]
 }
