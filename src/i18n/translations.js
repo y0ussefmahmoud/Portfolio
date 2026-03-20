@@ -3,7 +3,7 @@ export const translations = {
         nav: {
             home: 'Home',
             about: 'About',
-            skills: 'Skills',
+            //skills: 'Skills',
             services: 'Services',
             projects: 'Projects',
             education: 'Education',
@@ -11,7 +11,7 @@ export const translations = {
         },
         windowTitles: {
             about: '~/about-me',
-            skills: '~/my-skills',
+            // skills: '~/my-skills',
             services: '~/services-offered',
             projects: '~/featured-projects',
             education: '~/education-background',
@@ -21,30 +21,31 @@ export const translations = {
             greet: 'Hello, I\'m',
             name: 'Y0ussef Mahmoud',
             tagline: 'Full‑Stack Developer & Project Engineer at Shehabco.',
-            availability: 'Available for Freelance & Full-time',
+            availability: 'Available for Freelance & Part-time',
             badges: {
-                primary: 'Node.js Expert',
-                secondary: 'React & Flutter',
+                primary: 'React.js',
+                secondary: 'Node.js & Flutter',
             },
             ctaPrimary: 'View Projects',
             ctaSecondary: 'Get in Touch',
         },
         about: {
             title: 'About Me',
-            bio: 'I\'m a Full‑Stack Developer and Project Engineer at Shehabco. I build responsive web and mobile apps using Node.js, MySQL, and Flutter, working with RESTful APIs and Docker to deliver scalable, maintainable solutions. I love solving real‑world problems with clean code and continuously learning.',
+            //bio: 'I\'m a Full‑Stack Developer and Project Engineer at Shehabco. I build responsive web and mobile apps using Node.js, MySQL, and Flutter, working with RESTful APIs and Docker to deliver scalable, maintainable solutions. I love solving real‑world problems with clean code and continuously learning.',
+            bio: "I\'m Youssef Mahmoud Abdelgawad, a Full-Stack Developer and Project Engineer at Shehabco with a unique dual profile – I bridge the gap between physical infrastructure and digital innovation, At Shehabco, I manage integrated security system projects from installation to handover – working with CCTV, Access Control, Fire Alarm, and Suppression Systems across commercial and industrial sites. I lead technical teams, ensure project timelines, and liaise directly with clients. As a Freelance Developer (Upwork & Khamsat), I build: 📱 Cross-platform mobile apps with Flutter & Dart 🌐 Full-stack web applications using React.js, Node.js, Express.js, and MySQL 🔗 RESTful APIs with JWT authentication and third-party integrations, Frontend: React.js, Flutter, HTML5, CSS3, JavaScript (ES6+), Backend: Node.js, Express.js, REST APIs, Database: MySQL, Database Design & Optimization, DevOps: Docker, Git, GitHub, Postman, Network Configuration, CCTV Systems.",
             email: 'Email',
             phone: 'Phone',
             location: 'Location',
             cta: 'Contact Me',
-        },
+        }, /*
         skills: {
-            title: 'Skills',
-            subtitle: 'Technologies I work with',
-            frontend: 'Frontend',
-            backend: 'Backend',
-            mobile: 'Mobile',
-            tools: 'Tools',
-        },
+          title: 'Skills',
+          subtitle: 'Technologies I work with',
+          frontend: 'Frontend',
+          backend: 'Backend',
+          mobile: 'Mobile',
+          tools: 'Tools',
+        },*/
         services: {
             title: 'Services',
             subtitle: 'What I can help you with',
@@ -56,22 +57,34 @@ export const translations = {
                 title: 'Mobile Apps',
                 desc: 'Cross‑platform apps with Flutter focusing on performance and user experience.',
             },
-            api: {
-                title: 'APIs & Integrations',
-                desc: 'RESTful APIs, authentication, and third‑party integrations for robust backends.',
+            /*api: {
+              title: 'APIs & Integrations',
+              desc: 'RESTful APIs, authentication, and third‑party integrations for robust backends.',
             },
             devops: {
-                title: 'Docker & DevOps',
-                desc: 'Containerized deployments and scalable setups using Docker best practices.',
+              title: 'Docker & DevOps',
+              desc: 'Containerized deployments and scalable setups using Docker best practices.',
             },
             db: {
-                title: 'Database Design',
-                desc: 'MySQL schema design, optimization, and data modeling for real‑world scale.',
-            },
+              title: 'Database Design',
+              desc: 'MySQL schema design, optimization, and data modeling for real‑world scale.',
+            },*/
             freelance: {
                 title: 'Freelance Projects',
                 desc: 'End‑to‑end delivery with clear communication, timelines, and documentation.',
             },
+            api: {
+                title: "",
+                desc: ""
+            },
+            devops: {
+                title: "",
+                desc: ""
+            },
+            db: {
+                title: "",
+                desc: ""
+            }
         },
         projects: {
             title: 'Projects',
@@ -145,7 +158,7 @@ export const translations = {
         nav: {
             home: 'الرئيسية',
             about: 'نبذة',
-            skills: 'المهارات',
+            //skills: 'المهارات',
             services: 'الخدمات',
             projects: 'المشاريع',
             education: 'التعليم',
@@ -153,7 +166,7 @@ export const translations = {
         },
         windowTitles: {
             about: '~/نبذة-عني',
-            skills: '~/مهاراتي',
+            // skills: '~/مهاراتي',
             services: '~/الخدمات-المقدمة',
             projects: '~/المشاريع-المميزة',
             education: '~/خلفيتي-التعليمية',
@@ -162,31 +175,31 @@ export const translations = {
         hero: {
             greet: 'مرحباً، أنا',
             name: 'يوسف محمود',
-            tagline: 'مطور Full-Stack ومهندس مشاريع في شهابكو.',
-            availability: 'متاح للعمل الحر والدوام الكامل',
+            tagline: 'مطور الواجهات الأمامية والخلفية ومهندس مشروع في شهابكو.',
+            availability: 'متاح للعمل الحر والدوام الجزئي ',
             badges: {
-                primary: 'خبير Node.js',
-                secondary: 'React و Flutter',
+                primary: 'React.js',
+                secondary: 'Node.js & Flutter',
             },
             ctaPrimary: 'عرض المشاريع',
             ctaSecondary: 'تواصل معي',
         },
         about: {
             title: 'نبذة عني',
-            bio: 'أنا مطور Full-Stack ومهندس مشاريع في شهابكو. أقوم ببناء تطبيقات ويب وموبايل متجاوبة باستخدام Node.js و MySQL و Flutter، مع العمل على RESTful APIs و Docker لتقديم حلول قابلة للتطوير والصيانة. أحب حل المشاكل الحقيقية بكود نظيف والتعلم المستمر.',
+            bio: "أنا يوسف محمود عبد الجواد، مُطَوِّر الواجهات الأمامية والخلفية ومهندس مشروع في شركة شهابكو، أمتلك ملفًا مهنيًا مزدوجًا فريدًا – حيث أسد الفجوة بين البنية التحتية المادية والابتكار الرقمي. في شهابكو، أدير مشاريع أنظمة الأمن المتكاملة بدءًا من التركيب وحتى التسليم – حيث أعمل مع أنظمة الكاميرات والمراقبة الامنية (CCTV)، والتحكم في الدخول (Access Control)، وأنظمة الإنذار ضد الحريق (Fire Alarm)، وأنظمة الإطفاء الالي(Suppression Systems) في المواقع التجارية والصناعية. أقود الفرق التقنية، وأضمن الالتزام بالجداول الزمنية للمشاريع، وأتواصل مباشرة مع العملاء. كمُطَوِّر مستقل (على منصتي Upwork وخمسات)، أقوم ببناء:📱 تطبيقات الهاتف المحمول عبر المنصات (Cross-platform) باستخدام Flutter و Dart🌐 تطبيقات ويب كاملة (Full-stack) باستخدام React.js و Node.js و Express.js و MySQL و🔗 واجهات برمجة تطبيقات (RESTful APIs) مع توثيق JWT والتكامل مع خدمات الطرف الثالث الواجهات الأمامية (Frontend): React.js، Flutter، HTML5، CSS3، JavaScript (ES6+) الواجهات الخلفية (Backend): Node.js، Express.js، REST APIs قواعد البيانات (Database): MySQL، تصميم وتحسين قواعد البيانات العمليات والتطوير (DevOps): Docker، Git، GitHub، Postman أخرى تكوين الشبكات (Network Configuration)،  (CCTV Systems).",
             email: 'البريد الإلكتروني',
             phone: 'الهاتف',
             location: 'الموقع',
             cta: 'تواصل معي',
-        },
+        }, /*
         skills: {
-            title: 'المهارات',
-            subtitle: 'التقنيات التي أعمل بها',
-            frontend: 'الواجهة الأمامية',
-            backend: 'الواجهة الخلفية',
-            mobile: 'تطبيقات الموبايل',
-            tools: 'الأدوات',
-        },
+          title: 'المهارات',
+          subtitle: 'التقنيات التي أعمل بها',
+          frontend: 'الواجهة الأمامية',
+          backend: 'الواجهة الخلفية',
+          mobile: 'تطبيقات الموبايل',
+          tools: 'الأدوات',
+        },*/
         services: {
             title: 'الخدمات',
             subtitle: 'كيف يمكنني مساعدتك',
@@ -197,23 +210,35 @@ export const translations = {
             mobile: {
                 title: 'تطبيقات الموبايل',
                 desc: 'تطبيقات متعددة المنصات بـ Flutter مع التركيز على الأداء وتجربة المستخدم.',
-            },
-            api: {
-                title: 'APIs والتكاملات',
-                desc: 'RESTful APIs والمصادقة وتكاملات الطرف الثالث للخوادم القوية.',
-            },
-            devops: {
-                title: 'Docker و DevOps',
-                desc: 'نشر بالحاويات وإعدادات قابلة للتطوير باستخدام أفضل ممارسات Docker.',
-            },
-            db: {
-                title: 'تصميم قواعد البيانات',
-                desc: 'تصميم MySQL وتحسين ونمذجة البيانات للمقياس الحقيقي.',
-            },
+            }, /*
+          api: {
+            title: 'APIs والتكاملات',
+            desc: 'RESTful APIs والمصادقة وتكاملات الطرف الثالث للخوادم القوية.',
+          },
+          devops: {
+            title: 'Docker و DevOps',
+            desc: 'نشر بالحاويات وإعدادات قابلة للتطوير باستخدام أفضل ممارسات Docker.',
+          },
+          db: {
+            title: 'تصميم قواعد البيانات',
+            desc: 'تصميم MySQL وتحسين ونمذجة البيانات للمقياس الحقيقي.',
+          },*/
             freelance: {
                 title: 'مشاريع العمل الحر',
                 desc: 'تسليم شامل مع تواصل واضح وجداول زمنية وتوثيق.',
             },
+            api: {
+                title: "",
+                desc: ""
+            },
+            devops: {
+                title: "",
+                desc: ""
+            },
+            db: {
+                title: "",
+                desc: ""
+            }
         },
         projects: {
             title: 'المشاريع',

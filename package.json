@@ -1,6 +1,6 @@
 {
-  "name": "y0ussef-portfolio-react",
-  "version": "2.0.0",
+  "name": "y0ussef-portfolio",
+  "version": "2.2.3",
   "description": "Y0ussef Mahmoud - Portfolio Website built with React.js",
   "private": true,
   "type": "module",

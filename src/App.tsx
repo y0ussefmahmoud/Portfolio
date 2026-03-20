@@ -33,7 +33,7 @@ import React, { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import Hero from './components/Hero';
 import About from './components/About/About';
-import Skills from './components/Skills';
+//import Skills from './components/Skills';
 import Services from './components/Services';
 import Projects from './components/Projects';
 import Education from './components/Education';
@@ -76,8 +76,8 @@ import Navbar from './components/Navbar';
 type TabId =
   | 'home'
   | 'about'
-  | 'skills'
-  | 'services'
+  | /*'skills'
+  |*/ 'services'
   | 'projects'
   | 'education'
   | 'contact';
@@ -155,7 +155,7 @@ function App() {
 
     // Update page title dynamically
     document.title = language === 'ar' 
-      ? 'يوسف محمود - مطور Full-Stack' 
+      ? 'يوسف محمود - مُطَوِّر الواجهات الأمامية والخلفية' 
       : 'Y0ussef Mahmoud - Full-Stack Developer';
   }, [isDarkMode, language]);
 
@@ -185,12 +185,12 @@ function App() {
             <About translations={t} />
           </WindowFrame>
         );
-      case 'skills':
+      /*case 'skills':
         return (
           <WindowFrame title={t.windowTitles.skills} onClose={() => setActiveTab('home')}>
             <Skills translations={t} />
           </WindowFrame>
-        );
+        );*/
       case 'services':
         return (
           <WindowFrame title={t.windowTitles.services} onClose={() => setActiveTab('home')}>
@@ -222,7 +222,7 @@ function App() {
 
   if (isLoading) {
     return (
-      <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-background text-foreground">
+      <div className="fixed inset-0 z-9999 flex items-center justify-center bg-background text-foreground">
         <div className="text-center">
           <div className="h-12 w-12 rounded-full border-2 border-border border-t-primary animate-spin mx-auto" />
           <p className="mt-4 text-sm text-muted-foreground">
@@ -236,9 +236,9 @@ function App() {
   return (
     <>
       <SEOHead 
-        title={language === 'ar' ? 'يوسف محمود - مطور Full-Stack' : 'Y0ussef Mahmoud - Full-Stack Developer Portfolio'}
+        title={language === 'ar' ? 'يوسف محمود - مُطَوِّر الواجهات الأمامية والخلفية' : 'Y0ussef Mahmoud - Full-Stack Developer Portfolio'}
         description={language === 'ar' 
-          ? 'مطور Full-Stack شغوف. خبير في React.js, Node.js, TypeScript, MySQL, Flutter. بناء تطبيقات ويب حديثة.'
+          ? ' مُطَوِّر الواجهات الأمامية والخلفية شغوف. خبير في React.js, Node.js, TypeScript, MySQL, Flutter. بناء تطبيقات ويب حديثة.'
           : 'Passionate Full-Stack Developer & Project Engineer. Expert in React.js, Node.js, TypeScript, MySQL, Flutter. Building modern web and mobile applications.'
         }
       />

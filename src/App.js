@@ -33,7 +33,7 @@ import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import Hero from './components/Hero';
 import About from './components/About/About';
-import Skills from './components/Skills';
+//import Skills from './components/Skills';
 import Services from './components/Services';
 import Projects from './components/Projects';
 import Education from './components/Education';
@@ -111,7 +111,7 @@ function App() {
         localStorage.setItem('lang', language);
         // Update page title dynamically
         document.title = language === 'ar'
-            ? 'يوسف محمود - مطور Full-Stack'
+            ? 'يوسف محمود - مُطَوِّر الواجهات الأمامية والخلفية'
             : 'Y0ussef Mahmoud - Full-Stack Developer';
     }, [isDarkMode, language]);
     /**
@@ -133,8 +133,12 @@ function App() {
                 return _jsx(Hero, { translations: t, onNavigate: (id) => setActiveTab(id) });
             case 'about':
                 return (_jsx(WindowFrame, { title: t.windowTitles.about, onClose: () => setActiveTab('home'), children: _jsx(About, { translations: t }) }));
-            case 'skills':
-                return (_jsx(WindowFrame, { title: t.windowTitles.skills, onClose: () => setActiveTab('home'), children: _jsx(Skills, { translations: t }) }));
+            /*case 'skills':
+              return (
+                <WindowFrame title={t.windowTitles.skills} onClose={() => setActiveTab('home')}>
+                  <Skills translations={t} />
+                </WindowFrame>
+              );*/
             case 'services':
                 return (_jsx(WindowFrame, { title: t.windowTitles.services, onClose: () => setActiveTab('home'), children: _jsx(Services, { translations: t }) }));
             case 'projects':
@@ -148,11 +152,11 @@ function App() {
         }
     };
     if (isLoading) {
-        return (_jsx("div", { className: "fixed inset-0 z-[9999] flex items-center justify-center bg-background text-foreground", children: _jsxs("div", { className: "text-center", children: [_jsx("div", { className: "h-12 w-12 rounded-full border-2 border-border border-t-primary animate-spin mx-auto" }), _jsx("p", { className: "mt-4 text-sm text-muted-foreground", children: language === 'ar' ? 'جاري التحميل...' : 'Loading...' })] }) }));
+        return (_jsx("div", { className: "fixed inset-0 z-9999 flex items-center justify-center bg-background text-foreground", children: _jsxs("div", { className: "text-center", children: [_jsx("div", { className: "h-12 w-12 rounded-full border-2 border-border border-t-primary animate-spin mx-auto" }), _jsx("p", { className: "mt-4 text-sm text-muted-foreground", children: language === 'ar' ? 'جاري التحميل...' : 'Loading...' })] }) }));
     }
-    return (_jsxs(_Fragment, { children: [_jsx(SEOHead, { title: language === 'ar' ? 'يوسف محمود - مطور Full-Stack' : 'Y0ussef Mahmoud - Full-Stack Developer Portfolio', description: language === 'ar'
-                    ? 'مطور Full-Stack شغوف. خبير في React.js, Node.js, TypeScript, MySQL, Flutter. بناء تطبيقات ويب حديثة.'
-                    : 'Passionate Full-Stack Developer & Project Engineer. Expert in React.js, Node.js, TypeScript, MySQL, Flutter. Building modern web and mobile applications.' }), _jsxs("div", { className: "h-screen w-screen overflow-hidden bg-background text-foreground relative", children: [_jsxs("div", { className: "absolute inset-0 z-0 pointer-events-none", children: [_jsx("div", { className: "absolute inset-0 bg-background/80 z-10" }), _jsx("div", { className: "absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/50 z-20" }), _jsx("div", { className: "absolute inset-0 opacity-[0.03] z-10", style: {
+    return (_jsxs(_Fragment, { children: [_jsx(SEOHead, { title: language === 'ar' ? 'يوسف محمود - مُطَوِّر الواجهات الأمامية والخلفية' : 'Y0ussef Mahmoud - Full-Stack Developer Portfolio', description: language === 'ar'
+                    ? ' مُطَوِّر الواجهات الأمامية والخلفية شغوف. خبير في React.js, Node.js, TypeScript, MySQL, Flutter. بناء تطبيقات ويب حديثة.'
+                    : 'Passionate Full-Stack Developer & Project Engineer. Expert in React.js, Node.js, TypeScript, MySQL, Flutter. Building modern web and mobile applications.' }), _jsxs("div", { className: "h-screen w-screen overflow-hidden bg-background text-foreground relative", children: [_jsxs("div", { className: "absolute inset-0 z-0 pointer-events-none", children: [_jsx("div", { className: "absolute inset-0 bg-background/80 z-10" }), _jsx("div", { className: "absolute inset-0 bg-linear-to-t from-background via-transparent to-background/50 z-20" }), _jsx("div", { className: "absolute inset-0 opacity-[0.03] z-10", style: {
                                     backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)',
                                     backgroundSize: '40px 40px',
                                 } })] }), _jsx(AccessibilitySkipLink, { href: "#main", children: language === 'ar' ? 'انتقل إلى المحتوى' : 'Skip to content' }), _jsx("main", { id: "main", className: "relative z-20 h-full w-full flex items-center justify-center p-4 pb-24", children: _jsx(ErrorBoundary, { children: _jsx(AnimatePresence, { mode: "wait", children: _jsx(motion.div, { initial: { opacity: 0, y: 10 }, animate: { opacity: 1, y: 0 }, exit: { opacity: 0, y: -10 }, transition: { duration: 0.2, ease: 'easeOut' }, className: "w-full flex items-center justify-center", children: renderContent() }, activeTab) }) }) }), _jsx(Navbar, { activeTab: activeTab, setActiveTab: setActiveTab, isDarkMode: isDarkMode, toggleTheme: toggleTheme, language: language, toggleLanguage: toggleLanguage, translations: t })] })] }));

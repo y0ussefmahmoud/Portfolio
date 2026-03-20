@@ -1,6 +1,6 @@
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import { motion } from "framer-motion";
-import { Briefcase, Check, Container, Database, Globe, Link, Mail, Smartphone, } from "lucide-react";
+import { Briefcase, Check, Globe, Mail, Smartphone, } from "lucide-react";
 import { Card, CardContent, CardFooter, CardHeader, } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 const cardVariants = {
@@ -41,49 +41,49 @@ const Services = ({ translations }) => {
                 "Offline Functionality",
             ],
             price: "Custom packages available",
+        }, /*
+        {
+          id: 3,
+          icon: Link,
+          title: translations.services.api.title,
+          description: translations.services.api.desc,
+          features: [
+            "RESTful API Design",
+            "JWT Authentication",
+            "Database Integration",
+            "API Documentation",
+            "Security Best Practices",
+          ],
+          price: "Custom packages available",
         },
         {
-            id: 3,
-            icon: Link,
-            title: translations.services.api.title,
-            description: translations.services.api.desc,
-            features: [
-                "RESTful API Design",
-                "JWT Authentication",
-                "Database Integration",
-                "API Documentation",
-                "Security Best Practices",
-            ],
-            price: "Custom packages available",
+          id: 4,
+          icon: Container,
+          title: translations.services.devops.title,
+          description: translations.services.devops.desc,
+          features: [
+            "Docker Containerization",
+            "CI/CD Pipelines",
+            "Cloud Deployment",
+            "Monitoring & Logging",
+            "Scalable Architecture",
+          ],
+          price: "Custom packages available",
         },
         {
-            id: 4,
-            icon: Container,
-            title: translations.services.devops.title,
-            description: translations.services.devops.desc,
-            features: [
-                "Docker Containerization",
-                "CI/CD Pipelines",
-                "Cloud Deployment",
-                "Monitoring & Logging",
-                "Scalable Architecture",
-            ],
-            price: "Custom packages available",
-        },
-        {
-            id: 5,
-            icon: Database,
-            title: translations.services.db.title,
-            description: translations.services.db.desc,
-            features: [
-                "Database Schema Design",
-                "Query Optimization",
-                "Data Migration",
-                "Backup Strategies",
-                "Performance Tuning",
-            ],
-            price: "Custom packages available",
-        },
+          id: 5,
+          icon: Database,
+          title: translations.services.db.title,
+          description: translations.services.db.desc,
+          features: [
+            "Database Schema Design",
+            "Query Optimization",
+            "Data Migration",
+            "Backup Strategies",
+            "Performance Tuning",
+          ],
+          price: "Custom packages available",
+        },*/
         {
             id: 6,
             icon: Briefcase,

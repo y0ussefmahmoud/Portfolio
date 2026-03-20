@@ -46,8 +46,8 @@ const Contact: React.FC<ContactProps> = ({ translations }) => {
     {
       icon: Phone,
       title: translations.about.phone || "Phone",
-      value: "+20 101 234 5678",
-      link: "tel:+201012345678",
+      value: "+20 112 933 4173",
+      link: "tel:+201129334173",
       description: "Call me for direct communication"
     },
     {

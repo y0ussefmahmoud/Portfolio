@@ -239,6 +239,6 @@ The portfolio is now:
 
 ---
 
-**Last Updated**: January 9, 2025  
-**Version**: 2.0  
-**Status**: ✅ Production Ready
+**Last Updated**: March 21, 2026  
+**Version**: 2.2.3  
+**Status**: ✅ Production Ready (Vite 6 + Tailwind 4)

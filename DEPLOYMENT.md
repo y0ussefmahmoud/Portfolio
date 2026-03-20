@@ -37,7 +37,7 @@ git push -u origin main
 # Install dependencies
 npm install
 
-# Deploy to GitHub Pages
+# Build and Deploy to GitHub Pages
 npm run deploy
 ```
 
@@ -46,9 +46,8 @@ After deployment, your portfolio will be available at:
 **https://y0ussefmahmoud.github.io/Portfolio/**
 
 ## 🔄 Automatic Deployment
-- Every push to `main` branch will automatically trigger deployment
-- GitHub Actions workflow handles the build and deployment process
-- No manual intervention required after initial setup
+- Every push to `main` branch will automatically trigger deployment via GitHub Actions.
+- The workflow use Vite 6 and Tailwind 4 to build the production assets.
 
 ## 📁 Files Added for GitHub Pages
 - `.github/workflows/deploy.yml` - GitHub Actions workflow

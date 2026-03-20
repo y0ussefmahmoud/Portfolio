@@ -16,8 +16,8 @@ import { Translations } from "../i18n/translations";
 type TabId =
   | "home"
   | "about"
-  | "skills"
-  | "services"
+  | /*"skills"
+  |*/ "services"
   | "projects"
   | "education"
   | "contact";
@@ -47,7 +47,7 @@ export default function Navbar({
     [
       { id: "home", label: translations.nav.home, Icon: Home },
       { id: "about", label: translations.nav.about, Icon: User },
-      { id: "skills", label: translations.nav.skills, Icon: Code },
+      //{ id: "skills", label: translations.nav.skills, Icon: Code },
       { id: "services", label: translations.nav.services, Icon: Briefcase },
       { id: "projects", label: translations.nav.projects, Icon: Briefcase },
       { id: "education", label: translations.nav.education, Icon: GraduationCap },
@@ -101,7 +101,7 @@ export default function Navbar({
                   whileTap={{ scale: 0.96 }}
                   className="relative z-10"
                 >
-                  <Icon className="h-5 w-5 sm:h-[22px] sm:w-[22px]" />
+                  <Icon className="h-5 w-5 sm:h-5.5 sm:w-5.5" />
                 </motion.span>
               </button>
 
@@ -138,9 +138,9 @@ export default function Navbar({
           >
             <motion.span whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.96 }}>
               {isDarkMode ? (
-                <Moon className="h-5 w-5 sm:h-[22px] sm:w-[22px]" />
+                <Moon className="h-5 w-5 sm:h-5.5 sm:w-5.5" />
               ) : (
-                <Sun className="h-5 w-5 sm:h-[22px] sm:w-[22px]" />
+                <Sun className="h-5 w-5 sm:h-5.5 sm:w-5.5" />
               )}
             </motion.span>
           </button>
@@ -154,7 +154,7 @@ export default function Navbar({
             aria-label={language === "en" ? "Switch to Arabic" : "Switch to English"}
           >
             <span className="flex items-center gap-1">
-              <Globe className="h-5 w-5 sm:h-[22px] sm:w-[22px]" />
+              <Globe className="h-5 w-5 sm:h-5.5 sm:w-5.5" />
               <span className="hidden sm:inline text-xs">{flag}</span>
             </span>
           </button>

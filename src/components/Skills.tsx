@@ -1,4 +1,4 @@
-import React from 'react';
+/*import React from 'react';
 import { motion } from 'framer-motion';
 import { Code2, Server, Smartphone, Wrench } from 'lucide-react';
 
@@ -96,4 +96,4 @@ const Skills: React.FC<SkillsProps> = ({ translations }) => {
   );
 };
 
-export default Skills;
+export default Skills;*/

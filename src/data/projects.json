@@ -142,6 +142,16 @@
       "status": "completed"
     },
     {
+      "id": "Y0 To-Do App",
+      "title": "Y0 To-Do App",
+      "description": "Y0 To-Do App , A Flutter app for tracking daily life with task, project, and statistics management.",
+      "tech": ["Flutter", "Supabase", "Provider", "Google Fonts"],
+      "image": "/Portfolio/images/daily-life-tracker-app.webp",
+      "viewLink": "#",
+      "codeLink": "https://github.com/y0ussefmahmoud/Y0-To-Do-App",
+      "status": "completed"
+    },
+    {
       "id": "Y0 Hardware",
       "title": "Y0 Hardware",
       "description": "E-commerce website for computer hardware with modern design.",

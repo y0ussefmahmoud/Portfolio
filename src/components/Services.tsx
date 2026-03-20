@@ -68,7 +68,7 @@ const Services: React.FC<ServicesProps> = ({ translations }) => {
         "Offline Functionality",
       ],
       price: "Custom packages available",
-    },
+    },/*
     {
       id: 3,
       icon: Link,
@@ -110,7 +110,7 @@ const Services: React.FC<ServicesProps> = ({ translations }) => {
         "Performance Tuning",
       ],
       price: "Custom packages available",
-    },
+    },*/
     {
       id: 6,
       icon: Briefcase,
