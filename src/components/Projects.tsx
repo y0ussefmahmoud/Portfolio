@@ -100,7 +100,7 @@ const Projects: React.FC<ProjectsProps> = ({ translations }) => {
         whileHover={{ y: -4 }}
         className="h-full"
       >
-        <Card className="group h-full overflow-hidden border-border/60 bg-card/60 backdrop-blur 'supports-[backdrop-filter]:bg-card/50'">
+        <Card className="group h-full overflow-hidden border-border/60 bg-card/60 backdrop-blur supports-backdrop-filter:bg-card/50">
           <CardHeader className="space-y-3">
             <div className="flex items-start justify-between gap-3">
               <h3 className="text-base font-semibold leading-tight tracking-tight text-foreground">

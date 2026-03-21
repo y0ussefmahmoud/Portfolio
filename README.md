@@ -2,7 +2,7 @@
 
 A modern, high-performance, and responsive portfolio website built with **React.js**, **TypeScript**, **Vite 6**, and **Tailwind CSS 4**.
 
-## 🚀 What's New in V2.2.3
+## 🚀 What's New in V2.3.5
 
 - **Tailwind CSS 4.0**: Full migration to the latest Tailwind CSS version using the new `@theme` engine.
 - **Vite 6**: Upgraded build tool for faster development and optimized production bundles.

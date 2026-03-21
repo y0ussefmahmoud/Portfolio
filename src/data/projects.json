@@ -2,7 +2,7 @@
   "projects": [
     {
       "id": "My Portfolio",
-      "title": "My Portfolio V2.0",
+      "title": "My Portfolio V2.3.4",
       "description": "My Portfolio with Html, Css & JavaScript.",
       "tech": ["React 18", "TypeScript",  "Next.js", "Tailwind CSS"],
       "image": "/Portfolio/images/My-Portfolio-V2.0.0-1200x675.webp",
@@ -158,6 +158,66 @@
       "tech": ["React", "TypeScript", "E-commerce"],
       "image": "/Portfolio/images/Y0-Hardware-1200x675.webp",
       "viewLink": "https://y0ussefmahmoud.github.io/Y0-Hardware/",
+      "codeLink": "#",
+      "status": "in-progress"
+    },
+    {
+      "id": "Personal Finance Tracker App",
+      "title": "Personal Finance Tracker App",
+      "description": "#",
+      "tech": ["Flutter", "Hive", "Provider", "Google Fonts"],
+      "image": "/Portfolio/images/#",
+      "viewLink": "#",
+      "codeLink": "https://github.com/y0ussefmahmoud/Personal-Finance-Tracker-App",
+      "status": "completed"
+    },
+    {
+      "id": "sa3rk",
+      "title": "sa3rk",
+      "description": "#",
+      "tech": ["#"],
+      "image": "/Portfolio/images/#",
+      "viewLink": "#",
+      "codeLink": "#",
+      "status": "in-progress"
+    },
+    {
+      "id": "Y0-ModStation",
+      "title": "Y0-ModStation",
+      "description": "#",
+      "tech": ["#"],
+      "image": "/Portfolio/images/#",
+      "viewLink": "#",
+      "codeLink": "#",
+      "status": "in-progress"
+    },
+    {
+      "id": "Y0 WArchive App",
+      "title": "Y0 WArchive App",
+      "description": "#",
+      "tech": ["#"],
+      "image": "/Portfolio/images/#",
+      "viewLink": "#",
+      "codeLink": "#",
+      "status": "in-progress"
+    },
+    {
+      "id": "Dubai Key",
+      "title": "Dubai Key",
+      "description": "#",
+      "tech": ["#"],
+      "image": "/Portfolio/images/#",
+      "viewLink": "#",
+      "codeLink": "#",
+      "status": "in-progress"
+    },
+    {
+      "id": "Y0 Ai Assistant",
+      "title": "Y0 Ai Assistant",
+      "description": "#",
+      "tech": ["#"],
+      "image": "/Portfolio/images/#",
+      "viewLink": "#",
       "codeLink": "#",
       "status": "in-progress"
     }

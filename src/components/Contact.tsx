@@ -128,11 +128,11 @@ const Contact: React.FC<ContactProps> = ({ translations }) => {
                   transition={{ duration: 0.35, ease: 'easeOut', delay: index * 0.1 }}
                   whileHover={{ y: -4 }}
                 >
-                  <Card className="border-border/60 bg-card/60 backdrop-blur supports-[backdrop-filter]:bg-card/50">
+                  <Card className="border-border/60 bg-card/60 backdrop-blur supports-backdrop-filter:bg-card/50">
                     <CardContent className="p-6">
                       <div className="flex items-start space-x-4">
-                        <div className="flex-shrink-0">
-                          <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-primary/60">
+                        <div className="shrink-0">
+                          <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-linear-to-br from-primary to-primary/60">
                             <Icon className="h-6 w-6 text-primary-foreground" />
                           </div>
                         </div>
@@ -168,7 +168,7 @@ const Contact: React.FC<ContactProps> = ({ translations }) => {
             viewport={{ once: true, amount: 0.25 }}
             transition={{ duration: 0.35, ease: 'easeOut' }}
           >
-            <Card className="border-border/60 bg-card/60 backdrop-blur supports-[backdrop-filter]:bg-card/50">
+            <Card className="border-border/60 bg-card/60 backdrop-blur supports-backdrop-filter:bg-card/50">
               <CardHeader>
                 <h3 className="text-xl font-semibold text-foreground">
                   Send me a message
