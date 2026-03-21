@@ -2,12 +2,12 @@
 
 A modern, high-performance, and responsive portfolio website built with **React.js**, **TypeScript**, **Vite 6**, and **Tailwind CSS 4**.
 
-## 🚀 What's New in V2.3.6
+## 🚀 What's New in V2.4.0
 
-- **Code Cleanup**: Removed legacy JavaScript files (`App.js`, `main.js`) for a cleaner, TypeScript-only codebase.
-- **Streamlined Dependencies**: Optimized package structure and removed unused configuration files.
-- **Enhanced Documentation**: Updated project documentation to reflect current architecture and best practices.
-- **Performance Improvements**: Reduced bundle size and improved loading times through file optimization.
+- **Project Images Updated**: Added proper images for in-progress projects including sa3rk, Y0-ModStation, Y0 WArchive App, Dubai Key, and Y0 Ai Assistant.
+- **Project Details Enhanced**: Updated project metadata with correct image paths and improved project identification.
+- **Visual Improvements**: Better project presentation with actual screenshots instead of placeholder images.
+- **Code Quality**: Maintained TypeScript-only codebase with optimized package structure from V2.3.6.
 
 ## ✨ Features
 
