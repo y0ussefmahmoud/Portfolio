@@ -2,13 +2,12 @@
 
 A modern, high-performance, and responsive portfolio website built with **React.js**, **TypeScript**, **Vite 6**, and **Tailwind CSS 4**.
 
-## 🚀 What's New in V2.3.5
+## 🚀 What's New in V2.3.6
 
-- **Tailwind CSS 4.0**: Full migration to the latest Tailwind CSS version using the new `@theme` engine.
-- **Vite 6**: Upgraded build tool for faster development and optimized production bundles.
-- **TypeScript Only**: Cleaned up the codebase by removing legacy JavaScript files (`App.js`, `main.js`) in favor of full type safety.
-- **Performance Optimizations**: Improved loading times and smooth animations using `framer-motion`.
-- **Game-Like UI**: Unique modal-based navigation system for a modern user experience.
+- **Code Cleanup**: Removed legacy JavaScript files (`App.js`, `main.js`) for a cleaner, TypeScript-only codebase.
+- **Streamlined Dependencies**: Optimized package structure and removed unused configuration files.
+- **Enhanced Documentation**: Updated project documentation to reflect current architecture and best practices.
+- **Performance Improvements**: Reduced bundle size and improved loading times through file optimization.
 
 ## ✨ Features
 
