@@ -142,6 +142,16 @@
       "status": "completed"
     },
     {
+      "id": "Portfolio V1.9.4",
+      "title": "Portfolio V1.9.4",
+      "description": "Portfolio V1.9.4 , A portfolio website built with React, TypeScript, Next.js, and Tailwind CSS.",
+      "tech": ["React", "TypeScript", "Next.js", "Tailwind CSS"],
+      "image": "/Portfolio/images/My-Portfolio-V1.9.4.webp",
+      "viewLink": "https://y0ussefmahmoud.github.io/Portfolio-v1/",
+      "codeLink": "https://github.com/y0ussefmahmoud/Portfolio-v1",
+      "status": "completed"
+    },
+    {
       "id": "Y0 To-Do App",
       "title": "Y0 To-Do App",
       "description": "Y0 To-Do App , A Flutter app for tracking daily life with task, project, and statistics management.",
