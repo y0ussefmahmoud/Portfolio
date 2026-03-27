@@ -130,7 +130,16 @@
     }
   ],
   "otherProjects": [
-    
+    {
+      "id": "Abdulaziz Alablam Advocates & Legal Consultants",
+      "title": "Abdulaziz Alablam Advocates & Legal Consultants",
+      "description": "Coming soon...",
+      "tech": ["#"],
+      "image": "/Portfolio/images/home_abdulaziz_al_ablam.webp",
+      "viewLink": "https://y0ussefmahmoud.github.io/Abdulaziz-Alablam-Advocates-Legal-Consultants/",
+      "codeLink": "#",
+      "status": "in-progress"
+    },
     {
       "id": "Daily Life Tracker app",
       "title": "Daily Life Tracker app",
@@ -184,7 +193,7 @@
     {
       "id": "sa3rk",
       "title": "sa3rk",
-      "description": "#",
+      "description": "Coming soon...",
       "tech": ["#"],
       "image": "/Portfolio/images/sa3rk.webp",
       "viewLink": "#",
@@ -192,9 +201,29 @@
       "status": "in-progress"
     },
     {
+      "id": "Y0 Edu QR",
+      "title": "Y0 Edu QR",
+      "description": "Coming soon...",
+      "tech": ["#"],
+      "image": "/Portfolio/images/sa3rk.webp",
+      "viewLink": "#",
+      "codeLink": "#",
+      "status": "in-progress"
+    },
+    {
+      "id": "Y0 Restaurant App",
+      "title": "Y0 Restaurant App",
+      "description": "Coming soon...",
+      "tech": ["#"],
+      "image": "/Portfolio/images/Y0-Restaurant-App.webp",
+      "viewLink": "#",
+      "codeLink": "#",
+      "status": "in-progress"
+    },
+    {
       "id": "Y0 ModStation",
       "title": "Y0 ModStation",
-      "description": "#",
+      "description": "Coming soon...",
       "tech": ["#"],
       "image": "/Portfolio/images/Y0-ModStation.webp",
       "viewLink": "#",
@@ -204,7 +233,7 @@
     {
       "id": "Y0 WArchive App",
       "title": "Y0 WArchive App",
-      "description": "#",
+      "description": "Coming soon...",
       "tech": ["#"],
       "image": "/Portfolio/images/Y0-WArchive-App.webp",
       "viewLink": "#",
@@ -214,7 +243,7 @@
     {
       "id": "Dubai Key",
       "title": "Dubai Key",
-      "description": "#",
+      "description": "Coming soon...",
       "tech": ["#"],
       "image": "/Portfolio/images/Dubai-key-website.webp",
       "viewLink": "#",
@@ -224,9 +253,9 @@
     {
       "id": "Y0 Ai Assistant",
       "title": "Y0 Ai Assistant",
-      "description": "#",
+      "description": "Coming soon...",
       "tech": ["#"],
-      "image": "/Portfolio/images/Y0-Ai-Assistant.webp",
+      "image": "/Portfolio/images/ai-assistant-1200x675.webp",
       "viewLink": "#",
       "codeLink": "#",
       "status": "in-progress"
