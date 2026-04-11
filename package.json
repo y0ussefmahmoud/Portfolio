@@ -1,6 +1,6 @@
 {
   "name": "y0ussef-portfolio",
-  "version": "2.4.2",
+  "version": "2.4.3",
   "description": "Y0ussef Mahmoud - Portfolio Website built with React.js",
   "private": true,
   "type": "module",
@@ -32,7 +32,7 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "npx tsc && vite build",
     "preview": "vite preview",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"

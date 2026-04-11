@@ -2,7 +2,7 @@
   "projects": [
     {
       "id": "My Portfolio",
-      "title": "My Portfolio V2.4.2",
+      "title": "My Portfolio V2",
       "description": "My Portfolio with Html, Css & JavaScript.",
       "tech": ["React 18", "TypeScript",  "Next.js", "Tailwind CSS"],
       "image": "/Portfolio/images/My-Portfolio-V2.0.0-1200x675.webp",
@@ -152,7 +152,7 @@
     },
     {
       "id": "Portfolio V1.9.4",
-      "title": "Portfolio V1.9.4",
+      "title": "Portfolio V1",
       "description": "Portfolio V1.9.4 , A portfolio website built with React, TypeScript, Next.js, and Tailwind CSS.",
       "tech": ["React", "TypeScript", "Next.js", "Tailwind CSS"],
       "image": "/Portfolio/images/My-Portfolio-V1.9.4.webp",
