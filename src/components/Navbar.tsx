@@ -55,6 +55,10 @@ export default function Navbar({
     ];
 
   const flag = language === "en" ? "🇬🇧" : "🇸🇦";
+  
+  const themeIcon = isDarkMode ? Moon : Sun;
+  const themeLabel = isDarkMode ? "Light Mode" : "Dark Mode";
+  const languageLabel = language === "en" ? "العربية" : "English";
 
   return (
     <motion.nav
@@ -130,34 +134,73 @@ export default function Navbar({
         <div className="h-6 w-px bg-white/10 mx-1" />
 
         <div className="relative">
-          <button
+          <motion.button
             type="button"
             onClick={toggleTheme}
-            className="relative flex items-center justify-center rounded-full transition-colors h-10 w-10 sm:h-11 sm:w-11 text-muted-foreground hover:text-foreground hover:bg-white/5"
+            className="relative flex items-center justify-center rounded-full transition-all duration-300 h-10 w-10 sm:h-11 sm:w-11 text-muted-foreground hover:text-foreground hover:bg-white/5 group overflow-hidden"
             aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
+            whileHover={{ scale: 1.08, rotate: isDarkMode ? 180 : 0 }}
+            whileTap={{ scale: 0.96 }}
           >
-            <motion.span whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.96 }}>
-              {isDarkMode ? (
-                <Moon className="h-5 w-5 sm:h-5.5 sm:w-5.5" />
-              ) : (
-                <Sun className="h-5 w-5 sm:h-5.5 sm:w-5.5" />
-              )}
+            <motion.div
+              className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/10 to-transparent"
+              initial={{ x: "-100%" }}
+              whileHover={{ x: "100%" }}
+              transition={{ duration: 0.6, ease: "easeInOut" }}
+            />
+            <motion.span 
+              className="relative z-10"
+              initial={{ rotate: 0 }}
+              animate={{ rotate: isDarkMode ? 180 : 0 }}
+              transition={{ duration: 0.5, ease: "easeInOut" }}
+            >
+              <motion.div
+                key={isDarkMode ? "moon" : "sun"}
+                initial={{ opacity: 0, scale: 0.8, rotate: -180 }}
+                animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
+              >
+                {React.createElement(themeIcon, { className: "h-5 w-5 sm:h-5.5 sm:w-5.5" })}
+              </motion.div>
             </motion.span>
-          </button>
+          </motion.button>
         </div>
 
         <div className="relative">
-          <button
+          <motion.button
             type="button"
             onClick={toggleLanguage}
-            className="relative flex items-center justify-center rounded-full transition-colors h-10 w-10 sm:h-11 sm:w-11 text-muted-foreground hover:text-foreground hover:bg-white/5"
+            className="relative flex items-center justify-center rounded-full transition-all duration-300 h-10 w-10 sm:h-11 sm:w-11 text-muted-foreground hover:text-foreground hover:bg-white/5 group overflow-hidden"
             aria-label={language === "en" ? "Switch to Arabic" : "Switch to English"}
+            whileHover={{ scale: 1.08, rotate: language === "en" ? 360 : 0 }}
+            whileTap={{ scale: 0.96 }}
           >
-            <span className="flex items-center gap-1">
-              <Globe className="h-5 w-5 sm:h-5.5 sm:w-5.5" />
-              <span className="hidden sm:inline text-xs">{flag}</span>
-            </span>
-          </button>
+            <motion.div
+              className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/10 to-transparent"
+              initial={{ x: "-100%" }}
+              whileHover={{ x: "100%" }}
+              transition={{ duration: 0.6, ease: "easeInOut" }}
+            />
+            <motion.div className="flex items-center gap-1 relative z-10">
+              <motion.div
+                key={language}
+                initial={{ rotate: -180 }}
+                animate={{ rotate: language === "en" ? 360 : 0 }}
+                transition={{ duration: 0.6, ease: "easeInOut" }}
+              >
+                <Globe className="h-5 w-5 sm:h-5.5 sm:w-5.5" />
+              </motion.div>
+              <motion.span
+                key="flag"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.3, delay: 0.1 }}
+                className="hidden sm:inline text-xs font-medium"
+              >
+                {flag}
+              </motion.span>
+            </motion.div>
+          </motion.button>
         </div>
       </div>
     </motion.nav>

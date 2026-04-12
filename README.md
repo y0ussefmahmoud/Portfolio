@@ -2,14 +2,18 @@
 
 A modern, high-performance, and responsive portfolio website built with **React.js**, **TypeScript**, **Vite 6**, and **Tailwind CSS 4**.
 
-## What's New in V2.4.3
+## What's New in V2.4.4
 
-- **Build Fix**: Resolved TypeScript compilation permission issues on Vercel deployment
-- **Version Update**: Updated to version 2.4.3 with improved build configuration
-- **Build Script Enhancement**: Modified build script to use `npx tsc` for better compatibility
-- **Deployment Stability**: Enhanced deployment process for Vercel and GitHub Pages
-- **Project Naming**: Simplified project titles for better presentation
-- **Code Quality**: Maintained TypeScript-only codebase with optimized structure
+- **Navbar Animations**: Advanced theme switching with rotation and shine effects
+- **Language Transitions**: Smooth language switching with globe rotation animation
+- **Theme Switching**: Icon rotation and gradient effects on toggle
+- **Interactive States**: Hover effects with scale and rotation transforms
+- **Micro-interactions**: Button press animations with spring physics
+- **Visual Feedback**: Enhanced user feedback with smooth transitions
+- **Performance Optimized**: GPU-accelerated animations for all interactions
+- **Accessibility**: Reduced motion support for all animations
+- **Mobile Enhanced**: Touch-friendly animations and gesture support
+- **Cross-browser**: Compatible animations across all modern browsers
 
 ## What's New in V2.4.1
 
