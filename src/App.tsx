@@ -273,10 +273,13 @@ function App() {
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeTab}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.2, ease: 'easeOut' }}
+                initial={{ opacity: 0, scale: 0.95, y: 20, rotateX: 5 }}
+                animate={{ opacity: 1, scale: 1, y: 0, rotateX: 0 }}
+                exit={{ opacity: 0, scale: 1.05, y: -20, rotateX: -5 }}
+                transition={{
+                  duration: 0.15,
+                  ease: [0.4, 0, 0.2, 1],
+                }}
                 className="w-full flex items-center justify-center"
               >
                 {renderContent()}

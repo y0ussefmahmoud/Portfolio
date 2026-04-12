@@ -141,6 +141,7 @@ interface HeroProps {
  * - Hover scale and rotation animations
  * - Glow effect on hover
  * - Spring physics for smooth transitions
+ * - Gradient background on hover
  * 
  * @param href - Link URL
  * @param icon - Icon component to display
@@ -156,15 +157,45 @@ function SocialLink({
   label: string;
 }) {
   return (
-    <a
+    <motion.a
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="hover:text-primary transition-colors p-2 hover:bg-primary/10 rounded-full bg-background/50 backdrop-blur-sm border border-white/5"
+      className="relative p-3 rounded-full bg-background/50 backdrop-blur-sm border border-white/5 transition-colors hover:text-primary overflow-hidden"
       aria-label={label}
+      whileHover={{ 
+        scale: 1.1, 
+        rotate: 5
+      }}
+      whileTap={{ scale: 0.95 }}
+      transition={{ 
+        type: "spring", 
+        stiffness: 400, 
+        damping: 15 
+      }}
     >
-      {icon}
-    </a>
+      <motion.div
+        className="absolute inset-0 rounded-full bg-gradient-to-br from-primary/30 to-primary/10 opacity-0"
+        whileHover={{ 
+          opacity: 1
+        }}
+        transition={{ duration: 0.2 }}
+      />
+      <motion.div
+        className="relative z-10"
+        whileHover={{ 
+          rotate: -5,
+          scale: 1.05
+        }}
+        transition={{ 
+          type: "spring", 
+          stiffness: 300, 
+          damping: 20 
+        }}
+      >
+        {icon}
+      </motion.div>
+    </motion.a>
   );
 }
 
@@ -182,124 +213,250 @@ const Hero: React.FC<HeroProps> = ({ translations, onNavigate }) => {
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8 }}
       >
-        <div className="inline-block px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium backdrop-blur-sm">
-          {translations.hero.availability}
-        </div>
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          whileHover={{ scale: 1.05, rotate: 2 }}
+          className="inline-block"
+        >
+          <div className="px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium backdrop-blur-sm">
+            {translations.hero.availability}
+          </div>
+        </motion.div>
 
         <div className="pt-6 space-y-4">
-          <p className="text-lg text-muted-foreground">{translations.hero.greet}</p>
+          <motion.p
+            className="text-lg text-muted-foreground"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
+            {translations.hero.greet}
+          </motion.p>
 
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-bold leading-tight">
-            <span className="text-gradient-primary">{translations.hero.name}</span>
-          </h1>
+          <motion.h1
+            className="text-4xl md:text-6xl lg:text-7xl font-heading font-bold leading-tight"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            <motion.span
+              className="text-gradient-primary inline-block"
+              whileHover={{ scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 400, damping: 10 }}
+            >
+              {translations.hero.name}
+            </motion.span>
+          </motion.h1>
 
-          <p className="text-xl md:text-2xl text-muted-foreground font-light">
+          <motion.p
+            className="text-xl md:text-2xl text-muted-foreground font-light"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+          >
             <TypingText text={translations.hero.tagline} />
-          </p>
+          </motion.p>
 
-          <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-4">
-            <Button
-              size="lg"
-              onClick={() => onNavigate('projects')}
-              className="bg-primary text-primary-foreground hover:bg-primary/90 h-12 px-8 text-base shadow-lg shadow-primary/20"
-              shine={true}
-              hoverScale={1.05}
-              tapScale={0.95}
+          <motion.div
+            className="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-4"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+          >
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.7 }}
             >
-              {translations.hero.ctaPrimary}
-            </Button>
-            <Button
-              variant="outline"
-              size="lg"
-              onClick={() => onNavigate('contact')}
-              className="h-12 px-8 text-base border-primary/20 hover:bg-primary/10 bg-background/50 backdrop-blur-sm"
-              shine={true}
-              hoverScale={1.05}
-              tapScale={0.95}
+              <Button
+                size="lg"
+                onClick={() => onNavigate('projects')}
+                className="bg-primary text-primary-foreground hover:bg-primary/90 h-12 px-8 text-base shadow-lg shadow-primary/20"
+                shine={true}
+                hoverScale={1.05}
+                tapScale={0.95}
+              >
+                {translations.hero.ctaPrimary}
+              </Button>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.8 }}
             >
-              {translations.hero.ctaSecondary}
-            </Button>
-          </div>
+              <Button
+                variant="outline"
+                size="lg"
+                onClick={() => onNavigate('contact')}
+                className="h-12 px-8 text-base border-primary/20 hover:bg-primary/10 bg-background/50 backdrop-blur-sm"
+                shine={true}
+                hoverScale={1.05}
+                tapScale={0.95}
+              >
+                {translations.hero.ctaSecondary}
+              </Button>
+            </motion.div>
+          </motion.div>
 
-          <div className="flex items-center justify-center lg:justify-start gap-6 pt-8 text-muted-foreground">
-            <SocialLink
-              href="https://github.com/y0ussefmahmoud"
-              icon={<Github />}
-              label="GitHub"
-            />
-            <SocialLink
-              href="https://linkedin.com/in/y0ussefmahmoud"
-              icon={<Linkedin />}
-              label="LinkedIn"
-            />
-            <SocialLink
-              href="mailto:youssef11mahmoud112002@gmail.com"
-              icon={<Mail />}
-              label="Email"
-            />
-            <SocialLink
-              href="https://twitter.com/y0ussefmahmoudd"
-              icon={<Twitter />}
-              label="Twitter"
-            />
-          </div>
+          <motion.div
+            className="flex items-center justify-center lg:justify-start gap-6 pt-8 text-muted-foreground"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.9 }}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.4, delay: 1.0 }}
+              whileHover={{ y: -5, scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <SocialLink
+                href="https://github.com/y0ussefmahmoud"
+                icon={<Github />}
+                label="GitHub"
+              />
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.4, delay: 1.1 }}
+              whileHover={{ y: -5, scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <SocialLink
+                href="https://linkedin.com/in/y0ussefmahmoud"
+                icon={<Linkedin />}
+                label="LinkedIn"
+              />
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.4, delay: 1.2 }}
+              whileHover={{ y: -5, scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <SocialLink
+                href="mailto:youssef11mahmoud112002@gmail.com"
+                icon={<Mail />}
+                label="Email"
+              />
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.4, delay: 1.3 }}
+              whileHover={{ y: -5, scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <SocialLink
+                href="https://twitter.com/y0ussefmahmoudd"
+                icon={<Twitter />}
+                label="Twitter"
+              />
+            </motion.div>
+          </motion.div>
         </div>
       </motion.div>
 
       <motion.div
         className="relative hidden lg:block"
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.8, delay: 0.2 }}
+        initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
+        animate={{ opacity: 1, scale: 1, rotate: 0 }}
+        transition={{ duration: 1, delay: 0.3, type: "spring", stiffness: 200 }}
+        whileHover={{ scale: 1.02 }}
       >
         <div className="relative 'w-450px' 'h-450px' mx-auto">
-          <div className="absolute inset-0 bg-primary/20 rounded-full blur-[100px] animate-pulse" />
+          <motion.div
+            className="absolute inset-0 bg-primary/20 rounded-full blur-[100px]"
+            animate={{
+              scale: [1, 1.2, 1],
+              opacity: [0.5, 0.8, 0.5],
+            }}
+            transition={{
+              duration: 4,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          />
 
-          <img
+          <motion.img
             src="/Portfolio/images/hero-800x1000.webp"
             alt="Y0ussef Mahmoud - Full-Stack Developer"
             className="relative z-10 w-full h-full object-cover rounded-3xl shadow-2xl border border-white/10"
             style={{
               maskImage: 'linear-gradient(to bottom, black 85%, transparent 100%)',
             }}
+            animate={{
+              y: [0, -10, 0],
+            }}
+            transition={{
+              duration: 6,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            whileHover={{ scale: 1.05 }}
           />
 
-          <div className="absolute -top-4 -right-4 z-20">
+          <motion.div
+            className="absolute -top-4 -right-4 z-20"
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 1.5 }}
+            whileHover={{ scale: 1.1, rotate: 5 }}
+          >
             <motion.div
-              animate={{ y: [0, -10, 0] }}
+              animate={{ y: [0, -15, 0] }}
               transition={{
-                duration: 4,
+                duration: 3,
                 repeat: Infinity,
                 ease: 'easeInOut',
               }}
             >
               <div className="bg-card/80 backdrop-blur-md border border-border p-4 rounded-xl shadow-xl flex items-center gap-3">
-                <div className="w-3 h-3 rounded-full bg-green-500 animate-pulse" />
+                <motion.div
+                  className="w-3 h-3 rounded-full bg-green-500"
+                  animate={{ scale: [1, 1.5, 1] }}
+                  transition={{ duration: 1, repeat: Infinity }}
+                />
                 <span className="font-mono text-sm font-medium">
                   {translations.hero.badges.primary}
                 </span>
               </div>
             </motion.div>
-          </div>
+          </motion.div>
 
-          <div className="absolute bottom-20 -left-8 z-20">
+          <motion.div
+            className="absolute bottom-20 -left-8 z-20"
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 1.7 }}
+            whileHover={{ scale: 1.1, rotate: -5 }}
+          >
             <motion.div
-              animate={{ y: [0, 10, 0] }}
+              animate={{ y: [0, 15, 0] }}
               transition={{
-                duration: 5,
+                duration: 4,
                 repeat: Infinity,
                 ease: 'easeInOut',
-                delay: 1,
+                delay: 0.5,
               }}
             >
               <div className="bg-card/80 backdrop-blur-md border border-border p-4 rounded-xl shadow-xl flex items-center gap-3">
-                <div className="w-3 h-3 rounded-full bg-blue-500 animate-pulse" />
+                <motion.div
+                  className="w-3 h-3 rounded-full bg-blue-500"
+                  animate={{ scale: [1, 1.5, 1] }}
+                  transition={{ duration: 1, repeat: Infinity, delay: 0.5 }}
+                />
                 <span className="font-mono text-sm font-medium">
                   {translations.hero.badges.secondary}
                 </span>
               </div>
             </motion.div>
-          </div>
+          </motion.div>
         </div>
       </motion.div>
     </motion.div>

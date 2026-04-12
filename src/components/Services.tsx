@@ -150,15 +150,30 @@ const Services: React.FC<ServicesProps> = ({ translations }) => {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.25 }}
-                transition={{ duration: 0.35, ease: "easeOut" }}
-                whileHover={{ y: -4 }}
+                transition={{ duration: 0.5, ease: "easeOut" }}
+                whileHover={{ 
+                  y: -8, 
+                  scale: 1.02,
+                  transition: { type: "spring", stiffness: 300, damping: 20 }
+                }}
                 className="h-full"
               >
-                <Card className="group h-full overflow-hidden border-border/60 bg-card/60 backdrop-blur supports-backdrop-filter:bg-card/50">
+                <Card className="group h-full overflow-hidden border-border/60 bg-card/60 backdrop-blur supports-backdrop-filter:bg-card/50 relative">
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    initial={false}
+                  />
                   <CardHeader>
-                    <div className="w-16 h-16 mx-auto rounded-full bg-linear-to-br from-primary to-primary/60 flex items-center justify-center">
+                    <motion.div
+                      className="w-16 h-16 mx-auto rounded-full bg-linear-to-br from-primary to-primary/60 flex items-center justify-center"
+                      whileHover={{ 
+                        scale: 1.1, 
+                        rotate: 5,
+                        transition: { type: "spring", stiffness: 400, damping: 10 }
+                      }}
+                    >
                       <Icon className="h-8 w-8 text-primary-foreground" />
-                    </div>
+                    </motion.div>
                     <h3 className="text-lg font-semibold text-foreground text-center mt-4">
                       {service.title}
                     </h3>
@@ -170,22 +185,30 @@ const Services: React.FC<ServicesProps> = ({ translations }) => {
                     </p>
 
                     <div className="space-y-2">
-                      {service.features.map((feature) => (
-                        <div
+                      {service.features.map((feature, index) => (
+                        <motion.div
                           key={feature}
+                          initial={{ opacity: 0, x: -10 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: index * 0.1, duration: 0.3 }}
                           className="flex items-start gap-2 text-xs text-muted-foreground"
                         >
                           <Check className="h-4 w-4 text-primary shrink-0 mt-0.5" />
                           <span>{feature}</span>
-                        </div>
+                        </motion.div>
                       ))}
                     </div>
 
                     <div className="flex items-center justify-center gap-2 mt-4 pt-4 border-t border-border/50">
                       <span className="text-xs text-muted-foreground">Price:</span>
-                      <span className="text-sm font-semibold text-primary">
+                      <motion.span
+                        className="text-sm font-semibold text-primary"
+                        whileHover={{ scale: 1.1 }}
+                        transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                      >
                         {service.price}
-                      </span>
+                      </motion.span>
                     </div>
                   </CardContent>
 
@@ -193,6 +216,9 @@ const Services: React.FC<ServicesProps> = ({ translations }) => {
                     <Button
                       className="w-full"
                       onClick={() => handleServiceInquiry(service.title)}
+                      shine={true}
+                      hoverScale={1.05}
+                      tapScale={0.95}
                     >
                       <Mail />
                       Get Quote

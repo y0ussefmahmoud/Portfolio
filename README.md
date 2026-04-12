@@ -2,18 +2,16 @@
 
 A modern, high-performance, and responsive portfolio website built with **React.js**, **TypeScript**, **Vite 6**, and **Tailwind CSS 4**.
 
-## What's New in V2.4.5
+## What's New in V2.4.7
 
-- **Professional Button Animations**: Enhanced Button component with Framer Motion integration using motion.div wrapper
-- **Shine Effects**: Added shine animation effect on button hover for visual appeal
-- **Spring Physics**: Implemented spring-based animations with configurable hoverScale and tapScale
-- **Hero Section**: Enhanced CTA buttons with professional motion effects and shine animations
-- **Contact Form**: Submit button with professional animations and shine effects
-- **Projects Section**: All action buttons (view details, view project, code) with enhanced interactions
-- **Animation Props**: Added animated, hoverScale, tapScale, and shine props to Button component
-- **SEO Updated**: Sitemap.xml updated with current date (2026-04-12)
-- **Performance**: GPU-accelerated animations for optimal performance across all buttons
-- **Type Safety**: Proper TypeScript types for all animation props
+- **Social Link Animations**: Enhanced SocialLink component with attractive hover effects (scale, rotation, gradient glow)
+- **Page Transitions**: Added 3D transition animations between sections (scale, slide, rotateX)
+- **Hero Section**: Improved staggered animations for all elements with smooth entry effects
+- **Hero Image**: Enhanced floating animations with pulse background and badge effects
+- **Services Section**: Added card hover animations with gradient overlays and staggered feature animations
+- **Transition Easing**: Custom easing curves for smoother, more professional animations
+- **Animation Duration**: Optimized transition timings for better user experience
+- **3D Effects**: Added subtle 3D rotation effects for depth perception during transitions
 
 ## What's New in V2.4.1
 
