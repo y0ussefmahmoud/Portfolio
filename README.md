@@ -2,15 +2,13 @@
 
 A modern, high-performance, and responsive portfolio website built with **React.js**, **TypeScript**, **Vite 6**, and **Tailwind CSS 4**.
 
-## What's New in V2.4.8
+## What's New in V2.4.9
 
-- **Button Color Consistency**: Fixed all button colors to use proper CSS variables for both light and dark modes
-- **Projects Button Hierarchy**: Implemented professional button variant hierarchy (default for primary actions, secondary for details, outline for code)
-- **Projects Responsiveness**: Fixed project card buttons to be fully responsive with proper flex layouts
-- **Project Card Layout**: Optimized content size with line-clamp for descriptions and responsive badge sizing
-- **Accessibility Improvements**: Updated ErrorBoundary, BackToTop, and SkipLink components to use semantic color tokens
-- **Hero Button Styling**: Simplified Hero secondary button to use default outline variant for consistency
-- **Animation Consistency**: All buttons now use shine, hoverScale, and tapScale props for unified interaction feedback
+- **WhatsApp Integration**: Replaced phone contact with WhatsApp integration using official WhatsApp icon
+- **WhatsApp Icon**: Added custom WhatsApp SVG icon for authentic branding
+- **Translation Updates**: Added whatsapp field to translations for both English and Arabic
+- **Contact Link**: Updated contact link to WhatsApp API (https://wa.me/201129334173)
+- **Contact Label**: Changed contact label from "Phone" to "WhatsApp" for clarity
 
 ## What's New in V2.4.1
 

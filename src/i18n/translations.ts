@@ -33,6 +33,7 @@ export interface Translations {
     bio: string;
     email: string;
     phone: string;
+    whatsapp: string;
     location: string;
     cta: string;
   };/*
@@ -178,6 +179,7 @@ export const translations: { en: Translations; ar: Translations } = {
       bio: "I\'m Youssef Mahmoud Abdelgawad, a Full-Stack Developer and Project Engineer at Shehabco with a unique dual profile – I bridge the gap between physical infrastructure and digital innovation, At Shehabco, I manage integrated security system projects from installation to handover – working with CCTV, Access Control, Fire Alarm, and Suppression Systems across commercial and industrial sites. I lead technical teams, ensure project timelines, and liaise directly with clients. As a Freelance Developer (Upwork & Khamsat), I build: 📱 Cross-platform mobile apps with Flutter & Dart 🌐 Full-stack web applications using React.js, Node.js, Express.js, and MySQL 🔗 RESTful APIs with JWT authentication and third-party integrations, Frontend: React.js, Flutter, HTML5, CSS3, JavaScript (ES6+), Backend: Node.js, Express.js, REST APIs, Database: MySQL, Database Design & Optimization, DevOps: Docker, Git, GitHub, Postman, Network Configuration, CCTV Systems.",
       email: 'Email',
       phone: 'Phone',
+      whatsapp: 'WhatsApp',
       location: 'Location',
       cta: 'Contact Me',
     },/*
@@ -332,6 +334,7 @@ export const translations: { en: Translations; ar: Translations } = {
       bio: "أنا يوسف محمود عبد الجواد، مُطَوِّر الواجهات الأمامية والخلفية ومهندس مشروع في شركة شهابكو، أمتلك ملفًا مهنيًا مزدوجًا فريدًا – حيث أسد الفجوة بين البنية التحتية المادية والابتكار الرقمي. في شهابكو، أدير مشاريع أنظمة الأمن المتكاملة بدءًا من التركيب وحتى التسليم – حيث أعمل مع أنظمة الكاميرات والمراقبة الامنية (CCTV)، والتحكم في الدخول (Access Control)، وأنظمة الإنذار ضد الحريق (Fire Alarm)، وأنظمة الإطفاء الالي(Suppression Systems) في المواقع التجارية والصناعية. أقود الفرق التقنية، وأضمن الالتزام بالجداول الزمنية للمشاريع، وأتواصل مباشرة مع العملاء. كمُطَوِّر مستقل (على منصتي Upwork وخمسات)، أقوم ببناء:📱 تطبيقات الهاتف المحمول عبر المنصات (Cross-platform) باستخدام Flutter و Dart🌐 تطبيقات ويب كاملة (Full-stack) باستخدام React.js و Node.js و Express.js و MySQL و🔗 واجهات برمجة تطبيقات (RESTful APIs) مع توثيق JWT والتكامل مع خدمات الطرف الثالث الواجهات الأمامية (Frontend): React.js، Flutter، HTML5، CSS3، JavaScript (ES6+) الواجهات الخلفية (Backend): Node.js، Express.js، REST APIs قواعد البيانات (Database): MySQL، تصميم وتحسين قواعد البيانات العمليات والتطوير (DevOps): Docker، Git، GitHub، Postman أخرى تكوين الشبكات (Network Configuration)،  (CCTV Systems).",
       email: 'البريد الإلكتروني',
       phone: 'الهاتف',
+      whatsapp: 'واتساب',
       location: 'الموقع',
       cta: 'تواصل معي',
     },/*
