@@ -2,13 +2,16 @@
 
 A modern, high-performance, and responsive portfolio website built with **React.js**, **TypeScript**, **Vite 6**, and **Tailwind CSS 4**.
 
-## What's New in V2.4.9
+## What's New in V2.5.0
 
-- **WhatsApp Integration**: Replaced phone contact with WhatsApp integration using official WhatsApp icon
-- **WhatsApp Icon**: Added custom WhatsApp SVG icon for authentic branding
-- **Translation Updates**: Added whatsapp field to translations for both English and Arabic
-- **Contact Link**: Updated contact link to WhatsApp API (https://wa.me/201129334173)
-- **Contact Label**: Changed contact label from "Phone" to "WhatsApp" for clarity
+- **Contact WhatsApp Integration**: Replaced phone contact with WhatsApp integration using official WhatsApp icon and API
+- **Hero Social Media Updates**: Replaced Twitter with Facebook, added WhatsApp to social media links
+- **Services WhatsApp Integration**: Changed Get Quote button to open WhatsApp instead of email
+- **Get Quote Translation**: Added Arabic translation for Get Quote button ("احصل على عرض سعر")
+- **Services Features Translation**: Translated all service features to Arabic (responsive design, UI/UX, performance, SEO, etc.)
+- **Services Button Centering**: Centered Get Quote button in service cards for better visual balance
+- **Projects Buttons Layout**: Made project action buttons side-by-side on all screen sizes with responsive text sizing
+- **Responsive Improvements**: Added text-xs sm:text-sm for better readability on small devices
 
 ## What's New in V2.4.1
 
