@@ -1,4 +1,15 @@
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+/**
+ * Navbar Component - Bottom navigation bar with animations
+ *
+ * Features:
+ * - Fixed bottom navigation with glass morphism effect
+ * - Animated tab switching with smooth transitions
+ * - Theme toggle with rotation and shine effects
+ * - Language toggle with globe rotation animation
+ * - Responsive design for all devices
+ * - Tooltips for accessibility
+ */
 import { motion, AnimatePresence } from "framer-motion";
 import { Briefcase, Globe, GraduationCap, Home, Mail, Moon, Sun, User, } from "lucide-react";
 import React from "react";

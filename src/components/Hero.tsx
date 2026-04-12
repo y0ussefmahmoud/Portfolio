@@ -1,3 +1,14 @@
+/**
+ * Hero Component - Main landing section with animations
+ * 
+ * Features:
+ * - Typing effect for tagline
+ * - Social links with hover animations
+ * - Responsive layout for all devices
+ * - Reduced motion support for accessibility
+ * - Advanced Framer Motion animations
+ */
+
 import * as React from 'react';
 import { motion } from 'framer-motion';
 import { Github, Linkedin, Mail, Twitter } from 'lucide-react';
@@ -5,6 +16,10 @@ import { Github, Linkedin, Mail, Twitter } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Translations } from '@/i18n/translations';
 
+/**
+ * Custom hook to detect user's reduced motion preference
+ * Respects accessibility settings for users who prefer reduced motion
+ */
 function usePrefersReducedMotion() {
   const [reduced, setReduced] = React.useState(false);
 
@@ -27,6 +42,12 @@ function usePrefersReducedMotion() {
   return reduced;
 }
 
+/**
+ * TypingText Component - Animated typing effect for text
+ * 
+ * @param text - The text to type out
+ * @param speedMs - Typing speed in milliseconds (default: 24ms)
+ */
 function TypingText({ text, speedMs = 24 }: { text: string; speedMs?: number }) {
   const prefersReducedMotion = usePrefersReducedMotion();
   const [visibleCount, setVisibleCount] = React.useState(prefersReducedMotion ? text.length : 0);
@@ -105,11 +126,26 @@ function TypingText({ text, speedMs = 24 }: { text: string; speedMs?: number }) 
   );
 }
 
+/**
+ * Hero Component Props Interface
+ */
 interface HeroProps {
   translations: Translations;
   onNavigate: (tabId: string) => void;
 }
 
+/**
+ * SocialLink Component - Animated social media link
+ * 
+ * Features:
+ * - Hover scale and rotation animations
+ * - Glow effect on hover
+ * - Spring physics for smooth transitions
+ * 
+ * @param href - Link URL
+ * @param icon - Icon component to display
+ * @param label - Accessibility label for screen readers
+ */
 function SocialLink({
   href,
   icon,
@@ -166,6 +202,9 @@ const Hero: React.FC<HeroProps> = ({ translations, onNavigate }) => {
               size="lg"
               onClick={() => onNavigate('projects')}
               className="bg-primary text-primary-foreground hover:bg-primary/90 h-12 px-8 text-base shadow-lg shadow-primary/20"
+              shine={true}
+              hoverScale={1.05}
+              tapScale={0.95}
             >
               {translations.hero.ctaPrimary}
             </Button>
@@ -174,6 +213,9 @@ const Hero: React.FC<HeroProps> = ({ translations, onNavigate }) => {
               size="lg"
               onClick={() => onNavigate('contact')}
               className="h-12 px-8 text-base border-primary/20 hover:bg-primary/10 bg-background/50 backdrop-blur-sm"
+              shine={true}
+              hoverScale={1.05}
+              tapScale={0.95}
             >
               {translations.hero.ctaSecondary}
             </Button>

@@ -225,6 +225,9 @@ const Contact: React.FC<ContactProps> = ({ translations }) => {
                   <Button 
                     type="submit" 
                     className="w-full sm:w-auto"
+                    shine={true}
+                    hoverScale={1.05}
+                    tapScale={0.95}
                   >
                     <Send className="h-4 w-4 mr-2" />
                     {translations.contact.send}

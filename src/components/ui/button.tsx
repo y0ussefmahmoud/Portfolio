@@ -1,6 +1,7 @@
 import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
 import { cva, type VariantProps } from "class-variance-authority"
+import { motion } from "framer-motion"
 
 import { cn } from "@/lib/utils"
 
@@ -38,17 +39,97 @@ export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
   asChild?: boolean
+  animated?: boolean
+  hoverScale?: number
+  tapScale?: number
+  shine?: boolean
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, ...props }, ref) => {
+  ({ 
+    className, 
+    variant, 
+    size, 
+    asChild = false, 
+    animated = true,
+    hoverScale = 1.05,
+    tapScale = 0.95,
+    shine = false,
+    children,
+    ...props 
+  }, ref) => {
     const Comp = asChild ? Slot : "button"
+
+    // Motion configuration for animations (only when not asChild)
+    const motionProps = animated && !asChild ? {
+      whileHover: { scale: hoverScale },
+      whileTap: { scale: tapScale },
+      transition: {
+        type: "spring",
+        stiffness: 400,
+        damping: 17,
+      },
+    } : {}
+
+    const buttonContent = (
+      <>
+        {/* Shine effect overlay */}
+        {shine && !asChild && (
+          <motion.div
+            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+            initial={{ x: "-100%" }}
+            whileHover={{ x: "100%" }}
+            transition={{ duration: 0.6, ease: "easeInOut" }}
+            style={{ pointerEvents: "none" }}
+          />
+        )}
+        {/* Content wrapper for proper z-index */}
+        <span className="relative z-10">{children}</span>
+      </>
+    )
+
+    if (asChild) {
+      return (
+        <Slot
+          className={cn(buttonVariants({ variant, size, className }))}
+          ref={ref}
+          {...props}
+        >
+          {children}
+        </Slot>
+      )
+    }
+
+    if (animated) {
+      return (
+        <motion.div
+          whileHover={{ scale: hoverScale }}
+          whileTap={{ scale: tapScale }}
+          transition={{
+            type: "spring",
+            stiffness: 400,
+            damping: 17,
+          }}
+        >
+          <Comp
+            className={cn(buttonVariants({ variant, size, className }))}
+            ref={ref}
+            {...props}
+          >
+            {buttonContent}
+          </Comp>
+        </motion.div>
+      )
+    }
+
     return (
       <Comp
         className={cn(buttonVariants({ variant, size, className }))}
         ref={ref}
         {...props}
-      />
+      >
+        {buttonContent}
+      </Comp>
     )
   }
 )

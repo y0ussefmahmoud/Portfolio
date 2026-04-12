@@ -1,7 +1,8 @@
-import { jsx as _jsx } from "react/jsx-runtime";
+import { jsx as _jsx, Fragment as _Fragment, jsxs as _jsxs } from "react/jsx-runtime";
 import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva } from "class-variance-authority";
+import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 const buttonVariants = cva("inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0", {
     variants: {
@@ -25,9 +26,30 @@ const buttonVariants = cva("inline-flex items-center justify-center gap-2 whites
         size: "default",
     },
 });
-const Button = React.forwardRef(({ className, variant, size, asChild = false, ...props }, ref) => {
+const Button = React.forwardRef(({ className, variant, size, asChild = false, animated = true, hoverScale = 1.05, tapScale = 0.95, shine = false, children, ...props }, ref) => {
     const Comp = asChild ? Slot : "button";
-    return (_jsx(Comp, { className: cn(buttonVariants({ variant, size, className })), ref: ref, ...props }));
+    // Motion configuration for animations (only when not asChild)
+    const motionProps = animated && !asChild ? {
+        whileHover: { scale: hoverScale },
+        whileTap: { scale: tapScale },
+        transition: {
+            type: "spring",
+            stiffness: 400,
+            damping: 17,
+        },
+    } : {};
+    const buttonContent = (_jsxs(_Fragment, { children: [shine && !asChild && (_jsx(motion.div, { className: "absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent", initial: { x: "-100%" }, whileHover: { x: "100%" }, transition: { duration: 0.6, ease: "easeInOut" }, style: { pointerEvents: "none" } })), _jsx("span", { className: "relative z-10", children: children })] }));
+    if (asChild) {
+        return (_jsx(Slot, { className: cn(buttonVariants({ variant, size, className })), ref: ref, ...props, children: children }));
+    }
+    if (animated) {
+        return (_jsx(motion.div, { whileHover: { scale: hoverScale }, whileTap: { scale: tapScale }, transition: {
+                type: "spring",
+                stiffness: 400,
+                damping: 17,
+            }, children: _jsx(Comp, { className: cn(buttonVariants({ variant, size, className })), ref: ref, ...props, children: buttonContent }) }));
+    }
+    return (_jsx(Comp, { className: cn(buttonVariants({ variant, size, className })), ref: ref, ...props, children: buttonContent }));
 });
 Button.displayName = "Button";
 export { Button, buttonVariants };

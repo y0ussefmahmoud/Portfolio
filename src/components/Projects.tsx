@@ -149,13 +149,16 @@ const Projects: React.FC<ProjectsProps> = ({ translations }) => {
                 variant="outline" 
                 onClick={() => setSelectedProject(project)}
                 className="flex-1"
+                shine={true}
+                hoverScale={1.05}
+                tapScale={0.95}
               >
                 <ExternalLink className="h-4 w-4 mr-2" />
                 {translations.projects.viewDetails || 'التفاصيل'}
               </Button>
             )}
             {viewEnabled ? (
-              <Button asChild className={project.details ? "flex-1" : "flex-1"}>
+              <Button asChild className={project.details ? "flex-1" : "flex-1"} shine={true} hoverScale={1.05} tapScale={0.95}>
                 <a href={project.viewLink} target="_blank" rel="noopener noreferrer">
                   <ExternalLink className="h-4 w-4 mr-2" />
                   {translations.projects.view}
@@ -169,7 +172,7 @@ const Projects: React.FC<ProjectsProps> = ({ translations }) => {
             )}
 
             {codeEnabled ? (
-              <Button asChild variant="outline" className="flex-1">
+              <Button asChild variant="outline" className="flex-1" shine={true} hoverScale={1.05} tapScale={0.95}>
                 <a href={project.codeLink} target="_blank" rel="noopener noreferrer">
                   <Github className="h-4 w-4 mr-2" />
                   {translations.projects.code}

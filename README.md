@@ -2,18 +2,18 @@
 
 A modern, high-performance, and responsive portfolio website built with **React.js**, **TypeScript**, **Vite 6**, and **Tailwind CSS 4**.
 
-## What's New in V2.4.4
+## What's New in V2.4.5
 
-- **Navbar Animations**: Advanced theme switching with rotation and shine effects
-- **Language Transitions**: Smooth language switching with globe rotation animation
-- **Theme Switching**: Icon rotation and gradient effects on toggle
-- **Interactive States**: Hover effects with scale and rotation transforms
-- **Micro-interactions**: Button press animations with spring physics
-- **Visual Feedback**: Enhanced user feedback with smooth transitions
-- **Performance Optimized**: GPU-accelerated animations for all interactions
-- **Accessibility**: Reduced motion support for all animations
-- **Mobile Enhanced**: Touch-friendly animations and gesture support
-- **Cross-browser**: Compatible animations across all modern browsers
+- **Professional Button Animations**: Enhanced Button component with Framer Motion integration using motion.div wrapper
+- **Shine Effects**: Added shine animation effect on button hover for visual appeal
+- **Spring Physics**: Implemented spring-based animations with configurable hoverScale and tapScale
+- **Hero Section**: Enhanced CTA buttons with professional motion effects and shine animations
+- **Contact Form**: Submit button with professional animations and shine effects
+- **Projects Section**: All action buttons (view details, view project, code) with enhanced interactions
+- **Animation Props**: Added animated, hoverScale, tapScale, and shine props to Button component
+- **SEO Updated**: Sitemap.xml updated with current date (2026-04-12)
+- **Performance**: GPU-accelerated animations for optimal performance across all buttons
+- **Type Safety**: Proper TypeScript types for all animation props
 
 ## What's New in V2.4.1
 

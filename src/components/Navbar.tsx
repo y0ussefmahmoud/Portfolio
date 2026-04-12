@@ -1,3 +1,15 @@
+/**
+ * Navbar Component - Bottom navigation bar with animations
+ * 
+ * Features:
+ * - Fixed bottom navigation with glass morphism effect
+ * - Animated tab switching with smooth transitions
+ * - Theme toggle with rotation and shine effects
+ * - Language toggle with globe rotation animation
+ * - Responsive design for all devices
+ * - Tooltips for accessibility
+ */
+
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Briefcase,
@@ -13,6 +25,9 @@ import {
 import React from "react";
 import { Translations } from "../i18n/translations";
 
+/**
+ * Tab ID type for navigation tabs
+ */
 type TabId =
   | "home"
   | "about"
