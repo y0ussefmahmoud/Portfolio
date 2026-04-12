@@ -290,7 +290,7 @@ const Hero: React.FC<HeroProps> = ({ translations, onNavigate }) => {
                 variant="outline"
                 size="lg"
                 onClick={() => onNavigate('contact')}
-                className="h-12 px-8 text-base border-primary/20 hover:bg-primary/10 bg-background/50 backdrop-blur-sm"
+                className="h-12 px-8 text-base"
                 shine={true}
                 hoverScale={1.05}
                 tapScale={0.95}

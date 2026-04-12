@@ -129,26 +129,26 @@ const Projects: React.FC<ProjectsProps> = ({ translations }) => {
             </div>
           </CardHeader>
 
-          <CardContent className="space-y-4">
-            <p className="text-sm leading-relaxed text-muted-foreground">
+          <CardContent className="space-y-4 flex flex-col">
+            <p className="text-sm sm:text-base leading-relaxed text-muted-foreground line-clamp-3">
               {project.description}
             </p>
 
             <div className="flex flex-wrap gap-2">
               {project.tech.map((t) => (
-                <Badge key={t} variant="outline" className="text-xs">
+                <Badge key={t} variant="outline" className="text-xs sm:text-sm">
                   {t}
                 </Badge>
               ))}
             </div>
           </CardContent>
 
-          <CardFooter className="flex gap-2">
+          <CardFooter className="flex flex-col sm:flex-row gap-2">
             {project.details && (
-              <Button 
-                variant="outline" 
+              <Button
+                variant="secondary"
                 onClick={() => setSelectedProject(project)}
-                className="flex-1"
+                className="w-full sm:flex-1"
                 shine={true}
                 hoverScale={1.05}
                 tapScale={0.95}
@@ -158,28 +158,46 @@ const Projects: React.FC<ProjectsProps> = ({ translations }) => {
               </Button>
             )}
             {viewEnabled ? (
-              <Button asChild className={project.details ? "flex-1" : "flex-1"} shine={true} hoverScale={1.05} tapScale={0.95}>
-                <a href={project.viewLink} target="_blank" rel="noopener noreferrer">
-                  <ExternalLink className="h-4 w-4 mr-2" />
-                  {translations.projects.view}
-                </a>
+              <Button
+                variant="default"
+                onClick={() => window.open(project.viewLink, '_blank')}
+                className="w-full sm:flex-1"
+                shine={true}
+                hoverScale={1.05}
+                tapScale={0.95}
+              >
+                <ExternalLink className="h-4 w-4 mr-2" />
+                {translations.projects.view}
               </Button>
             ) : (
-              <Button disabled className={project.details ? "flex-1" : "flex-1"}>
+              <Button
+                variant="default"
+                disabled
+                className="w-full sm:flex-1"
+              >
                 <ExternalLink className="h-4 w-4 mr-2" />
                 {translations.projects.view}
               </Button>
             )}
 
             {codeEnabled ? (
-              <Button asChild variant="outline" className="flex-1" shine={true} hoverScale={1.05} tapScale={0.95}>
-                <a href={project.codeLink} target="_blank" rel="noopener noreferrer">
-                  <Github className="h-4 w-4 mr-2" />
-                  {translations.projects.code}
-                </a>
+              <Button
+                variant="outline"
+                onClick={() => window.open(project.codeLink, '_blank')}
+                className="w-full sm:flex-1"
+                shine={true}
+                hoverScale={1.05}
+                tapScale={0.95}
+              >
+                <Github className="h-4 w-4 mr-2" />
+                {translations.projects.code}
               </Button>
             ) : (
-              <Button disabled variant="outline" className="flex-1">
+              <Button
+                variant="outline"
+                disabled
+                className="w-full sm:flex-1"
+              >
                 <Github className="h-4 w-4 mr-2" />
                 {translations.projects.code}
               </Button>

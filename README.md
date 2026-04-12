@@ -2,16 +2,15 @@
 
 A modern, high-performance, and responsive portfolio website built with **React.js**, **TypeScript**, **Vite 6**, and **Tailwind CSS 4**.
 
-## What's New in V2.4.7
+## What's New in V2.4.8
 
-- **Social Link Animations**: Enhanced SocialLink component with attractive hover effects (scale, rotation, gradient glow)
-- **Page Transitions**: Added 3D transition animations between sections (scale, slide, rotateX)
-- **Hero Section**: Improved staggered animations for all elements with smooth entry effects
-- **Hero Image**: Enhanced floating animations with pulse background and badge effects
-- **Services Section**: Added card hover animations with gradient overlays and staggered feature animations
-- **Transition Easing**: Custom easing curves for smoother, more professional animations
-- **Animation Duration**: Optimized transition timings for better user experience
-- **3D Effects**: Added subtle 3D rotation effects for depth perception during transitions
+- **Button Color Consistency**: Fixed all button colors to use proper CSS variables for both light and dark modes
+- **Projects Button Hierarchy**: Implemented professional button variant hierarchy (default for primary actions, secondary for details, outline for code)
+- **Projects Responsiveness**: Fixed project card buttons to be fully responsive with proper flex layouts
+- **Project Card Layout**: Optimized content size with line-clamp for descriptions and responsive badge sizing
+- **Accessibility Improvements**: Updated ErrorBoundary, BackToTop, and SkipLink components to use semantic color tokens
+- **Hero Button Styling**: Simplified Hero secondary button to use default outline variant for consistency
+- **Animation Consistency**: All buttons now use shine, hoverScale, and tapScale props for unified interaction feedback
 
 ## What's New in V2.4.1
 

@@ -26,7 +26,7 @@ const SkipLink: React.FC<SkipLinkProps> = ({ href, children }) => {
   return (
     <a 
       href={href}
-      className="absolute -top-10 left-1.5 bg-primary text-white px-2 py-1 no-underline rounded font-semibold z-50 transition-all duration-300 focus:top-1.5 hover:bg-primary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+      className="absolute -top-10 left-1.5 bg-primary text-primary-foreground px-2 py-1 no-underline rounded font-semibold z-50 transition-all duration-300 focus:top-1.5 hover:bg-primary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
     >
       {children}
     </a>

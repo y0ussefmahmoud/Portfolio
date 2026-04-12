@@ -80,7 +80,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
           </p>
           <button
             onClick={this.handleRetry}
-            className="px-8 py-4 bg-primary text-white rounded-lg text-lg font-semibold cursor-pointer transition-all duration-300 hover:bg-accent hover:-translate-y-1"
+            className="px-8 py-4 bg-primary text-primary-foreground rounded-lg text-lg font-semibold cursor-pointer transition-all duration-300 hover:bg-accent hover:-translate-y-1"
           >
             Refresh Page
           </button>
