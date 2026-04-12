@@ -9,9 +9,8 @@ const cardVariants = {
 };
 const Services = ({ translations }) => {
     const handleServiceInquiry = (serviceName) => {
-        const subject = encodeURIComponent(`Inquiry about ${serviceName}`);
-        const body = encodeURIComponent(`Hi Y0ussef,\n\nI'm interested in your ${serviceName} service. Could you please provide more details?\n\nBest regards`);
-        window.open(`mailto:youssef11mahmoud112002@gmail.com?subject=${subject}&body=${body}`);
+        const message = encodeURIComponent(`Hi Y0ussef,\n\nI'm interested in your ${serviceName} service. Could you please provide more details?\n\nBest regards`);
+        window.open(`https://wa.me/201129334173?text=${message}`);
     };
     const servicesData = [
         {
@@ -20,13 +19,13 @@ const Services = ({ translations }) => {
             title: translations.services.web.title,
             description: translations.services.web.desc,
             features: [
-                "Responsive Web Design",
-                "Modern UI/UX",
-                "Performance Optimization",
-                "SEO Friendly",
-                "Cross-browser Compatible",
+                translations.services.web.features.responsive,
+                translations.services.web.features.modernUI,
+                translations.services.web.features.performance,
+                translations.services.web.features.seo,
+                translations.services.web.features.crossBrowser,
             ],
-            price: "Custom packages available",
+            price: translations.services.price,
         },
         {
             id: 2,
@@ -34,13 +33,13 @@ const Services = ({ translations }) => {
             title: translations.services.mobile.title,
             description: translations.services.mobile.desc,
             features: [
-                "Cross-platform Development",
-                "Native Performance",
-                "App Store Deployment",
-                "Push Notifications",
-                "Offline Functionality",
+                translations.services.mobile.features.crossPlatform,
+                translations.services.mobile.features.nativePerformance,
+                translations.services.mobile.features.appStore,
+                translations.services.mobile.features.pushNotifications,
+                translations.services.mobile.features.offline,
             ],
-            price: "Custom packages available",
+            price: translations.services.price,
         }, /*
         {
           id: 3,
@@ -90,13 +89,13 @@ const Services = ({ translations }) => {
             title: translations.services.freelance.title,
             description: translations.services.freelance.desc,
             features: [
-                "Project Planning",
-                "Regular Updates",
-                "Quality Assurance",
-                "Documentation",
-                "Post-launch Support",
+                translations.services.freelance.features.planning,
+                translations.services.freelance.features.updates,
+                translations.services.freelance.features.quality,
+                translations.services.freelance.features.documentation,
+                translations.services.freelance.features.support,
             ],
-            price: "Custom packages available",
+            price: translations.services.price,
         },
     ];
     return (_jsx("section", { id: "services", className: "bg-transparent", children: _jsxs("div", { className: "mx-auto max-w-6xl px-4 py-8", children: [_jsxs("div", { className: "text-center", children: [_jsx("h2", { className: "text-3xl font-bold tracking-tight text-foreground sm:text-4xl", children: translations.services.title }), _jsx("p", { className: "mt-2 text-sm text-muted-foreground sm:text-base", children: translations.services.subtitle })] }), _jsx("div", { className: "mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3", children: servicesData.map((service) => {
@@ -109,7 +108,7 @@ const Services = ({ translations }) => {
                                                     scale: 1.1,
                                                     rotate: 5,
                                                     transition: { type: "spring", stiffness: 400, damping: 10 }
-                                                }, children: _jsx(Icon, { className: "h-8 w-8 text-primary-foreground" }) }), _jsx("h3", { className: "text-lg font-semibold text-foreground text-center mt-4", children: service.title })] }), _jsxs(CardContent, { children: [_jsx("p", { className: "text-sm leading-relaxed text-muted-foreground text-center mb-4", children: service.description }), _jsx("div", { className: "space-y-2", children: service.features.map((feature, index) => (_jsxs(motion.div, { initial: { opacity: 0, x: -10 }, whileInView: { opacity: 1, x: 0 }, viewport: { once: true }, transition: { delay: index * 0.1, duration: 0.3 }, className: "flex items-start gap-2 text-xs text-muted-foreground", children: [_jsx(Check, { className: "h-4 w-4 text-primary shrink-0 mt-0.5" }), _jsx("span", { children: feature })] }, feature))) }), _jsxs("div", { className: "flex items-center justify-center gap-2 mt-4 pt-4 border-t border-border/50", children: [_jsx("span", { className: "text-xs text-muted-foreground", children: "Price:" }), _jsx(motion.span, { className: "text-sm font-semibold text-primary", whileHover: { scale: 1.1 }, transition: { type: "spring", stiffness: 400, damping: 10 }, children: service.price })] })] }), _jsx(CardFooter, { children: _jsxs(Button, { className: "w-full", onClick: () => handleServiceInquiry(service.title), shine: true, hoverScale: 1.05, tapScale: 0.95, children: [_jsx(Mail, {}), "Get Quote"] }) })] }) }, service.id));
+                                                }, children: _jsx(Icon, { className: "h-8 w-8 text-primary-foreground" }) }), _jsx("h3", { className: "text-lg font-semibold text-foreground text-center mt-4", children: service.title })] }), _jsxs(CardContent, { children: [_jsx("p", { className: "text-sm leading-relaxed text-muted-foreground text-center mb-4", children: service.description }), _jsx("div", { className: "space-y-2", children: service.features.map((feature, index) => (_jsxs(motion.div, { initial: { opacity: 0, x: -10 }, whileInView: { opacity: 1, x: 0 }, viewport: { once: true }, transition: { delay: index * 0.1, duration: 0.3 }, className: "flex items-start gap-2 text-xs text-muted-foreground", children: [_jsx(Check, { className: "h-4 w-4 text-primary shrink-0 mt-0.5" }), _jsx("span", { children: feature })] }, feature))) }), _jsxs("div", { className: "flex items-center justify-center gap-2 mt-4 pt-4 border-t border-border/50", children: [_jsx("span", { className: "text-xs text-muted-foreground", children: "Price:" }), _jsx(motion.span, { className: "text-sm font-semibold text-primary", whileHover: { scale: 1.1 }, transition: { type: "spring", stiffness: 400, damping: 10 }, children: service.price })] })] }), _jsx(CardFooter, { className: "justify-center", children: _jsxs(Button, { onClick: () => handleServiceInquiry(service.title), shine: true, hoverScale: 1.05, tapScale: 0.95, children: [_jsx(Mail, {}), translations.services.getQuote] }) })] }) }, service.id));
                     }) })] }) }));
 };
 export default Services;

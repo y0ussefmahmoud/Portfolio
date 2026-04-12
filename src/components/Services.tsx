@@ -31,12 +31,11 @@ const cardVariants = {
 
 const Services: React.FC<ServicesProps> = ({ translations }) => {
   const handleServiceInquiry = (serviceName: string) => {
-    const subject = encodeURIComponent(`Inquiry about ${serviceName}`);
-    const body = encodeURIComponent(
+    const message = encodeURIComponent(
       `Hi Y0ussef,\n\nI'm interested in your ${serviceName} service. Could you please provide more details?\n\nBest regards`
     );
     window.open(
-      `mailto:youssef11mahmoud112002@gmail.com?subject=${subject}&body=${body}`
+      `https://wa.me/201129334173?text=${message}`
     );
   };
 
@@ -47,13 +46,13 @@ const Services: React.FC<ServicesProps> = ({ translations }) => {
       title: translations.services.web.title,
       description: translations.services.web.desc,
       features: [
-        "Responsive Web Design",
-        "Modern UI/UX",
-        "Performance Optimization",
-        "SEO Friendly",
-        "Cross-browser Compatible",
+        translations.services.web.features.responsive,
+        translations.services.web.features.modernUI,
+        translations.services.web.features.performance,
+        translations.services.web.features.seo,
+        translations.services.web.features.crossBrowser,
       ],
-      price: "Custom packages available",
+      price: translations.services.price,
     },
     {
       id: 2,
@@ -61,13 +60,13 @@ const Services: React.FC<ServicesProps> = ({ translations }) => {
       title: translations.services.mobile.title,
       description: translations.services.mobile.desc,
       features: [
-        "Cross-platform Development",
-        "Native Performance",
-        "App Store Deployment",
-        "Push Notifications",
-        "Offline Functionality",
+        translations.services.mobile.features.crossPlatform,
+        translations.services.mobile.features.nativePerformance,
+        translations.services.mobile.features.appStore,
+        translations.services.mobile.features.pushNotifications,
+        translations.services.mobile.features.offline,
       ],
-      price: "Custom packages available",
+      price: translations.services.price,
     },/*
     {
       id: 3,
@@ -117,13 +116,13 @@ const Services: React.FC<ServicesProps> = ({ translations }) => {
       title: translations.services.freelance.title,
       description: translations.services.freelance.desc,
       features: [
-        "Project Planning",
-        "Regular Updates",
-        "Quality Assurance",
-        "Documentation",
-        "Post-launch Support",
+        translations.services.freelance.features.planning,
+        translations.services.freelance.features.updates,
+        translations.services.freelance.features.quality,
+        translations.services.freelance.features.documentation,
+        translations.services.freelance.features.support,
       ],
-      price: "Custom packages available",
+      price: translations.services.price,
     },
   ];
 
@@ -212,16 +211,15 @@ const Services: React.FC<ServicesProps> = ({ translations }) => {
                     </div>
                   </CardContent>
 
-                  <CardFooter>
+                  <CardFooter className="justify-center">
                     <Button
-                      className="w-full"
                       onClick={() => handleServiceInquiry(service.title)}
                       shine={true}
                       hoverScale={1.05}
                       tapScale={0.95}
                     >
                       <Mail />
-                      Get Quote
+                      {translations.services.getQuote}
                     </Button>
                   </CardFooter>
                 </Card>

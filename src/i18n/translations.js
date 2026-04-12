@@ -50,13 +50,29 @@ export const translations = {
         services: {
             title: 'Services',
             subtitle: 'What I can help you with',
+            getQuote: 'Get Quote',
+            price: 'Price: Custom packages available',
             web: {
                 title: 'Web Development',
                 desc: 'Modern, responsive websites and dashboards built with clean, maintainable code.',
+                features: {
+                    responsive: 'Responsive Web Design',
+                    modernUI: 'Modern UI/UX',
+                    performance: 'Performance Optimization',
+                    seo: 'SEO Friendly',
+                    crossBrowser: 'Cross-browser Compatible',
+                },
             },
             mobile: {
                 title: 'Mobile Apps',
                 desc: 'Cross‑platform apps with Flutter focusing on performance and user experience.',
+                features: {
+                    crossPlatform: 'Cross-platform Development',
+                    nativePerformance: 'Native Performance',
+                    appStore: 'App Store Deployment',
+                    pushNotifications: 'Push Notifications',
+                    offline: 'Offline Functionality',
+                },
             },
             /*api: {
               title: 'APIs & Integrations',
@@ -73,18 +89,13 @@ export const translations = {
             freelance: {
                 title: 'Freelance Projects',
                 desc: 'End‑to‑end delivery with clear communication, timelines, and documentation.',
-            },
-            api: {
-                title: "",
-                desc: ""
-            },
-            devops: {
-                title: "",
-                desc: ""
-            },
-            db: {
-                title: "",
-                desc: ""
+                features: {
+                    planning: 'Project Planning',
+                    updates: 'Regular Updates',
+                    quality: 'Quality Assurance',
+                    documentation: 'Documentation',
+                    support: 'Post-launch Support',
+                },
             }
         },
         projects: {
@@ -205,13 +216,29 @@ export const translations = {
         services: {
             title: 'الخدمات',
             subtitle: 'كيف يمكنني مساعدتك',
+            getQuote: 'احصل على عرض سعر',
+            price: 'السعر: باقات مخصصة متاحة',
             web: {
                 title: 'تطوير المواقع',
                 desc: 'مواقع ولوحات تحكم حديثة ومتجاوبة مبنية بكود نظيف وقابل للصيانة.',
+                features: {
+                    responsive: 'تصميم ويب متجاوب',
+                    modernUI: 'واجهة مستخدم حديثة',
+                    performance: 'تحسين الأداء',
+                    seo: 'متحسن لمحركات البحث',
+                    crossBrowser: 'متوافق مع جميع المتصفحات',
+                },
             },
             mobile: {
                 title: 'تطبيقات الموبايل',
                 desc: 'تطبيقات متعددة المنصات بـ Flutter مع التركيز على الأداء وتجربة المستخدم.',
+                features: {
+                    crossPlatform: 'تطوير متعدد المنصات',
+                    nativePerformance: 'أداء أصلي',
+                    appStore: 'نشر في متجر التطبيقات',
+                    pushNotifications: 'إشعارات دفع',
+                    offline: 'العمل بدون إنترنت',
+                },
             }, /*
           api: {
             title: 'APIs والتكاملات',
@@ -228,18 +255,13 @@ export const translations = {
             freelance: {
                 title: 'مشاريع العمل الحر',
                 desc: 'تسليم شامل مع تواصل واضح وجداول زمنية وتوثيق.',
-            },
-            api: {
-                title: "",
-                desc: ""
-            },
-            devops: {
-                title: "",
-                desc: ""
-            },
-            db: {
-                title: "",
-                desc: ""
+                features: {
+                    planning: 'تخطيط المشروع',
+                    updates: 'تحديثات منتظمة',
+                    quality: 'ضمان الجودة',
+                    documentation: 'التوثيق',
+                    support: 'دعم ما بعد الإطلاق',
+                },
             }
         },
         projects: {

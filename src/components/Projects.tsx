@@ -143,17 +143,17 @@ const Projects: React.FC<ProjectsProps> = ({ translations }) => {
             </div>
           </CardContent>
 
-          <CardFooter className="flex flex-col sm:flex-row gap-2">
+          <CardFooter className="flex flex-row gap-2">
             {project.details && (
               <Button
                 variant="secondary"
                 onClick={() => setSelectedProject(project)}
-                className="w-full sm:flex-1"
+                className="flex-1 text-xs sm:text-sm"
                 shine={true}
                 hoverScale={1.05}
                 tapScale={0.95}
               >
-                <ExternalLink className="h-4 w-4 mr-2" />
+                <ExternalLink className="h-4 w-4 mr-1 sm:mr-2" />
                 {translations.projects.viewDetails || 'التفاصيل'}
               </Button>
             )}
@@ -161,21 +161,21 @@ const Projects: React.FC<ProjectsProps> = ({ translations }) => {
               <Button
                 variant="default"
                 onClick={() => window.open(project.viewLink, '_blank')}
-                className="w-full sm:flex-1"
+                className="flex-1 text-xs sm:text-sm"
                 shine={true}
                 hoverScale={1.05}
                 tapScale={0.95}
               >
-                <ExternalLink className="h-4 w-4 mr-2" />
+                <ExternalLink className="h-4 w-4 mr-1 sm:mr-2" />
                 {translations.projects.view}
               </Button>
             ) : (
               <Button
                 variant="default"
                 disabled
-                className="w-full sm:flex-1"
+                className="flex-1 text-xs sm:text-sm"
               >
-                <ExternalLink className="h-4 w-4 mr-2" />
+                <ExternalLink className="h-4 w-4 mr-1 sm:mr-2" />
                 {translations.projects.view}
               </Button>
             )}
@@ -184,21 +184,21 @@ const Projects: React.FC<ProjectsProps> = ({ translations }) => {
               <Button
                 variant="outline"
                 onClick={() => window.open(project.codeLink, '_blank')}
-                className="w-full sm:flex-1"
+                className="flex-1 text-xs sm:text-sm"
                 shine={true}
                 hoverScale={1.05}
                 tapScale={0.95}
               >
-                <Github className="h-4 w-4 mr-2" />
+                <Github className="h-4 w-4 mr-1 sm:mr-2" />
                 {translations.projects.code}
               </Button>
             ) : (
               <Button
                 variant="outline"
                 disabled
-                className="w-full sm:flex-1"
+                className="flex-1 text-xs sm:text-sm"
               >
-                <Github className="h-4 w-4 mr-2" />
+                <Github className="h-4 w-4 mr-1 sm:mr-2" />
                 {translations.projects.code}
               </Button>
             )}
