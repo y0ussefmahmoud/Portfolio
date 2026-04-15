@@ -1,8 +1,8 @@
 import { useState, useCallback, useEffect, useRef } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion, LayoutGroup } from 'framer-motion';
 import { ChevronRight } from 'lucide-react';
 import Hero from './components/HeroRevil';
-// import Navbar from './components/Navbar';
+import Navbar from './components/Navbar';
 import Stack from './components/Stack';
 import PageTransition from './components/PageTransition';
 import Projects from './components/ProjectsRevil';
@@ -392,30 +392,40 @@ function App() {
           <ChevronRight size={20} />
         </button>
       )}
-      <AnimatePresence>
-        {isCVModalOpen && (
-          <MCV onClose={closeCVModal} onProjectClick={handleProjectClick} />
-        )}
-      </AnimatePresence>
+      <LayoutGroup>
+        <Navbar
+          onNavigate={navigateTo}
+          currentSection={currentSection}
+          onOpenContact={openContactModal}
+          isContactOpen={isContactModalOpen}
+          onOpenCV={openCVModal}
+          isCVOpen={isCVModalOpen}
+        />
+        <AnimatePresence>
+          {isCVModalOpen && (
+            <MCV onClose={closeCVModal} onProjectClick={handleProjectClick} />
+          )}
+        </AnimatePresence>
 
-      <AnimatePresence>
-        {showProjectModal && selectedProject && (
-          <MProjectView
-            project={selectedProject}
-            onClose={() => setShowProjectModal(false)}
-            onContributorClick={handleContributorClick}
-          />
-        )}
-      </AnimatePresence>
+        <AnimatePresence>
+          {showProjectModal && selectedProject && (
+            <MProjectView
+              project={selectedProject}
+              onClose={() => setShowProjectModal(false)}
+              onContributorClick={handleContributorClick}
+            />
+          )}
+        </AnimatePresence>
 
-      <AnimatePresence>
-        {showContributorModal && selectedContributor && (
-          <MContributorView
-            contributor={selectedContributor}
-            onClose={() => setShowContributorModal(false)}
-          />
-        )}
-      </AnimatePresence>
+        <AnimatePresence>
+          {showContributorModal && selectedContributor && (
+            <MContributorView
+              contributor={selectedContributor}
+              onClose={() => setShowContributorModal(false)}
+            />
+          )}
+        </AnimatePresence>
+      </LayoutGroup>
       <PageTransition
         isTransitioning={isTransitioning}
         onCurtainCovered={handleCurtainCovered}
