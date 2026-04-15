@@ -1,223 +1,306 @@
-/**
- * Navbar Component - Bottom navigation bar with animations
- * 
- * Features:
- * - Fixed bottom navigation with glass morphism effect
- * - Animated tab switching with smooth transitions
- * - Theme toggle with rotation and shine effects
- * - Language toggle with globe rotation animation
- * - Responsive design for all devices
- * - Tooltips for accessibility
- */
+import { Home, Layers, FolderKanban, Mail, Moon, Sun, FileText } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 
-import { motion, AnimatePresence } from "framer-motion";
-import {
-  Briefcase,
-  Code,
-  Globe,
-  GraduationCap,
-  Home,
-  Mail,
-  Moon,
-  Sun,
-  User,
-} from "lucide-react";
-import React from "react";
-import { Translations } from "../i18n/translations";
+type NavigateSection = 'home' | 'stack' | 'projects' | 'secret' | 'dashboard' | 'view_link';
 
-/**
- * Tab ID type for navigation tabs
- */
-type TabId =
-  | "home"
-  | "about"
-  | /*"skills"
-  |*/ "services"
-  | "projects"
-  | "education"
-  | "contact";
+type NavigateFn = (section: NavigateSection) => void;
 
 interface NavbarProps {
-  activeTab: TabId;
-  setActiveTab: (tab: TabId) => void;
-  isDarkMode: boolean;
-  toggleTheme: () => void;
-  language: "en" | "ar";
-  toggleLanguage: () => void;
-  translations: Translations;
+    onNavigate?: NavigateFn;
+    currentSection?: NavigateSection;
+    onOpenContact?: () => void;
+    isContactOpen?: boolean;
+    onOpenCV?: () => void;
+    isCVOpen?: boolean;
 }
 
-export default function Navbar({
-  activeTab,
-  setActiveTab,
-  isDarkMode,
-  toggleTheme,
-  language,
-  toggleLanguage,
-  translations,
-}: NavbarProps) {
-  const [hoveredTab, setHoveredTab] = React.useState<TabId | null>(null);
+const Tooltip = ({ text, show, isDark }: { text: string; show: boolean; isDark: boolean }) => (
+    <div className={`absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-opacity duration-200 ${show ? 'opacity-100' : 'opacity-0 pointer-events-none'}`} style={{
+        backgroundColor: isDark ? 'rgba(10, 10, 12, 0.9)' : 'rgba(255, 255, 255, 0.9)',
+        color: isDark ? '#ffffff' : '#000000',
+        backdropFilter: 'blur(8px)',
+        WebkitBackdropFilter: 'blur(8px)',
+        border: isDark ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid rgba(0, 0, 0, 0.1)',
+        boxShadow: isDark ? '0 4px 12px rgba(0, 0, 0, 0.3)' : '0 4px 12px rgba(0, 0, 0, 0.1)',
+    }}>
+        {text}
+    </div>
+);
 
-  const navItems: Array<{ id: TabId; label: string; Icon: React.ComponentType<any> }> =
-    [
-      { id: "home", label: translations.nav.home, Icon: Home },
-      { id: "about", label: translations.nav.about, Icon: User },
-      //{ id: "skills", label: translations.nav.skills, Icon: Code },
-      { id: "services", label: translations.nav.services, Icon: Briefcase },
-      { id: "projects", label: translations.nav.projects, Icon: Briefcase },
-      { id: "education", label: translations.nav.education, Icon: GraduationCap },
-      { id: "contact", label: translations.nav.contact, Icon: Mail },
-    ];
+const Navbar = ({ onNavigate, currentSection = 'home', onOpenContact, isContactOpen = false, onOpenCV, isCVOpen = false }: NavbarProps) => {
+    const [isMobile, setIsMobile] = useState(typeof window !== 'undefined' ? window.innerWidth < 768 : false);
 
-  const flag = language === "en" ? "🇬🇧" : "🇸🇦";
-  
-  const themeIcon = isDarkMode ? Moon : Sun;
-  const themeLabel = isDarkMode ? "Light Mode" : "Dark Mode";
-  const languageLabel = language === "en" ? "العربية" : "English";
+    // Initialize theme
+    const [isDark, setIsDark] = useState(() => {
+        if (typeof window === 'undefined') return true;
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            return savedTheme === 'dark';
+        }
+        return window.matchMedia('(prefers-color-scheme: dark)').matches;
+    });
 
-  return (
-    <motion.nav
-      initial={{ opacity: 0, y: 24 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.45, ease: "easeOut" }}
-      className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50"
-      aria-label="Primary"
-    >
-      <div className="flex items-center gap-1.5 bg-background/80 backdrop-blur-2xl border border-white/10 rounded-full shadow-2xl px-2 py-2">
-        {navItems.map(({ id, label, Icon }) => {
-          const isActive = activeTab === id;
-          const showTooltip = hoveredTab === id || isActive;
+    const [hoveredTab, setHoveredTab] = useState<string | null>(null);
+    const [autoTooltip, setAutoTooltip] = useState<string | null>(null);
+    const [isHoveringNav, setIsHoveringNav] = useState(false);
 
-          return (
-            <div key={id} className="relative">
-              <button
-                type="button"
-                onClick={() => setActiveTab(id)}
-                onMouseEnter={() => setHoveredTab(id)}
-                onMouseLeave={() => setHoveredTab(null)}
-                onFocus={() => setHoveredTab(id)}
-                onBlur={() => setHoveredTab(null)}
-                className={[
-                  "relative flex items-center justify-center rounded-full transition-colors",
-                  "h-10 w-10 sm:h-11 sm:w-11",
-                  isActive
-                    ? "text-primary bg-primary/10"
-                    : "text-muted-foreground hover:text-foreground hover:bg-white/5",
-                ].join(" ")}
-                aria-current={isActive ? "page" : undefined}
-                aria-label={label}
-              >
-                {isActive ? (
-                  <motion.span
-                    layoutId="activeTab"
-                    className="absolute inset-0 rounded-full bg-primary/10"
-                    transition={{ type: "spring", stiffness: 500, damping: 40 }}
-                  />
-                ) : null}
+    // 0 = Projects, 1 = Mail
+    // cycleStepRef is currently not used but kept as a comment for logic reference if needed later
+    // const cycleStepRef = useRef(0);
 
-                <motion.span
-                  whileHover={{ scale: 1.08 }}
-                  whileTap={{ scale: 0.96 }}
-                  className="relative z-10"
-                >
-                  <Icon className="h-5 w-5 sm:h-5.5 sm:w-5.5" />
-                </motion.span>
-              </button>
+    const toggleTheme = () => {
+        const newTheme = !isDark;
+        setIsDark(newTheme);
+        if (newTheme) {
+            document.documentElement.classList.add('dark');
+            localStorage.setItem('theme', 'dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+            localStorage.setItem('theme', 'light');
+        }
+    };
 
-              <AnimatePresence>
-                {showTooltip ? (
-                  <motion.div
-                    key="tooltip"
-                    initial={{ opacity: 0, y: 6, scale: 0.98 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: 6, scale: 0.98 }}
-                    transition={{ duration: 0.15, ease: "easeOut" }}
-                    className="pointer-events-none absolute left-1/2 -translate-x-1/2 -top-9"
-                  >
-                    <div className="px-2.5 py-1 rounded-full bg-background/90 backdrop-blur-xl border border-white/10 shadow-lg">
-                      <span className="text-xs text-foreground/90 whitespace-nowrap">
-                        {label}
-                      </span>
-                    </div>
-                  </motion.div>
-                ) : null}
-              </AnimatePresence>
-            </div>
-          );
-        })}
+    useEffect(() => {
+        if (isDark) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    }, [isDark]);
 
-        <div className="h-6 w-px bg-white/10 mx-1" />
+    useEffect(() => {
+        const handleResize = () => setIsMobile(window.innerWidth < 768);
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
-        <div className="relative">
-          <motion.button
-            type="button"
-            onClick={toggleTheme}
-            className="relative flex items-center justify-center rounded-full transition-all duration-300 h-10 w-10 sm:h-11 sm:w-11 text-muted-foreground hover:text-foreground hover:bg-white/5 group overflow-hidden"
-            aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
-            whileHover={{ scale: 1.08, rotate: isDarkMode ? 180 : 0 }}
-            whileTap={{ scale: 0.96 }}
-          >
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/10 to-transparent"
-              initial={{ x: "-100%" }}
-              whileHover={{ x: "100%" }}
-              transition={{ duration: 0.6, ease: "easeInOut" }}
-            />
-            <motion.span 
-              className="relative z-10"
-              initial={{ rotate: 0 }}
-              animate={{ rotate: isDarkMode ? 180 : 0 }}
-              transition={{ duration: 0.5, ease: "easeInOut" }}
+    // Auto-show tooltips logic: Projects (3s) -> Contact (3s) -> 10s wait
+    useEffect(() => {
+        let cycleTimeout: NodeJS.Timeout;
+
+        const runCycle = () => {
+            if (isHoveringNav) {
+                setAutoTooltip(null);
+                // If hovering, check again in 2s to see if we can resume
+                cycleTimeout = setTimeout(runCycle, 2000);
+                return;
+            }
+
+            // Step 1: Show Projects (3s)
+            if (currentSection !== 'projects') {
+                setAutoTooltip('projects');
+            }
+
+            cycleTimeout = setTimeout(() => {
+                setAutoTooltip(null);
+
+                // Gap between tooltips
+                cycleTimeout = setTimeout(() => {
+                    if (isHoveringNav) { runCycle(); return; }
+
+                    // Step 2: Show Contact (3s)
+                    if (!isContactOpen) {
+                        setAutoTooltip('mail');
+                    }
+
+                    cycleTimeout = setTimeout(() => {
+                        setAutoTooltip(null);
+
+                        // Step 3: Wait 10s before restart
+                        cycleTimeout = setTimeout(runCycle, 10000);
+                    }, 3000);
+                }, 400); // Tiny gap for smooth transition
+            }, 3000);
+        };
+
+        // Start immediately
+        runCycle();
+
+        return () => {
+            clearTimeout(cycleTimeout);
+        };
+    }, [currentSection, isContactOpen, isHoveringNav]);
+
+    // Helper to get button class string based on state
+    const getButtonClass = (tabName: string) => {
+        const isActive = currentSection === tabName || (tabName === 'home' && currentSection === 'view_link');
+
+        let classes = "btn-icon flex items-center justify-center transition-all duration-200";
+        classes += isMobile ? " p-2 rounded-xl" : " p-3 rounded-2xl";
+
+        if (isActive) {
+            classes += " bg-[rgba(59,130,246,0.15)] text-[#3b82f6] border border-[rgba(59,130,246,0.3)]";
+        } else {
+            classes += " hover:scale-110 border border-transparent text-muted hover:text-primary";
+        }
+        return classes;
+    };
+
+    const iconSize = isMobile ? 18 : 22;
+
+    return (
+        <nav className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-max max-w-[95%]">
+            <div
+                className={`
+                    flex items-center 
+                    ${isMobile ? 'gap-1.5 p-2.5 px-4 rounded-2xl' : 'gap-3 p-3 px-6 rounded-3xl'} 
+                    backdrop-blur-xl transition-all duration-300
+                    shadow-[0_8px_32px_rgba(0,0,0,0.1)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)]
+                `}
+                style={{
+                    backgroundColor: isDark ? 'rgba(0, 0, 0, 0.6)' : 'rgba(255, 255, 255, 0.4)',
+                }}
+                onMouseEnter={() => {
+                    setIsHoveringNav(true);
+                    setAutoTooltip(null);
+                }}
+                onMouseLeave={() => setIsHoveringNav(false)}
             >
-              <motion.div
-                key={isDarkMode ? "moon" : "sun"}
-                initial={{ opacity: 0, scale: 0.8, rotate: -180 }}
-                animate={{ opacity: 1, scale: 1, rotate: 0 }}
-                transition={{ duration: 0.4, ease: "easeOut" }}
-              >
-                {React.createElement(themeIcon, { className: "h-5 w-5 sm:h-5.5 sm:w-5.5" })}
-              </motion.div>
-            </motion.span>
-          </motion.button>
-        </div>
+                {/* Left Section - Navigation Icons */}
+                <div className={`flex items-center ${isMobile ? 'gap-1' : 'gap-1.5'}`}>
+                    <div className="relative">
+                        <button
+                            className={getButtonClass('home')}
+                            onClick={() => onNavigate?.('home')}
+                            onMouseEnter={() => setHoveredTab('home')}
+                            onMouseLeave={() => setHoveredTab(null)}
+                        >
+                            <Home size={iconSize} strokeWidth={2} />
+                        </button>
+                        <Tooltip text="🏠 Home" show={hoveredTab === 'home'} isDark={isDark} />
+                    </div>
 
-        <div className="relative">
-          <motion.button
-            type="button"
-            onClick={toggleLanguage}
-            className="relative flex items-center justify-center rounded-full transition-all duration-300 h-10 w-10 sm:h-11 sm:w-11 text-muted-foreground hover:text-foreground hover:bg-white/5 group overflow-hidden"
-            aria-label={language === "en" ? "Switch to Arabic" : "Switch to English"}
-            whileHover={{ scale: 1.08, rotate: language === "en" ? 360 : 0 }}
-            whileTap={{ scale: 0.96 }}
-          >
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/10 to-transparent"
-              initial={{ x: "-100%" }}
-              whileHover={{ x: "100%" }}
-              transition={{ duration: 0.6, ease: "easeInOut" }}
-            />
-            <motion.div className="flex items-center gap-1 relative z-10">
-              <motion.div
-                key={language}
-                initial={{ rotate: -180 }}
-                animate={{ rotate: language === "en" ? 360 : 0 }}
-                transition={{ duration: 0.6, ease: "easeInOut" }}
-              >
-                <Globe className="h-5 w-5 sm:h-5.5 sm:w-5.5" />
-              </motion.div>
-              <motion.span
-                key="flag"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.3, delay: 0.1 }}
-                className="hidden sm:inline text-xs font-medium"
-              >
-                {flag}
-              </motion.span>
-            </motion.div>
-          </motion.button>
-        </div>
-      </div>
-    </motion.nav>
-  );
-}
+                    <div className="relative">
+                        <button
+                            className={getButtonClass('stack')}
+                            onClick={() => onNavigate?.('stack')}
+                            onMouseEnter={() => setHoveredTab('stack')}
+                            onMouseLeave={() => setHoveredTab(null)}
+                        >
+                            <Layers size={iconSize} strokeWidth={2} />
+                        </button>
+                        <Tooltip text="⚡ Stack" show={hoveredTab === 'stack'} isDark={isDark} />
+                    </div>
+
+                    <div className="relative">
+                        <button
+                            className={getButtonClass('projects')}
+                            onClick={() => onNavigate?.('projects')}
+                            onMouseEnter={() => setHoveredTab('projects')}
+                            onMouseLeave={() => setHoveredTab(null)}
+                        >
+                            <FolderKanban size={iconSize} strokeWidth={2} />
+                        </button>
+                        <Tooltip text="🚀 Projects" show={hoveredTab === 'projects' || autoTooltip === 'projects'} isDark={isDark} />
+                    </div>
+
+                    <div
+                        className="relative"
+                        style={{ width: isMobile ? '36px' : '48px', height: isMobile ? '36px' : '48px' }}
+                    >
+                        <motion.button
+                            className={`
+                                btn-icon absolute inset-0 flex items-center justify-center
+                                ${isMobile ? 'p-2 rounded-xl' : 'p-3 rounded-2xl'}
+                                text-muted hover:text-primary hover:bg-[rgba(0,0,0,0.04)] dark:hover:bg-[rgba(255,255,255,0.1)]
+                                hover:scale-110 transition-all duration-200
+                            `}
+                            style={{
+                                zIndex: isCVOpen ? 0 : 1,
+                                opacity: isCVOpen ? 0 : 1,
+                                pointerEvents: isCVOpen ? 'none' : 'auto',
+                            }}
+                            onClick={onOpenCV}
+                            onMouseEnter={() => setHoveredTab('cv')}
+                            onMouseLeave={() => setHoveredTab(null)}
+                        >
+                            <motion.div layoutId="cv-icon" className="flex items-center justify-center" transition={{ type: 'spring', damping: 30, stiffness: 350, mass: 1 }}>
+                                <FileText size={20} strokeWidth={2.5} />
+                            </motion.div>
+                        </motion.button>
+                        <Tooltip text="📄 Digital CV" show={hoveredTab === 'cv'} isDark={isDark} />
+
+                        {isCVOpen && (
+                            <div className={`
+                                flex items-center justify-center opacity-20 pointer-events-none
+                                ${isMobile ? 'p-2' : 'p-3'}
+                            `}>
+                                <FileText size={iconSize} strokeWidth={2} className="opacity-0" />
+                            </div>
+                        )}
+                    </div>
+                </div>
+
+                {/* Divider */}
+                <div
+                    className={`
+                        w-[1px] h-6 
+                        bg-[rgba(0,0,0,0.1)] dark:bg-[rgba(255,255,255,0.15)]
+                        transition-colors duration-300
+                        ${isMobile ? 'mx-1' : 'mx-1.5'}
+                    `}
+                />
+
+                {/* Right Section - Mail & Theme */}
+                <div className={`flex items-center ${isMobile ? 'gap-1' : 'gap-1.5'}`}>
+                    <div
+                        className="relative"
+                        style={{ width: isMobile ? '36px' : '48px', height: isMobile ? '36px' : '48px' }}
+                    >
+                        <motion.button
+                            className={`
+                                btn-icon absolute inset-0 flex items-center justify-center
+                                ${isMobile ? 'p-2 rounded-xl' : 'p-3 rounded-2xl'}
+                                text-muted hover:text-primary hover:bg-[rgba(0,0,0,0.04)] dark:hover:bg-[rgba(255,255,255,0.1)]
+                                hover:scale-110 transition-all duration-200
+                            `}
+                            style={{
+                                zIndex: isContactOpen ? 0 : 1,
+                                opacity: isContactOpen ? 0 : 1,
+                                pointerEvents: isContactOpen ? 'none' : 'auto',
+                            }}
+                            onClick={onOpenContact}
+                            onMouseEnter={() => setHoveredTab('mail')}
+                            onMouseLeave={() => setHoveredTab(null)}
+                        >
+                            <motion.div layoutId="contact-icon" className="flex items-center justify-center" transition={{ type: 'spring', damping: 30, stiffness: 350, mass: 1 }}>
+                                <Mail size={24} strokeWidth={2} />
+                            </motion.div>
+                        </motion.button>
+                        <Tooltip text="📩 Contact" show={hoveredTab === 'mail' || (autoTooltip === 'mail' && !isContactOpen)} isDark={isDark} />
+
+                        {isContactOpen && (
+                            <div className={`
+                                flex items-center justify-center opacity-20 pointer-events-none
+                                ${isMobile ? 'p-2' : 'p-3'}
+                            `}>
+                                <Mail size={iconSize} strokeWidth={2} className="opacity-0" />
+                            </div>
+                        )}
+                    </div>
+
+                    <button
+                        onClick={toggleTheme}
+                        onMouseEnter={() => setHoveredTab('theme')}
+                        onMouseLeave={() => setHoveredTab(null)}
+                        className={`
+                            btn-icon flex items-center justify-center
+                            ${isMobile ? 'p-2 rounded-xl' : 'p-3 rounded-2xl'}
+                            text-muted hover:text-primary hover:bg-[rgba(0,0,0,0.04)] dark:hover:bg-[rgba(255,255,255,0.1)]
+                            hover:scale-110 transition-all duration-200
+                        `}
+                    >
+                        {isDark ? (
+                            <Sun size={iconSize} strokeWidth={2} />
+                        ) : (
+                            <Moon size={iconSize} strokeWidth={2} />
+                        )}
+                    </button>
+                </div>
+            </div>
+        </nav>
+    );
+};
+
+export default Navbar;

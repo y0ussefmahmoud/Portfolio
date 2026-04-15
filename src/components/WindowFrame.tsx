@@ -21,13 +21,13 @@ export default function WindowFrame({
       exit={{ opacity: 0, scale: 0.95, y: 20 }}
       transition={{ duration: 0.3, ease: "backOut" }}
       className={[
-        "bg-card/80 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl max-w-5xl h-[80vh] flex flex-col",
+        "glass-panel-deep max-w-5xl h-[80vh] flex flex-col",
         className,
       ]
         .filter(Boolean)
         .join(" ")}
     >
-      <div className="flex items-center justify-between px-4 py-3 bg-secondary/30 border-b border-white/10 rounded-t-xl">
+      <div className="flex items-center justify-between px-4 py-3 glass-surface border-b border-border/50 rounded-t-2xl">
         <div className="flex items-center gap-1.5">
           <button
             type="button"
@@ -46,13 +46,13 @@ export default function WindowFrame({
         </div>
 
         <div className="w-16 flex justify-end">
-          <div className="h-1 w-10 rounded-full bg-white/10" />
+          <div className="h-1 w-10 rounded-full bg-border/30" />
         </div>
       </div>
 
       <div className="flex-1 overflow-y-auto custom-scrollbar p-6">{children}</div>
 
-      <div className="flex items-center justify-between px-4 py-2 bg-secondary/20 border-t border-white/10 rounded-b-xl font-mono text-[10px] tracking-widest text-foreground/70">
+      <div className="flex items-center justify-between px-4 py-2 glass-surface border-t border-border/50 rounded-b-2xl font-mono text-[10px] tracking-widest text-foreground/70">
         <span>READY</span>
         <span>MEM: 64KB OK</span>
       </div>

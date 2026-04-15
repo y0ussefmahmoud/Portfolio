@@ -1,6 +1,6 @@
 {
   "name": "y0ussef-portfolio",
-  "version": "2.5.0",
+  "version": "3.0.0",
   "description": "Y0ussef Mahmoud - Portfolio Website built with React.js",
   "private": true,
   "type": "module",
@@ -11,6 +11,7 @@
     "@tailwindcss/postcss": "^4.1.18",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
+    "animejs": "^3.2.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "framer-motion": "^11.0.0",
@@ -23,6 +24,7 @@
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.0.0",
+    "@types/animejs": "^3.1.13",
     "@vitejs/plugin-react": "^4.3.0",
     "autoprefixer": "^10.4.20",
     "gh-pages": "^6.3.0",

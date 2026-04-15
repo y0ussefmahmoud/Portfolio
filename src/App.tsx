@@ -1,304 +1,429 @@
-/**
- * App Component - المكون الجذري للتطبيق
- * 
- * معمارية اللعبة (Game-Like Architecture):
- * ====================================
- * 
- * النهج المتبع:
- * - الصفحة الرئيسية ثابتة بدون scroll (Hero component فقط)
- * - جميع الأقسام (About, Skills, Services, Projects, Education, Contact) تظهر في modals منبثقة
- * - المستخدم يتنقل عبر navbar أو أزرار CTA لفتح الـ modals
- * - كل modal يحتوي على scroll داخلي مستقل
- * - تجربة مستخدم تشبه اللعبة: شاشة رئيسية ثابتة + نوافذ منبثقة للمحتوى
- * 
- * إدارة الحالة (State Management):
- * - activeModal: string | null - يحدد الـ modal المفتوح حالياً
- * - openModal(modalId): فتح modal محدد
- * - closeModal(): إغلاق الـ modal النشط
- * 
- * طرق الإغلاق:
- * - الضغط على زر X في رأس الـ modal
- * - الضغط على مفتاح ESC
- * - الضغط على الخلفية الداكنة (overlay)
- * 
- * الميزات:
- * - منع scroll الصفحة الرئيسية (overflow: hidden)
- * - scroll مستقل داخل كل modal
- * - animations سلسة (fade-in, slide-up)
- * - دعم RTL للعربية
- * - responsive design لجميع الشاشات
- */
-
-import React, { useEffect, useState } from 'react';
+import { useState, useCallback, useEffect, useRef } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import Hero from './components/Hero';
-import About from './components/About/About';
-//import Skills from './components/Skills';
-import Services from './components/Services';
-import Projects from './components/Projects';
-import Education from './components/Education';
-import Contact from './components/Contact';
-import SEOHead from './components/SEO/SEOHead';
-import AccessibilitySkipLink from './components/Accessibility/SkipLink';
-import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
-import { translations } from './i18n/translations';
-import WindowFrame from './components/WindowFrame';
-import Navbar from './components/Navbar';
+import { ChevronRight } from 'lucide-react';
+import Hero from './components/HeroRevil';
+// import Navbar from './components/Navbar';
+import Stack from './components/Stack';
+import PageTransition from './components/PageTransition';
+import Projects from './components/ProjectsRevil';
+import MContact from './components/M-Contact';
+// import SecretPage from './components/SecretPage';
+// import Dashboard from './components/Dashboard';
+import Loader from './components/reactbits/Loader';
+// import { Algorithm } from './components/Algorithm';
+import MCV from './components/M-CV';
+import MProjectView from './components/M-ProjectView';
+import MContributorView, { Contributor as ContributorViewData } from './components/M-ContributorView';
+import { ProjectData as Project, ContributorData as Contributor } from './types';
 
-
-
-/**
- * Global Styles - الأنماط العامة
- * ================================
- * 
- * إعدادات مهمة لنظام الـ Modal:
- * 
- * 1. body { overflow: hidden }
- *    - يمنع scroll الصفحة الرئيسية بالكامل
- *    - المستخدم لا يستطيع التمرير لأعلى أو لأسفل
- *    - الشاشة ثابتة على Hero component
- * 
- * 2. Modal Content Scroll
- *    - كل modal له scroll داخلي مستقل
- *    - يتم التحكم به في ModalContent component
- *    - scrollbar مخصص بألوان الـ theme
- * 
- * 3. Smooth Transitions
- *    - جميع العناصر لها transitions سلسة
- *    - تغيير الألوان عند تبديل الـ theme
- *    - animations للـ modals (fade-in, slide-up)
- * 
- * 4. RTL Support
- *    - دعم كامل للعربية
- *    - direction يتغير حسب اللغة
- *    - الـ modals تدعم RTL
- */
-type TabId =
-  | 'home'
-  | 'about'
-  | /*'skills'
-  |*/ 'services'
-  | 'projects'
-  | 'education'
-  | 'contact';
+type Section = 'home' | 'stack' | 'projects' | 'secret' | 'dashboard' | 'view_link';
 
 function App() {
-  const [isDarkMode, setIsDarkMode] = useState(false);
-  const [language, setLanguage] = useState<'en' | 'ar'>('en');
-  const [isLoading, setIsLoading] = useState(true);
-/**
- * إدارة حالة الـ Modal System
- * ===========================
- * 
- * activeModal: يحمل معرف الـ modal المفتوح حالياً
- * القيم الممكنة: 'home' | 'about' | 'skills' | 'services' | 'projects' | 'education' | 'contact' | null
- * null = لا يوجد modal مفتوح (الشاشة الرئيسية فقط)
- * 
- * isTransitioning: حالة الانتقال بين الـ modals
- * true = يتم التبديل بين modals، false = لا يوجد انتقال
- * 
- * closingModal: معرف الـ modal الذي يتم إغلاقه خلال الانتقال
- * يمنع flicker في الـ navbar أثناء التبديل السريع
- */
-  const [activeTab, setActiveTab] = useState<TabId>('home');
+  const [currentSection, setCurrentSection] = useState<Section>(() => {
+    const path = window.location.pathname;
+    const base = import.meta.env.BASE_URL;
+    const normPath = path.replace(/\/$/, '');
+    const normBase = base.replace(/\/$/, '');
+    if (normPath !== normBase && normPath !== '') {
+      return 'view_link';
+    }
+    return 'home';
+  });
+  const [previousSection, setPreviousSection] = useState<Section>('home');
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [nextSection, setNextSection] = useState<Section>('home');
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+  const [forceHideLoading, setForceHideLoading] = useState(false);
+  const [isDataReady, setIsDataReady] = useState(false);
+  const [isWindowReady, setIsWindowReady] = useState(false);
+  const [isCVModalOpen, setIsCVModalOpen] = useState(false);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [showProjectModal, setShowProjectModal] = useState(false);
+  const [selectedContributor, setSelectedContributor] = useState<ContributorViewData | null>(null);
+  const [showContributorModal, setShowContributorModal] = useState(false);
+  const [hasAutoOpenedCV, setHasAutoOpenedCV] = useState(false);
 
-  /**
-   * Initializes theme and language from localStorage or system preferences
-   * Runs once on component mount
-   * - Checks localStorage for saved preferences
-   * - Falls back to system/browser preferences if not found
-   * - Simulates loading screen for 1.5 seconds
-   */
   useEffect(() => {
-    const savedTheme = localStorage.getItem('theme');
-    const savedLang = localStorage.getItem('lang') as 'en' | 'ar';
-    
-    if (savedTheme) {
-      setIsDarkMode(savedTheme === 'dark');
+    const handleLoad = () => setIsWindowReady(true);
+    if (document.readyState === 'complete' || document.readyState === 'interactive') {
+      setTimeout(() => setIsWindowReady(true), 0);
     } else {
-      // Check system preference using media query
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      setIsDarkMode(prefersDark);
+      window.addEventListener('DOMContentLoaded', handleLoad);
+      return () => window.removeEventListener('DOMContentLoaded', handleLoad);
     }
-
-    if (savedLang) {
-      setLanguage(savedLang);
-    } else {
-      // Detect browser language and set Arabic if detected
-      const browserLang = navigator.language.toLowerCase();
-      setLanguage(browserLang.startsWith('ar') ? 'ar' : 'en');
-    }
-
-    // Simulate loading time for smooth transition
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 1500);
   }, []);
 
-  /**
-   * Updates document attributes and localStorage when theme or language changes
-   * - Sets data-theme attribute for CSS variables
-   * - Sets lang and dir attributes for accessibility and RTL support
-   * - Persists preferences to localStorage
-   * - Updates page title based on language
-   */
+  // Safety timer to hide loader if data never arrives
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
-    document.documentElement.setAttribute('lang', language);
-    document.documentElement.setAttribute('dir', language === 'ar' ? 'rtl' : 'ltr');
+    const safety = setTimeout(() => {
+      setForceHideLoading(true);
+    }, 4000);
+    return () => clearTimeout(safety);
+  }, []);
 
-    document.documentElement.classList.toggle('dark', isDarkMode);
-    
-    // Persist preferences
-    localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
-    localStorage.setItem('lang', language);
+  // Derived loading state (avoid setting state synchronously inside effects)
+  const appLoading = forceHideLoading ? false : !(isDataReady && isWindowReady);
 
-    // Update page title dynamically
-    document.title = language === 'ar' 
-      ? 'يوسف محمود - مُطَوِّر الواجهات الأمامية والخلفية' 
-      : 'Y0ussef Mahmoud - Full-Stack Developer';
-  }, [isDarkMode, language]);
 
-  /**
-   * Toggles between dark and light theme
-   */
-  const toggleTheme = () => {
-    setIsDarkMode(!isDarkMode);
+
+  const handleHeroAnimationComplete = useCallback(() => {
+    const isInterviewerMode = sessionStorage.getItem('revil_interviewer_mode') === 'true';
+    if (isInterviewerMode && !hasAutoOpenedCV && (currentSection === 'home' || currentSection === 'view_link')) {
+      setHasAutoOpenedCV(true);
+      setIsCVModalOpen(true);
+    }
+  }, [hasAutoOpenedCV, currentSection]);
+
+  const [direction, setDirection] = useState(0);
+
+  // Helper to get the current scrollable container by ID
+  const getScrollContainer = (sectionName: Section) => {
+    return document.getElementById(`section-${sectionName}`) as HTMLDivElement | null;
   };
 
-  /**
-   * Toggles between English and Arabic language
-   */
-  const toggleLanguage = () => {
-    setLanguage(language === 'en' ? 'ar' : 'en');
-  };
+  const navigateTo = useCallback((section: Section) => {
+    if (section !== currentSection && !isTransitioning) {
+      const order: Section[] = ['home', 'stack', 'projects'];
+      const currIdx = order.indexOf(currentSection);
+      const nextIdx = order.indexOf(section);
 
-  const t = translations[language];
+      let dir = 0;
+      if (currIdx !== -1 && nextIdx !== -1) {
+        dir = nextIdx > currIdx ? 1 : -1;
+      }
 
-  const renderContent = () => {
-    switch (activeTab) {
+      setDirection(dir);
+      setNextSection(section);
+      setCurrentSection(section);
+
+      setIsTransitioning(true);
+    }
+  }, [currentSection, isTransitioning]);
+
+  const handleCurtainCovered = useCallback(() => { }, []);
+
+  const handleTransitionComplete = useCallback(() => {
+    setIsTransitioning(false);
+  }, []);
+
+  const openContactModal = useCallback(() => setIsContactModalOpen(true), []);
+  const closeContactModal = useCallback(() => setIsContactModalOpen(false), []);
+
+  const openCVModal = useCallback(() => setIsCVModalOpen(true), []);
+  const closeCVModal = useCallback(() => setIsCVModalOpen(false), []);
+
+  const handleProjectClick = useCallback((project: Project) => {
+    setSelectedProject(project);
+    setShowProjectModal(true);
+  }, []);
+
+  const handleContributorClick = useCallback((contributor: Contributor) => {
+    setSelectedContributor(contributor as unknown as ContributorViewData);
+    setShowContributorModal(true);
+  }, []);
+
+  const renderSection = () => {
+    switch (currentSection) {
       case 'home':
-        return <Hero translations={t} onNavigate={(id) => setActiveTab(id as TabId)} />;
-      case 'about':
-        return (
-          <WindowFrame title={t.windowTitles.about} onClose={() => setActiveTab('home')}>
-            <About translations={t} />
-          </WindowFrame>
-        );
-      /*case 'skills':
-        return (
-          <WindowFrame title={t.windowTitles.skills} onClose={() => setActiveTab('home')}>
-            <Skills translations={t} />
-          </WindowFrame>
-        );*/
-      case 'services':
-        return (
-          <WindowFrame title={t.windowTitles.services} onClose={() => setActiveTab('home')}>
-            <Services translations={t} />
-          </WindowFrame>
-        );
+        return <Hero />;
+      case 'stack':
+        return <Stack />;
       case 'projects':
-        return (
-          <WindowFrame title={t.windowTitles.projects} onClose={() => setActiveTab('home')}>
-            <Projects translations={t} />
-          </WindowFrame>
-        );
-      case 'education':
-        return (
-          <WindowFrame title={t.windowTitles.education} onClose={() => setActiveTab('home')}>
-            <Education translations={t} />
-          </WindowFrame>
-        );
-      case 'contact':
-        return (
-          <WindowFrame title={t.windowTitles.contact} onClose={() => setActiveTab('home')}>
-            <Contact translations={t} />
-          </WindowFrame>
-        );
+        return <Projects />;
+      case 'view_link':
+        return <Hero />;
       default:
-        return null;
+        return <Hero />;
     }
   };
 
-  if (isLoading) {
-    return (
-      <div className="fixed inset-0 z-9999 flex items-center justify-center bg-background text-foreground">
-        <div className="text-center">
-          <div className="h-12 w-12 rounded-full border-2 border-border border-t-primary animate-spin mx-auto" />
-          <p className="mt-4 text-sm text-muted-foreground">
-            {language === 'ar' ? 'جاري التحميل...' : 'Loading...'}
-          </p>
-        </div>
-      </div>
-    );
-  }
+  // --- Touch Logic (Mobile) ---
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
+  const touchStartY = useRef(0);
+  const touchEndY = useRef(0);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.targetTouches[0].clientX;
+    touchStartY.current = e.targetTouches[0].clientY;
+    touchEndX.current = e.targetTouches[0].clientX;
+    touchEndY.current = e.targetTouches[0].clientY;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    touchEndX.current = e.targetTouches[0].clientX;
+    touchEndY.current = e.targetTouches[0].clientY;
+  };
+
+  const handleTouchEnd = () => {
+    if (isContactModalOpen || document.body.style.overflow === 'hidden') {
+      touchStartX.current = 0; touchEndX.current = 0; touchStartY.current = 0; touchEndY.current = 0;
+      return;
+    }
+
+    const SWIPE_THRESHOLD = 120; // High sensitivity to avoid accidental swipes
+    const deltaX = touchStartX.current - touchEndX.current;
+    const deltaY = touchStartY.current - touchEndY.current;
+
+    // VERY IMPORTANT: Reset values immediately so a rapid double-tap doesn't use old cached end values
+    touchStartX.current = 0; touchEndX.current = 0; touchStartY.current = 0; touchEndY.current = 0;
+
+    // If there was basically no movement (like a single tap or tiny jitter), ignore it
+    if (Math.abs(deltaX) < SWIPE_THRESHOLD && Math.abs(deltaY) < SWIPE_THRESHOLD) {
+      return;
+    }
+
+    const container = getScrollContainer(currentSection);
+    if (!container) return;
+
+    // Use a small buffer (5px)
+    const scrolledToBottom = Math.ceil(container.clientHeight + container.scrollTop) >= container.scrollHeight - 5;
+    const scrolledToTop = container.scrollTop <= 5;
+
+    if (Math.abs(deltaX) > Math.abs(deltaY)) {
+      // Secret section disabled - no horizontal navigation
+    } else {
+      if (deltaY > SWIPE_THRESHOLD && scrolledToBottom) {
+        if (currentSection === 'home' || currentSection === 'view_link') navigateTo('stack');
+        else if (currentSection === 'stack') navigateTo('projects');
+      }
+      else if (deltaY < -SWIPE_THRESHOLD && scrolledToTop) {
+        if (currentSection === 'projects') navigateTo('stack');
+        else if (currentSection === 'stack') navigateTo('home');
+      }
+    }
+  };
+
+
+  // --- Wheel/Scroll Logic (Desktop) ---
+  const scrollAccumulator = useRef(0);
+  const lastWheelTime = useRef(0);
+  const navigationCooldownUntil = useRef(0);
+
+  useEffect(() => {
+    const handleWheel = (e: WheelEvent) => {
+      const now = Date.now();
+
+      // HARD LOCK: After navigating, ignore ALL wheel events for 1.5s.
+      // No exceptions. No debounce. No acceleration detection.
+      // This is the only reliable way to beat trackpad momentum.
+      if (now < navigationCooldownUntil.current) return;
+
+      if (isContactModalOpen || document.body.style.overflow === 'hidden') return;
+      if (isTransitioning) return;
+
+      const container = getScrollContainer(currentSection);
+      if (!container) return;
+
+      // Reset accumulator if user paused scrolling for 200ms (new gesture)
+      if (now - lastWheelTime.current > 200) {
+        scrollAccumulator.current = 0;
+      }
+      lastWheelTime.current = now;
+
+      const isScrollDown = e.deltaY > 0;
+      const isScrollUp = e.deltaY < 0;
+
+      // Check if at edges (5px buffer)
+      const scrolledToBottom = Math.ceil(container.clientHeight + container.scrollTop) >= container.scrollHeight - 5;
+      const scrolledToTop = container.scrollTop <= 5;
+
+      const THRESHOLD = 50;
+
+      if (isScrollDown && scrolledToBottom) {
+        scrollAccumulator.current += e.deltaY;
+
+        if (scrollAccumulator.current > THRESHOLD) {
+          scrollAccumulator.current = 0;
+          navigationCooldownUntil.current = now + 1500; // Lock for 1.5s
+
+          if (currentSection === 'home' || currentSection === 'view_link') navigateTo('stack');
+          else if (currentSection === 'stack') navigateTo('projects');
+        }
+      } else if (isScrollUp && scrolledToTop) {
+        scrollAccumulator.current += e.deltaY;
+
+        if (scrollAccumulator.current < -THRESHOLD) {
+          scrollAccumulator.current = 0;
+          navigationCooldownUntil.current = now + 1500; // Lock for 1.5s
+
+          if (currentSection === 'projects') navigateTo('stack');
+          else if (currentSection === 'stack') navigateTo('home');
+        }
+      } else {
+        scrollAccumulator.current = 0;
+      }
+    };
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (isContactModalOpen || document.body.style.overflow === 'hidden') {
+        if (e.key === 'Escape') closeContactModal();
+        const activeTag = document.activeElement?.tagName;
+        if (activeTag === 'INPUT' || activeTag === 'TEXTAREA') return;
+        if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', ' ', 'PageUp', 'PageDown', 'Home', 'End'].includes(e.key)) {
+          e.preventDefault();
+        }
+        return;
+      }
+    };
+
+    window.addEventListener('wheel', handleWheel, { passive: false });
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('wheel', handleWheel);
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [currentSection, isTransitioning, navigateTo, isContactModalOpen, closeContactModal]);
+
+  const mainRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const mainContainer = mainRef.current;
+    if (!mainContainer) return;
+
+    const preventPullToRefresh = (e: TouchEvent) => {
+      const container = getScrollContainer(currentSection);
+      if (!container) return;
+      const pullDelta = e.touches[0].clientY - touchStartY.current;
+      const isPullingDown = pullDelta > 10; // 10px threshold
+      const scrolledToTop = container.scrollTop <= 2;
+
+      if (scrolledToTop && isPullingDown && !isContactModalOpen) {
+        if (e.cancelable) e.preventDefault();
+      }
+    };
+
+    mainContainer.addEventListener('touchmove', preventPullToRefresh, { passive: false });
+    return () => mainContainer.removeEventListener('touchmove', preventPullToRefresh);
+  }, [currentSection, isContactModalOpen]);
+
+  const variants = {
+    enter: (direction: number) => {
+      if (Math.abs(direction) === 2) {
+        return { x: direction === 2 ? '100%' : '-100%', y: 0, opacity: 1, scale: 1 };
+      }
+      return { y: direction > 0 ? '100vh' : '-100vh', x: 0, opacity: 1, scale: 0.95 };
+    },
+    center: { x: 0, y: 0, opacity: 1, scale: 1 },
+    exit: (direction: number) => {
+      if (Math.abs(direction) === 2) {
+        return { x: direction === 2 ? '-100%' : '100%', y: 0, opacity: 1, scale: 1 };
+      }
+      return { y: direction < 0 ? '100vh' : '-100vh', x: 0, opacity: 1, scale: 0.95 };
+    }
+  };
 
   return (
-    <>
-      <SEOHead 
-        title={language === 'ar' ? 'يوسف محمود - مُطَوِّر الواجهات الأمامية والخلفية' : 'Y0ussef Mahmoud - Full-Stack Developer Portfolio'}
-        description={language === 'ar' 
-          ? ' مُطَوِّر الواجهات الأمامية والخلفية شغوف. خبير في React.js, Node.js, TypeScript, MySQL, Flutter. بناء تطبيقات ويب حديثة.'
-          : 'Passionate Full-Stack Developer & Project Engineer. Expert in React.js, Node.js, TypeScript, MySQL, Flutter. Building modern web and mobile applications.'
-        }
-      />
+    <main
+      ref={mainRef}
+      className="relative w-full h-screen overflow-hidden"
+      style={{ touchAction: 'pan-y' }}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+    >
+      <Loader isOpen={appLoading} isFullScreen={true} />
+      {/* Algorithm component disabled - uses Firebase */}
 
-      <div className="h-screen w-screen overflow-hidden bg-background text-foreground relative">
-        <div className="absolute inset-0 z-0 pointer-events-none">
-          <div className="absolute inset-0 bg-background/80 z-10" />
-          {/* Background Image - Commented out for now
-          <img
-            src="/images/My-Portfolio-1200x675.webp"
-            alt=""
-            className="w-full h-full object-cover opacity-30 scale-110"
-          />
-          */}
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/50 z-20" />
-          <div
-            className="absolute inset-0 opacity-[0.03] z-10"
-            style={{
-              backgroundImage:
-                'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)',
-              backgroundSize: '40px 40px',
-            }}
-          />
+      {(currentSection === 'home' || currentSection === 'view_link') && (
+        <div className="blob-container" style={{ zIndex: 0 }}>
+          <div className="blob blob-1"></div>
+          <div className="blob blob-2"></div>
+          <div className="blob blob-3"></div>
+          <div className="blob blob-4"></div>
+          <div className="blob blob-5"></div>
+          <div className="blob blob-6"></div>
         </div>
+      )}
 
-        <AccessibilitySkipLink href="#main">
-          {language === 'ar' ? 'انتقل إلى المحتوى' : 'Skip to content'}
-        </AccessibilitySkipLink>
+      <AnimatePresence initial={false} custom={direction} mode="popLayout">
+        <motion.div
+          key={currentSection}
+          id={`section-${currentSection}`}
+          custom={direction}
+          variants={variants}
+          initial="enter"
+          animate="center"
+          exit="exit"
+          transition={{
+            x: { type: "spring", stiffness: 300, damping: 30 },
+            y: { type: "spring", stiffness: 300, damping: 30 },
+            opacity: { duration: 0.2 },
+            scale: { duration: 0.3 }
+          }}
+          className="absolute inset-0 w-full h-full overflow-y-auto custom-scrollbar"
+        >
+          {renderSection()}
+        </motion.div>
+      </AnimatePresence>
+      {currentSection !== 'secret' && (
+        <button
+          onClick={() => navigateTo('secret')}
+          style={{
+            position: 'fixed',
+            right: 0,
+            top: '50%',
+            transform: 'translateY(-50%)',
+            backgroundColor: 'rgba(255, 255, 255, 0.1)',
+            backdropFilter: 'blur(8px)',
+            WebkitBackdropFilter: 'blur(8px)',
+            border: '1px solid rgba(255, 255, 255, 0.2)',
+            borderRight: 'none',
+            borderTopLeftRadius: '12px',
+            borderBottomLeftRadius: '12px',
+            padding: '12px 4px',
+            zIndex: 40,
+            color: 'var(--text-muted)',
+            transition: 'all 0.2s ease',
+            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.2)';
+            e.currentTarget.style.paddingRight = '8px';
+            e.currentTarget.style.color = 'var(--text-primary)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
+            e.currentTarget.style.paddingRight = '4px';
+            e.currentTarget.style.color = 'var(--text-muted)';
+          }}
+          aria-label="Go to Secret Page"
+        >
+          <ChevronRight size={20} />
+        </button>
+      )}
+      <AnimatePresence>
+        {isCVModalOpen && (
+          <MCV onClose={closeCVModal} onProjectClick={handleProjectClick} />
+        )}
+      </AnimatePresence>
 
-        <main id="main" className="relative z-20 h-full w-full flex items-center justify-center p-4 pb-24">
-          <ErrorBoundary>
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeTab}
-                initial={{ opacity: 0, scale: 0.95, y: 20, rotateX: 5 }}
-                animate={{ opacity: 1, scale: 1, y: 0, rotateX: 0 }}
-                exit={{ opacity: 0, scale: 1.05, y: -20, rotateX: -5 }}
-                transition={{
-                  duration: 0.15,
-                  ease: [0.4, 0, 0.2, 1],
-                }}
-                className="w-full flex items-center justify-center"
-              >
-                {renderContent()}
-              </motion.div>
-            </AnimatePresence>
-          </ErrorBoundary>
-        </main>
+      <AnimatePresence>
+        {showProjectModal && selectedProject && (
+          <MProjectView
+            project={selectedProject}
+            onClose={() => setShowProjectModal(false)}
+            onContributorClick={handleContributorClick}
+          />
+        )}
+      </AnimatePresence>
 
-        <Navbar
-          activeTab={activeTab}
-          setActiveTab={setActiveTab}
-          isDarkMode={isDarkMode}
-          toggleTheme={toggleTheme}
-          language={language}
-          toggleLanguage={toggleLanguage}
-          translations={t}
-        />
-      </div>
-    </>
+      <AnimatePresence>
+        {showContributorModal && selectedContributor && (
+          <MContributorView
+            contributor={selectedContributor}
+            onClose={() => setShowContributorModal(false)}
+          />
+        )}
+      </AnimatePresence>
+      <PageTransition
+        isTransitioning={isTransitioning}
+        onCurtainCovered={handleCurtainCovered}
+        onTransitionComplete={handleTransitionComplete}
+        nextSectionName={nextSection}
+        direction={direction}
+      />
+    </main>
   );
 }
 
