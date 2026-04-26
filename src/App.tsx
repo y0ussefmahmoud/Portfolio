@@ -13,7 +13,7 @@
  * @component
  */
 
-import { useState, useCallback, useEffect, useRef } from 'react';
+import { useState, useCallback, useEffect, useRef, lazy, Suspense } from 'react';
 import { AnimatePresence, motion, LayoutGroup } from 'framer-motion';
 import { ChevronRight } from 'lucide-react';
 import Hero from './components/HeroRevil';
@@ -21,14 +21,17 @@ import Navbar from './components/Navbar';
 import Stack from './components/Stack';
 import PageTransition from './components/PageTransition';
 import Projects from './components/ProjectsRevil';
-import MContact from './components/M-Contact';
 // import SecretPage from './components/SecretPage';
 // import Dashboard from './components/Dashboard';
 import Loader from './components/reactbits/Loader';
 // import { Algorithm } from './components/Algorithm';
-import MCV from './components/M-CV';
-import MProjectView from './components/M-ProjectView';
-import MContributorView, { Contributor as ContributorViewData } from './components/M-ContributorView';
+
+// Code splitting for large components
+const MContact = lazy(() => import('./components/M-Contact'));
+const MCV = lazy(() => import('./components/M-CV'));
+const MProjectView = lazy(() => import('./components/M-ProjectView'));
+const MContributorView = lazy(() => import('./components/M-ContributorView'));
+
 import { ProjectData as Project, ContributorData as Contributor } from './types';
 
 /**
@@ -58,7 +61,7 @@ function App() {
   const [isCVModalOpen, setIsCVModalOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [showProjectModal, setShowProjectModal] = useState(false);
-  const [selectedContributor, setSelectedContributor] = useState<ContributorViewData | null>(null);
+  const [selectedContributor, setSelectedContributor] = useState<Contributor | null>(null);
   const [showContributorModal, setShowContributorModal] = useState(false);
   const [hasAutoOpenedCV, setHasAutoOpenedCV] = useState(false);
 
@@ -189,7 +192,7 @@ function App() {
    * @param contributor - The contributor to display
    */
   const handleContributorClick = useCallback((contributor: Contributor) => {
-    setSelectedContributor(contributor as unknown as ContributorViewData);
+    setSelectedContributor(contributor);
     setShowContributorModal(true);
   }, []);
 
@@ -479,32 +482,40 @@ function App() {
         />
         <AnimatePresence>
           {isCVModalOpen && (
-            <MCV onClose={closeCVModal} onProjectClick={handleProjectClick} />
+            <Suspense fallback={<Loader isOpen={true} isFullScreen={false} />}>
+              <MCV onClose={closeCVModal} onProjectClick={handleProjectClick} />
+            </Suspense>
           )}
         </AnimatePresence>
 
         <AnimatePresence>
           {isContactModalOpen && (
-            <MContact onClose={closeContactModal} />
+            <Suspense fallback={<Loader isOpen={true} isFullScreen={false} />}>
+              <MContact onClose={closeContactModal} />
+            </Suspense>
           )}
         </AnimatePresence>
 
         <AnimatePresence>
           {showProjectModal && selectedProject && (
-            <MProjectView
-              project={selectedProject}
-              onClose={() => setShowProjectModal(false)}
-              onContributorClick={handleContributorClick}
-            />
+            <Suspense fallback={<Loader isOpen={true} isFullScreen={false} />}>
+              <MProjectView
+                project={selectedProject}
+                onClose={() => setShowProjectModal(false)}
+                onContributorClick={handleContributorClick}
+              />
+            </Suspense>
           )}
         </AnimatePresence>
 
         <AnimatePresence>
           {showContributorModal && selectedContributor && (
-            <MContributorView
-              contributor={selectedContributor}
-              onClose={() => setShowContributorModal(false)}
-            />
+            <Suspense fallback={<Loader isOpen={true} isFullScreen={false} />}>
+              <MContributorView
+                contributor={selectedContributor as any}
+                onClose={() => setShowContributorModal(false)}
+              />
+            </Suspense>
           )}
         </AnimatePresence>
       </LayoutGroup>

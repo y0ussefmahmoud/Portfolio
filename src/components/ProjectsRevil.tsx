@@ -115,6 +115,9 @@ const ProjectCard = ({ project, index, onClick }: { project: Project; index: num
                 ${isHovered ? 'shadow-xl' : 'shadow-md'}
             `}
             style={{ willChange: 'transform, opacity' }}
+            role="button"
+            tabIndex={0}
+            aria-label={`View ${project.title} project details`}
         >
             <div className="relative h-[200px] overflow-hidden rounded-t-[20px] will-change-transform">
                 {/* Slideshow Overlay */}
@@ -293,6 +296,7 @@ const ProjectsRevil = () => {
                             <button
                                 onClick={() => setSearchQuery('')}
                                 className="bg-none border-none text-sec cursor-pointer flex items-center"
+                                aria-label="Clear search"
                             >
                                 <X size={16} />
                             </button>
@@ -322,6 +326,8 @@ const ProjectsRevil = () => {
                                             ? 'border-accent bg-[rgba(59,130,246,0.12)] text-accent scale-105 z-10 shadow-[0_8px_16px_-4px_rgba(59,130,246,0.25)]'
                                             : 'border-[var(--navbar-border)] bg-[var(--card-bg)] text-sec'}
                                     `}
+                                    aria-label={`Filter by ${tag.name}${isActive ? ' (active)' : ''}`}
+                                    aria-pressed={isActive}
                                 >
                                     <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{ background: tag.color }}>
                                         <span className="text-white text-xs font-bold">{tag.name.charAt(0)}</span>
@@ -335,6 +341,7 @@ const ProjectsRevil = () => {
                             <button
                                 onClick={() => setSelectedTags([])}
                                 className="px-3 py-2 bg-transparent border-none text-accent text-xs font-black cursor-pointer transition-all duration-200 uppercase tracking-widest ml-1 hover:opacity-70"
+                                aria-label="Reset all filters"
                             >
                                 [ Reset ]
                             </button>

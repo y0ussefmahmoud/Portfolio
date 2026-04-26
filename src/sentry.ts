@@ -19,6 +19,8 @@ Sentry.init({
   release: 'portfolio-v3.0.0',
   // Sample rate for errors (100% in production)
   sampleRate: 1.0,
+  // Performance monitoring - only in production
+  tracesSampleRate: import.meta.env.MODE === 'production' ? 1.0 : 0,
   // Filter out errors from development
   beforeSend(event, hint) {
     if (import.meta.env.MODE === 'development') {

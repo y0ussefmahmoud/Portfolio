@@ -139,6 +139,7 @@ const SocialIcon = ({ name, url, delay }: { name: string; url: string; delay: nu
             rel="noopener noreferrer"
             onClick={() => trackClick(name)}
             className="group relative flex items-center justify-center p-3 rounded-xl transition-all duration-300 hover:bg-zinc-100 hover:scale-110"
+            aria-label={`Visit ${name} profile`}
         >
             {iconElement}
 

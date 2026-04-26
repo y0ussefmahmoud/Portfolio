@@ -223,10 +223,16 @@ const HeroRevil = () => {
                     </p>
 
                     <div className="flex gap-4 mt-8">
-                        <button className="px-6 py-3 rounded-xl bg-[var(--accent)] text-white font-semibold hover:scale-105 transition-transform">
+                        <button 
+                            className="px-6 py-3 rounded-xl bg-[var(--accent)] text-white font-semibold hover:scale-105 transition-transform"
+                            aria-label="View projects portfolio"
+                        >
                             View Projects
                         </button>
-                        <button className="px-6 py-3 rounded-xl glass-panel border border-[var(--navbar-border)] font-semibold hover:scale-105 transition-transform">
+                        <button 
+                            className="px-6 py-3 rounded-xl glass-panel border border-[var(--navbar-border)] font-semibold hover:scale-105 transition-transform"
+                            aria-label="Open contact form"
+                        >
                             Contact Me
                         </button>
                     </div>

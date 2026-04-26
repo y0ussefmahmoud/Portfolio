@@ -21,6 +21,7 @@ import { X, Send, Paperclip, User, Phone, MessageSquare, Check, Mail, Calendar, 
 import Alert from './Alert';
 import useSafeAlert from '../hooks/useSafeAlert';
 import { useRateLimit } from '../hooks/useRateLimit';
+import DOMPurify from 'dompurify';
 
 /**
  * Meeting interface (currently unused but kept for future meeting booking feature)
@@ -167,8 +168,16 @@ const MContact = ({ onClose, initialTab = 'message', hideTabs = false }: Omit<MC
     setIsSubmitting(true);
     recordAttempt(); // Record this submission attempt
 
+    // Sanitize inputs to prevent XSS attacks
+    const sanitizedData = {
+      name: DOMPurify.sanitize(formData.name),
+      email: DOMPurify.sanitize(formData.email),
+      number: DOMPurify.sanitize(formData.number),
+      message: DOMPurify.sanitize(formData.message),
+    };
+
     try {
-      // Simulate sending message
+      // Simulate sending message with sanitized data
       await new Promise(resolve => setTimeout(resolve, 1000));
       
       showAlert({ type: 'success', message: "Message sent! I'll get back to you soon." });
