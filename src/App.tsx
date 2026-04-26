@@ -1,3 +1,18 @@
+/**
+ * App Component
+ * 
+ * Main application component that manages section navigation, modals, and page transitions.
+ * Features:
+ * - Section-based navigation (home, stack, projects)
+ * - Scroll-based navigation with wheel and keyboard support
+ * - Modal management (Contact, CV, Project, Contributor)
+ * - Page transitions with animation
+ * - Loading state management
+ * - Interviewer mode for auto-opening CV
+ * 
+ * @component
+ */
+
 import { useState, useCallback, useEffect, useRef } from 'react';
 import { AnimatePresence, motion, LayoutGroup } from 'framer-motion';
 import { ChevronRight } from 'lucide-react';
@@ -16,6 +31,10 @@ import MProjectView from './components/M-ProjectView';
 import MContributorView, { Contributor as ContributorViewData } from './components/M-ContributorView';
 import { ProjectData as Project, ContributorData as Contributor } from './types';
 
+/**
+ * Section type for navigation
+ * Represents different sections of the portfolio
+ */
 type Section = 'home' | 'stack' | 'projects' | 'secret' | 'dashboard' | 'view_link';
 
 function App() {
@@ -43,6 +62,10 @@ function App() {
   const [showContributorModal, setShowContributorModal] = useState(false);
   const [hasAutoOpenedCV, setHasAutoOpenedCV] = useState(false);
 
+  /**
+   * Initialize window ready state
+   * Sets isWindowReady to true when DOM is loaded or already interactive
+   */
   useEffect(() => {
     const handleLoad = () => setIsWindowReady(true);
     if (document.readyState === 'complete' || document.readyState === 'interactive') {
@@ -53,7 +76,10 @@ function App() {
     }
   }, []);
 
-  // Safety timer to hide loader if data never arrives
+  /**
+   * Safety timer to hide loader if data never arrives
+   * Prevents infinite loading state
+   */
   useEffect(() => {
     const safety = setTimeout(() => {
       setForceHideLoading(true);
@@ -61,11 +87,16 @@ function App() {
     return () => clearTimeout(safety);
   }, []);
 
-  // Derived loading state (avoid setting state synchronously inside effects)
+  /**
+   * Derived loading state
+   * Avoids setting state synchronously inside effects
+   */
   const appLoading = forceHideLoading ? false : !(isDataReady && isWindowReady);
 
-
-
+  /**
+   * Handle hero animation completion
+   * Auto-opens CV modal in interviewer mode
+   */
   const handleHeroAnimationComplete = useCallback(() => {
     const isInterviewerMode = sessionStorage.getItem('revil_interviewer_mode') === 'true';
     if (isInterviewerMode && !hasAutoOpenedCV && (currentSection === 'home' || currentSection === 'view_link')) {
@@ -76,11 +107,19 @@ function App() {
 
   const [direction, setDirection] = useState(0);
 
-  // Helper to get the current scrollable container by ID
+  /**
+   * Get the current scrollable container by ID
+   * @param sectionName - The section name to get container for
+   * @returns The scrollable container element or null
+   */
   const getScrollContainer = (sectionName: Section) => {
     return document.getElementById(`section-${sectionName}`) as HTMLDivElement | null;
   };
 
+  /**
+   * Navigate to a specific section
+   * @param section - The section to navigate to
+   */
   const navigateTo = useCallback((section: Section) => {
     if (section !== currentSection && !isTransitioning) {
       const order: Section[] = ['home', 'stack', 'projects'];
@@ -100,28 +139,64 @@ function App() {
     }
   }, [currentSection, isTransitioning]);
 
+  /**
+   * Handle curtain covered during transition
+   * Called when the transition curtain covers the screen
+   */
   const handleCurtainCovered = useCallback(() => { }, []);
 
+  /**
+   * Handle transition complete
+   * Resets transitioning state when animation finishes
+   */
   const handleTransitionComplete = useCallback(() => {
     setIsTransitioning(false);
   }, []);
 
+  /**
+   * Open contact modal
+   */
   const openContactModal = useCallback(() => setIsContactModalOpen(true), []);
+
+  /**
+   * Close contact modal
+   */
   const closeContactModal = useCallback(() => setIsContactModalOpen(false), []);
 
+  /**
+   * Open CV modal
+   */
   const openCVModal = useCallback(() => setIsCVModalOpen(true), []);
+
+  /**
+   * Close CV modal
+   */
   const closeCVModal = useCallback(() => setIsCVModalOpen(false), []);
 
+  /**
+   * Handle project click
+   * Opens project modal with selected project details
+   * @param project - The project to display
+   */
   const handleProjectClick = useCallback((project: Project) => {
     setSelectedProject(project);
     setShowProjectModal(true);
   }, []);
 
+  /**
+   * Handle contributor click
+   * Opens contributor modal with selected contributor details
+   * @param contributor - The contributor to display
+   */
   const handleContributorClick = useCallback((contributor: Contributor) => {
     setSelectedContributor(contributor as unknown as ContributorViewData);
     setShowContributorModal(true);
   }, []);
 
+  /**
+   * Render the current section component
+   * @returns The component for the current section
+   */
   const renderSection = () => {
     switch (currentSection) {
       case 'home':
@@ -239,6 +314,7 @@ function App() {
 
           if (currentSection === 'home' || currentSection === 'view_link') navigateTo('stack');
           else if (currentSection === 'stack') navigateTo('projects');
+          else if (currentSection === 'projects') navigateTo('home'); // Loop back to home
         }
       } else if (isScrollUp && scrolledToTop) {
         scrollAccumulator.current += e.deltaY;
@@ -404,6 +480,12 @@ function App() {
         <AnimatePresence>
           {isCVModalOpen && (
             <MCV onClose={closeCVModal} onProjectClick={handleProjectClick} />
+          )}
+        </AnimatePresence>
+
+        <AnimatePresence>
+          {isContactModalOpen && (
+            <MContact onClose={closeContactModal} />
           )}
         </AnimatePresence>
 

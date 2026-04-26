@@ -1,8 +1,30 @@
+/**
+ * Stack Component
+ * 
+ * Tech stack display with animated icons and social links.
+ * Features:
+ * - Animated tech stack icons with blur effect
+ * - Social media links with click tracking
+ * - Responsive grid layout
+ * - Hover effects
+ * - Fallback icons for missing images
+ * 
+ * @component
+ */
+
 import { createElement, useEffect, useRef, useState, useMemo } from 'react';
 import anime from 'animejs';
 import { Github, Instagram, Linkedin, Twitter, Facebook, Mail, Link as LinkIcon, Twitch, Youtube, Code } from 'lucide-react';
 import { useSocialTracker } from '../hooks/useSocialTracker';
 
+/**
+ * Props for StackItem component
+ * @interface StackItemProps
+ * @property {string} icon - Icon URL or SVG string
+ * @property {string} name - Technology name
+ * @property {number} delay - Animation delay in milliseconds
+ * @property {number} iconSize - Icon size in pixels
+ */
 interface StackItemProps {
     icon: string;
     name: string;
@@ -10,6 +32,15 @@ interface StackItemProps {
     iconSize: number;
 }
 
+/**
+ * StackItem Component
+ * 
+ * Individual tech stack item with animation and hover effects.
+ * @param icon - Icon URL or SVG string
+ * @param name - Technology name
+ * @param iconSize - Icon size in pixels
+ * @param delay - Animation delay in milliseconds
+ */
 const StackItem = ({ icon, name, iconSize, delay }: StackItemProps) => {
     const itemRef = useRef<HTMLDivElement>(null);
     const [isHovered, setIsHovered] = useState(false);

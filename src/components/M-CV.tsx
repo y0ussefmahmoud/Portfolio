@@ -1,3 +1,18 @@
+/**
+ * M-CV Component
+ * 
+ * CV modal with personal information, projects, and tech stack.
+ * Features:
+ * - Personal information display
+ * - Project listing with click tracking
+ * - Tech stack display
+ * - Social media links
+ * - Responsive design
+ * - Smooth animations
+ * 
+ * @component
+ */
+
 import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { motion } from 'framer-motion';
@@ -6,6 +21,10 @@ import { ProjectData as FullProject } from '../types';
 import { useSocialTracker } from '../hooks/useSocialTracker';
 import projectsData from '../data/projects.json';
 
+/**
+ * CV Project interface
+ * @interface CVProject
+ */
 interface CVProject {
     id: string;
     title: string;
@@ -14,15 +33,36 @@ interface CVProject {
     listing?: number;
 }
 
+/**
+ * Stack Item type
+ */
 type StackItem = { id: string; name: string; icon?: string };
+
+/**
+ * Contributor type
+ */
 type Contributor = { id: string; name?: string; role?: string; image?: string; links?: Record<string, string> };
 
+/**
+ * Props for MCV component
+ * @interface MCVProps
+ * @property {boolean} isOpen - Whether modal is open
+ * @property {() => void} onClose - Function to close modal
+ * @property {(project: FullProject) => void} onProjectClick - Function to handle project click
+ */
 interface MCVProps {
     isOpen: boolean;
     onClose: () => void;
     onProjectClick: (project: FullProject) => void;
 }
 
+/**
+ * MCV Component
+ * 
+ * CV modal with personal information and project showcase.
+ * @param onClose - Function to close modal
+ * @param onProjectClick - Function to handle project click
+ */
 const MCV = ({ onClose, onProjectClick }: Omit<MCVProps, 'isOpen'>) => {
     const { trackClick } = useSocialTracker();
     const [projects, setProjects] = useState<CVProject[]>([]);

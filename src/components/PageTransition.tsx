@@ -1,6 +1,29 @@
+/**
+ * PageTransition Component
+ * 
+ * Animated page transition with curtain effect and handwriting animation.
+ * Features:
+ * - Directional curtain animation (top, bottom, left, right)
+ * - Handwriting text animation for section names
+ * - Responsive font sizing
+ * - Smooth easing functions
+ * - Blur backdrop effect
+ * 
+ * @component
+ */
+
 import { useEffect, useRef, useState } from 'react';
 import anime from 'animejs';
 
+/**
+ * Props for PageTransition component
+ * @interface PageTransitionProps
+ * @property {boolean} isTransitioning - Whether transition is active
+ * @property {() => void} onCurtainCovered - Callback when curtain covers screen
+ * @property {() => void} onTransitionComplete - Callback when transition completes
+ * @property {string} [nextSectionName] - Name of next section to display
+ * @property {number} [direction] - Direction of transition (positive = down/right, negative = up/left)
+ */
 interface PageTransitionProps {
     isTransitioning: boolean;
     onCurtainCovered: () => void;

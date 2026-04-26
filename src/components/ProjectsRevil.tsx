@@ -1,9 +1,28 @@
+/**
+ * ProjectsRevil Component
+ * 
+ * Projects showcase with filtering, search, and animated cards.
+ * Features:
+ * - Project grid with image slideshow
+ * - Tag-based filtering
+ * - Search functionality
+ * - Animated card hover effects
+ * - Responsive design
+ * - Shimmer loading effect for images
+ * 
+ * @component
+ */
+
 import { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import anime from 'animejs';
 import { X, Search } from 'lucide-react';
 import projectsJson from '../data/projects.json';
 
+/**
+ * Project interface
+ * @interface Project
+ */
 interface Project {
     id: string;
     title: string;
@@ -14,6 +33,13 @@ interface Project {
     liveLink: string;
 }
 
+/**
+ * CardImage Component
+ * 
+ * Project card image with shimmer loading effect.
+ * @param src - Image source URL
+ * @param alt - Image alt text
+ */
 const CardImage = ({ src, alt }: { src: string; alt: string }) => {
     const [isImageLoaded, setIsImageLoaded] = useState(false);
     return (

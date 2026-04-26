@@ -53,12 +53,48 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
   }
 
   /**
-   * Logs error details to console
+   * Logs error details to console with structured error tracking
    * Called after error is caught
+   * Includes timestamp, error details, and component stack for debugging
    */
   componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
-    console.error('Error caught by ErrorBoundary:', error);
-    console.error('Error Info:', errorInfo);
+    const timestamp = new Date().toISOString();
+    const errorDetails = {
+      timestamp,
+      error: {
+        name: error.name,
+        message: error.message,
+        stack: error.stack,
+      },
+      componentStack: errorInfo.componentStack,
+      userAgent: navigator.userAgent,
+      url: window.location.href,
+    };
+
+    // Log structured error for debugging
+    console.group('🚨 Error Boundary - Error Caught');
+    console.error('Timestamp:', timestamp);
+    console.error('Error:', error);
+    console.error('Component Stack:', errorInfo.componentStack);
+    console.error('User Agent:', navigator.userAgent);
+    console.error('URL:', window.location.href);
+    console.groupEnd();
+
+    // Store error in localStorage for error tracking (optional)
+    try {
+      const errorHistory = JSON.parse(localStorage.getItem('errorHistory') || '[]');
+      errorHistory.push(errorDetails);
+      // Keep only last 10 errors
+      if (errorHistory.length > 10) {
+        errorHistory.shift();
+      }
+      localStorage.setItem('errorHistory', JSON.stringify(errorHistory));
+    } catch (e) {
+      console.warn('Failed to store error in localStorage:', e);
+    }
+
+    // In production, you would send this to an error tracking service like Sentry
+    // Example: Sentry.captureException(error, { extra: errorDetails });
   }
 
   /**

@@ -1,11 +1,43 @@
+/**
+ * Navbar Component
+ * 
+ * Navigation bar with section navigation, theme toggle, and modal triggers.
+ * Features:
+ * - Section navigation (home, stack, projects)
+ * - Dark/light theme toggle with localStorage persistence
+ * - Contact and CV modal triggers
+ * - Responsive design for mobile/desktop
+ * - Tooltips for navigation items
+ * 
+ * @component
+ */
+
 import { Home, Layers, FolderKanban, Mail, Moon, Sun, FileText } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
+/**
+ * Section type for navigation
+ * Represents different sections of the portfolio
+ */
 type NavigateSection = 'home' | 'stack' | 'projects' | 'secret' | 'dashboard' | 'view_link';
 
+/**
+ * Navigation function type
+ * @param section - The section to navigate to
+ */
 type NavigateFn = (section: NavigateSection) => void;
 
+/**
+ * Props for Navbar component
+ * @interface NavbarProps
+ * @property {NavigateFn} [onNavigate] - Function to handle section navigation
+ * @property {NavigateSection} [currentSection] - Currently active section
+ * @property {() => void} [onOpenContact] - Function to open contact modal
+ * @property {boolean} [isContactOpen] - Whether contact modal is open
+ * @property {() => void} [onOpenCV] - Function to open CV modal
+ * @property {boolean} [isCVOpen] - Whether CV modal is open
+ */
 interface NavbarProps {
     onNavigate?: NavigateFn;
     currentSection?: NavigateSection;
@@ -15,6 +47,12 @@ interface NavbarProps {
     isCVOpen?: boolean;
 }
 
+/**
+ * Tooltip component for navigation items
+ * @param text - Tooltip text to display
+ * @param show - Whether to show the tooltip
+ * @param isDark - Whether dark mode is active
+ */
 const Tooltip = ({ text, show, isDark }: { text: string; show: boolean; isDark: boolean }) => (
     <div className={`absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-opacity duration-200 ${show ? 'opacity-100' : 'opacity-0 pointer-events-none'}`} style={{
         backgroundColor: isDark ? 'rgba(10, 10, 12, 0.9)' : 'rgba(255, 255, 255, 0.9)',
@@ -77,7 +115,7 @@ const Navbar = ({ onNavigate, currentSection = 'home', onOpenContact, isContactO
 
     // Auto-show tooltips logic: Projects (3s) -> Contact (3s) -> 10s wait
     useEffect(() => {
-        let cycleTimeout: NodeJS.Timeout;
+        let cycleTimeout: ReturnType<typeof setTimeout>;
 
         const runCycle = () => {
             if (isHoveringNav) {
@@ -165,6 +203,8 @@ const Navbar = ({ onNavigate, currentSection = 'home', onOpenContact, isContactO
                             onClick={() => onNavigate?.('home')}
                             onMouseEnter={() => setHoveredTab('home')}
                             onMouseLeave={() => setHoveredTab(null)}
+                            aria-label="Navigate to Home section"
+                            aria-current={currentSection === 'home' ? 'page' : undefined}
                         >
                             <Home size={iconSize} strokeWidth={2} />
                         </button>
@@ -177,6 +217,8 @@ const Navbar = ({ onNavigate, currentSection = 'home', onOpenContact, isContactO
                             onClick={() => onNavigate?.('stack')}
                             onMouseEnter={() => setHoveredTab('stack')}
                             onMouseLeave={() => setHoveredTab(null)}
+                            aria-label="Navigate to Tech Stack section"
+                            aria-current={currentSection === 'stack' ? 'page' : undefined}
                         >
                             <Layers size={iconSize} strokeWidth={2} />
                         </button>
@@ -189,6 +231,8 @@ const Navbar = ({ onNavigate, currentSection = 'home', onOpenContact, isContactO
                             onClick={() => onNavigate?.('projects')}
                             onMouseEnter={() => setHoveredTab('projects')}
                             onMouseLeave={() => setHoveredTab(null)}
+                            aria-label="Navigate to Projects section"
+                            aria-current={currentSection === 'projects' ? 'page' : undefined}
                         >
                             <FolderKanban size={iconSize} strokeWidth={2} />
                         </button>
@@ -214,6 +258,8 @@ const Navbar = ({ onNavigate, currentSection = 'home', onOpenContact, isContactO
                             onClick={onOpenCV}
                             onMouseEnter={() => setHoveredTab('cv')}
                             onMouseLeave={() => setHoveredTab(null)}
+                            aria-label="Open Digital CV"
+                            aria-expanded={isCVOpen}
                         >
                             <motion.div layoutId="cv-icon" className="flex items-center justify-center" transition={{ type: 'spring', damping: 30, stiffness: 350, mass: 1 }}>
                                 <FileText size={20} strokeWidth={2.5} />
@@ -263,6 +309,8 @@ const Navbar = ({ onNavigate, currentSection = 'home', onOpenContact, isContactO
                             onClick={onOpenContact}
                             onMouseEnter={() => setHoveredTab('mail')}
                             onMouseLeave={() => setHoveredTab(null)}
+                            aria-label="Open Contact form"
+                            aria-expanded={isContactOpen}
                         >
                             <motion.div layoutId="contact-icon" className="flex items-center justify-center" transition={{ type: 'spring', damping: 30, stiffness: 350, mass: 1 }}>
                                 <Mail size={24} strokeWidth={2} />
@@ -284,6 +332,7 @@ const Navbar = ({ onNavigate, currentSection = 'home', onOpenContact, isContactO
                         onClick={toggleTheme}
                         onMouseEnter={() => setHoveredTab('theme')}
                         onMouseLeave={() => setHoveredTab(null)}
+                        aria-label={`Switch to ${isDark ? 'light' : 'dark'} mode`}
                         className={`
                             btn-icon flex items-center justify-center
                             ${isMobile ? 'p-2 rounded-xl' : 'p-3 rounded-2xl'}

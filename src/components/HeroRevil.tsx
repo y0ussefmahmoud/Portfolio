@@ -1,10 +1,34 @@
+/**
+ * HeroRevil Component
+ * 
+ * Hero section with handwriting animation and interactive elements.
+ * Features:
+ * - Handwriting text animation using anime.js
+ * - Animated background elements
+ * - Interactive buttons for CV and projects
+ * - Responsive design
+ * - Smooth animations
+ * 
+ * @component
+ */
+
 import { useEffect, useRef, useState } from 'react';
 import anime from 'animejs';
 import { Plus, Briefcase } from 'lucide-react';
 
 const DEFAULT_HERO_URL = "";
 
-// True handwriting animation - letter by letter
+/**
+ * HandwritingText Component
+ * 
+ * Animated text with handwriting effect using anime.js.
+ * @param text - Text to animate
+ * @param fontSize - Font size in pixels
+ * @param delay - Animation delay in milliseconds
+ * @param color - Text color
+ * @param rotate - Rotation angle in degrees
+ * @param isReady - Whether component is ready to animate
+ */
 const HandwritingText = ({
     text,
     fontSize = 70,
