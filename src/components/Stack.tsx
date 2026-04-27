@@ -16,6 +16,7 @@ import { createElement, useEffect, useRef, useState, useMemo } from 'react';
 import anime from 'animejs';
 import { Github, Instagram, Linkedin, Twitter, Facebook, Mail, Link as LinkIcon, Twitch, Youtube, Code } from 'lucide-react';
 import { useSocialTracker } from '../hooks/useSocialTracker';
+import { useLanguage } from '../contexts/LanguageContext';
 
 /**
  * Props for StackItem component
@@ -153,6 +154,7 @@ const SocialIcon = ({ name, url, delay }: { name: string; url: string; delay: nu
 };
 
 const Stack = () => {
+    const { t } = useLanguage();
     const titleRef = useRef<HTMLHeadingElement>(null);
     const handwritingRef = useRef<HTMLDivElement>(null);
     const containerRef = useRef<HTMLDivElement>(null);

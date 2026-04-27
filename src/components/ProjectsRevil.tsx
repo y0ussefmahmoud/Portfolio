@@ -18,6 +18,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import anime from 'animejs';
 import { X, Search } from 'lucide-react';
 import projectsJson from '../data/projects.json';
+import { useLanguage } from '../contexts/LanguageContext';
 
 /**
  * Project interface
@@ -180,6 +181,7 @@ const ProjectCard = ({ project, index, onClick }: { project: Project; index: num
 };
 
 const ProjectsRevil = () => {
+    const { t } = useLanguage();
     const titleRef = useRef<HTMLHeadingElement>(null);
     const handwritingRef = useRef<HTMLDivElement>(null);
     const [searchQuery, setSearchQuery] = useState('');

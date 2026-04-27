@@ -25,6 +25,7 @@ import Projects from './components/ProjectsRevil';
 // import Dashboard from './components/Dashboard';
 import Loader from './components/reactbits/Loader';
 // import { Algorithm } from './components/Algorithm';
+import { LanguageProvider } from './contexts/LanguageContext';
 
 // Code splitting for large components
 const MContact = lazy(() => import('./components/M-Contact'));
@@ -530,4 +531,16 @@ function App() {
   );
 }
 
-export default App;
+/**
+ * App Wrapper with LanguageProvider
+ * Wraps the main App component with language context
+ */
+const AppWithLanguage: React.FC = () => {
+  return (
+    <LanguageProvider>
+      <App />
+    </LanguageProvider>
+  );
+};
+
+export default AppWithLanguage;

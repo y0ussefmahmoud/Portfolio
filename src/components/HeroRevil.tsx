@@ -15,6 +15,7 @@
 import { useEffect, useRef, useState } from 'react';
 import anime from 'animejs';
 import { Plus, Briefcase } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const DEFAULT_HERO_URL = "";
 
@@ -154,6 +155,7 @@ const AvailableBadge = () => {
 };
 
 const HeroRevil = () => {
+    const { t } = useLanguage();
     const sloganRef = useRef<HTMLDivElement>(null);
     const nameRef = useRef<HTMLHeadingElement>(null);
     const imageRef = useRef<HTMLDivElement>(null);
@@ -219,21 +221,21 @@ const HeroRevil = () => {
                     </h1>
 
                     <p className="text-xl md:text-2xl text-sec mt-6 max-w-lg">
-                        Full-Stack Developer & Project Engineer
+                        {t.hero.tagline}
                     </p>
 
                     <div className="flex gap-4 mt-8">
-                        <button 
+                        <button
                             className="px-6 py-3 rounded-xl bg-[var(--accent)] text-white font-semibold hover:scale-105 transition-transform"
                             aria-label="View projects portfolio"
                         >
-                            View Projects
+                            {t.hero.ctaPrimary}
                         </button>
-                        <button 
+                        <button
                             className="px-6 py-3 rounded-xl glass-panel border border-[var(--navbar-border)] font-semibold hover:scale-105 transition-transform"
                             aria-label="Open contact form"
                         >
-                            Contact Me
+                            {t.hero.ctaSecondary}
                         </button>
                     </div>
                 </div>
@@ -242,12 +244,16 @@ const HeroRevil = () => {
                 <div ref={imageRef} className="flex justify-center opacity-0">
                     <div className="relative">
                         <div className="w-80 h-80 md:w-96 md:h-96 rounded-full overflow-hidden glass-panel border border-[var(--navbar-border)] shadow-2xl">
-                            <img 
-                                src="/images/profile-placeholder.jpg"
-                                alt="Profile"
+                            <img
+                                src={`${import.meta.env.BASE_URL}images/hero-800x1000.webp`}
+                                alt="Y0ussef Mahmoud - Full-Stack Developer"
                                 className="w-full h-full object-cover"
                                 onError={(e) => {
+                                    console.error('Hero image failed to load:', e.currentTarget.src);
                                     e.currentTarget.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Crect fill='%23f5f5f5' width='400' height='400'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='24' fill='%23999'%3EProfile Image%3C/text%3E%3C/svg%3E";
+                                }}
+                                onLoad={() => {
+                                    console.log('Hero image loaded successfully');
                                 }}
                             />
                         </div>

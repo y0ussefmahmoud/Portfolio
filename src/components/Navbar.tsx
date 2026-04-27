@@ -12,9 +12,11 @@
  * @component
  */
 
-import { Home, Layers, FolderKanban, Mail, Moon, Sun, FileText } from 'lucide-react';
+import { Home, Layers, FolderKanban, Mail, Moon, Sun, FileText, Globe } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { useLanguage } from '../contexts/LanguageContext';
+import { LanguageSwitcher } from './LanguageSwitcher';
 
 /**
  * Section type for navigation
@@ -346,6 +348,9 @@ const Navbar = ({ onNavigate, currentSection = 'home', onOpenContact, isContactO
                             <Moon size={iconSize} strokeWidth={2} />
                         )}
                     </button>
+
+                    {/* Language switcher - disabled for future development */}
+                    {/* <LanguageSwitcher isMobile={isMobile} iconSize={iconSize} isDark={isDark} /> */}
                 </div>
             </div>
         </nav>

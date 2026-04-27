@@ -113,6 +113,8 @@ const RotatingText = forwardRef<RotatingTextRef, RotatingTextProps>((props, ref)
     const getStaggerDelay = useCallback(
         (index: number, totalChars: number): number => {
             const total = totalChars;
+            // Prevent NaN values by ensuring total is valid
+            if (total <= 0 || isNaN(total)) return 0;
             if (staggerFrom === 'first') return index * staggerDuration;
             if (staggerFrom === 'last') return (total - 1 - index) * staggerDuration;
             if (staggerFrom === 'center') {
@@ -269,7 +271,7 @@ const Loader: React.FC<LoaderProps> = ({ isOpen = true, isFullScreen = false }) 
                                     Y0ussef
                                 </motion.span>
                                 <RotatingText
-                                    texts={['INIT', 'DATA', 'CORE', 'PROJECTS', 'STACK']}
+                                    texts={['Abdelgawad', '.com', 'Y0', 'PROJECTS', 'STACK']}
                                     mainClassName="px-3 sm:px-4 md:px-5 bg-cyan-300 text-black overflow-hidden py-1 sm:py-2 md:py-3 justify-center rounded-2xl font-black text-4xl sm:text-5xl md:text-6xl tracking-tight"
                                     staggerFrom={"last"}
                                     initial={{ y: "100%", opacity: 0 }}
