@@ -2,6 +2,19 @@
 
 A modern, high-performance, and responsive portfolio website built with **React.js**, **TypeScript**, **Vite 6**, and **Tailwind CSS 4**.
 
+## What's New in V3.0.6
+
+- **Services Section Added**: New comprehensive Services section with 6 service cards (Web Development, Mobile Apps, UI/UX Design, Backend Development, Cloud Services, Tech Consulting)
+- **Hero Section Redesigned**: Replicated hero design and animations from revil project with handwriting SVG animations using Anime.js
+- **Projects Section Reordered**: Projects section now appears immediately after Hero section for better content flow
+- **New Navigation Order**: Home → Projects → Services → Stack (optimized for user experience)
+- **Responsive Design Improvements**: Added extra small mobile breakpoint (320px) with optimized font sizes and spacing
+- **Services Translations**: Added complete translations for services section in both English and Arabic
+- **Project Link Updated**: Updated Abdulaziz Alablam project link to new domain (https://alablam.org/)
+- **Security Headers**: Added CSP, HSTS, and security headers in .htaccess for Hostinger deployment
+- **Custom Hooks**: Refactored App.tsx with useNavigation and useModal hooks for better code organization
+- **Type Safety**: Maintained 100% TypeScript coverage with zero lint errors
+
 ## What's New in V2.5.0
 
 - **Contact WhatsApp Integration**: Replaced phone contact with WhatsApp integration using official WhatsApp icon and API
@@ -33,11 +46,16 @@ A modern, high-performance, and responsive portfolio website built with **React.
 
 - **React.js 18 + TypeScript**: Built with the latest industry standards.
 - **Tailwind CSS 4**: Modern styling with zero-runtime CSS variables.
-- **Fully Responsive**: Optimized for mobile, tablet, and desktop.
+- **Fully Responsive**: Optimized for mobile, tablet, and desktop with extra small breakpoint (320px).
 - **Dark/Light Theme**: Automatic and manual theme switching.
-- **Multi-language**: Seamless English and Arabic (RTL) support.
+- **Multi-language**: Seamless English and Arabic (RTL) support with complete translations.
 - **SEO Optimized**: Complete meta tags, JSON-LD schema, `robots.txt`, and `sitemap.xml`.
 - **Accessible**: WCAG 2.1 compliant with proper ARIA labels and skip links.
+- **Section Navigation**: Scroll-based and keyboard navigation between sections.
+- **Custom Hooks**: useNavigation and useModal for reusable logic.
+- **Security Hardened**: CSP, HSTS, and security headers configured.
+- **Anime.js Animations**: Handwriting SVG animations and entrance effects.
+- **Error Boundaries**: Graceful error handling with fallback UI.
 
 ## 🛠️ Tech Stack
 
@@ -45,7 +63,8 @@ A modern, high-performance, and responsive portfolio website built with **React.
 - **React.js 18** - UI Framework
 - **TypeScript** - Type Safety
 - **Tailwind CSS 4** - Styling
-- **Framer Motion** - Animations
+- **Framer Motion** - Page Transitions & Animations
+- **Anime.js** - Handwriting SVG Animations
 - **Lucide React** - Iconography
 - **Radix UI** - Accessible Components
 
@@ -53,6 +72,8 @@ A modern, high-performance, and responsive portfolio website built with **React.
 - **Vite 6** - Next Generation Frontend Tooling
 - **npm** - Package Management
 - **GitHub Actions** - CI/CD for Deployment
+- **Vitest** - Unit Testing
+- **Sentry** - Error Tracking & Monitoring
 
 ## 📥 Installation & Setup
 
@@ -79,14 +100,33 @@ npm run dev
 npm run build
 ```
 
+### Available Scripts
+
+```bash
+npm run dev           # Start development server
+npm run build         # Build for production
+npm run preview       # Preview production build
+npm run test          # Run unit tests
+npm run test:ui       # Run tests with UI
+npm run test:run      # Run tests once
+npm run deploy        # Deploy to GitHub Pages
+```
+
 ## 🚀 Deployment
 
 ### GitHub Pages (Automated)
 The project is configured with **GitHub Actions**. Every push to the `main` branch automatically builds and deploys the site to:
 **[https://y0ussefmahmoud.github.io/Portfolio/](https://y0ussefmahmoud.github.io/Portfolio/)**
 
+### Hostinger (Recommended for Custom Domain)
+Configured with `.htaccess` for SPA routing and security headers:
+1. Build the project: `npm run build`
+2. Upload `dist/` contents to Hostinger public_html
+3. Domain: https://y0ussef.com
+
 ### Manual Deployment
 ```bash
+npm run build
 npm run deploy
 ```
 
@@ -94,19 +134,29 @@ npm run deploy
 
 ```
 Portfolio/
-├── public/          # Static assets (images, icons, robots.txt)
+├── public/              # Static assets (images, icons, robots.txt, .htaccess)
 ├── src/
-│   ├── components/  # Atomic React components
-│   ├── data/        # Content and configuration data
-│   ├── hooks/       # Custom React hooks
-│   ├── i18n/        # Translation files (EN/AR)
-│   ├── lib/         # Utility functions and shared logic
-│   ├── types/       # TypeScript interfaces and types
-│   ├── App.tsx      # Main application logic & modal system
-│   └── main.tsx     # Application entry point
-├── index.html       # HTML Entry & Meta Tags
-├── package.json     # Project dependencies & scripts
-└── tsconfig.json    # TypeScript configuration
+│   ├── components/      # Atomic React components
+│   │   ├── HeroY0.tsx      # Hero section with handwriting animations
+│   │   ├── ProjectsY0.tsx  # Projects gallery
+│   │   ├── ServicesY0.tsx  # Services section (6 cards)
+│   │   ├── Stack.tsx       # Tech stack display
+│   │   ├── Navbar.tsx      # Navigation with section buttons
+│   │   └── ...
+│   ├── contexts/      # React contexts (LanguageContext)
+│   ├── data/          # Content and configuration data
+│   ├── hooks/         # Custom React hooks
+│   │   ├── useNavigation.ts  # Section navigation logic
+│   │   ├── useModal.ts       # Modal state management
+│   │   └── useIntersectionObserver.ts
+│   ├── i18n/          # Translation files (EN/AR)
+│   ├── types/         # TypeScript interfaces and types
+│   ├── App.tsx        # Main application logic & modal system
+│   └── main.tsx       # Application entry point
+├── index.html         # HTML Entry & Meta Tags
+├── package.json       # Project dependencies & scripts
+├── vite.config.ts     # Vite configuration
+└── tsconfig.json      # TypeScript configuration
 ```
 
 ## 📞 Contact
@@ -117,4 +167,15 @@ Portfolio/
 
 ---
 
-**Built with ❤️ by Y0ussef Mahmoud**
+## 🌐 Browser Support
+
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
+- Opera (latest)
+- Mobile browsers (iOS Safari, Chrome Mobile)
+
+---
+
+**Version 3.0.6** | Built with ❤️ by Y0ussef Mahmoud
