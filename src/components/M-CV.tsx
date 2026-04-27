@@ -250,8 +250,8 @@ const MCV = ({ onClose, onProjectClick }: Omit<MCVProps, 'isOpen'>) => {
                                 </div>
 
                                 <div className="flex flex-wrap gap-x-8 gap-y-3 text-base text-sec font-sans">
-                                    <a href="mailto:temrevil@gmail.com" className="flex items-center gap-2.5 hover:text-primary transition-colors">
-                                        <Mail size={16} className="text-blue-500" /> temrevil@gmail.com
+                                    <a href="mailto:Y0@gmail.com" className="flex items-center gap-2.5 hover:text-primary transition-colors">
+                                        <Mail size={16} className="text-blue-500" /> temy0@gmail.com
                                     </a>
                                     <span className="flex items-center gap-2.5">
                                         <Phone size={16} className="text-blue-500" /> +20 100 130 8280

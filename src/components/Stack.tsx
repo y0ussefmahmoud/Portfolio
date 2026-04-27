@@ -14,7 +14,7 @@
 
 import { createElement, useEffect, useRef, useState, useMemo } from 'react';
 import anime from 'animejs';
-import { Github, Instagram, Linkedin, Twitter, Facebook, Mail, Link as LinkIcon, Twitch, Youtube, Code } from 'lucide-react';
+import { Github, Instagram, Linkedin, Twitter, Facebook, Mail, Link as LinkIcon, Twitch, Youtube, Code, Zap, Wind, Server, Flame, Activity, GitBranch, Braces } from 'lucide-react';
 import { useSocialTracker } from '../hooks/useSocialTracker';
 import { useLanguage } from '../contexts/LanguageContext';
 
@@ -33,11 +33,28 @@ interface StackItemProps {
     iconSize: number;
 }
 
+// Icon mapping for tech stack icons
+const getIconFromName = (iconName: string) => {
+    const iconMap: Record<string, any> = {
+        'code': Code,
+        'file-code': Code,
+        'zap': Zap,
+        'wind': Wind,
+        'server': Server,
+        'flame': Flame,
+        'activity': Activity,
+        'git-branch': GitBranch,
+        'lightning': Zap,
+        'braces': Braces,
+    };
+    return iconMap[iconName] || Code;
+};
+
 /**
  * StackItem Component
- * 
+ *
  * Individual tech stack item with animation and hover effects.
- * @param icon - Icon URL or SVG string
+ * @param icon - Icon name for lucide-react
  * @param name - Technology name
  * @param iconSize - Icon size in pixels
  * @param delay - Animation delay in milliseconds
@@ -45,7 +62,6 @@ interface StackItemProps {
 const StackItem = ({ icon, name, iconSize, delay }: StackItemProps) => {
     const itemRef = useRef<HTMLDivElement>(null);
     const [isHovered, setIsHovered] = useState(false);
-    const [imgError, setImgError] = useState(false);
 
     useEffect(() => {
         anime({
@@ -58,11 +74,12 @@ const StackItem = ({ icon, name, iconSize, delay }: StackItemProps) => {
         });
     }, [delay]);
 
-    const showFallback = !icon || imgError;
+    // Get the appropriate lucide-react icon component
+    const IconComponent = getIconFromName(icon);
 
     // Calculate min-height based on icon size
     const minHeight = Math.max(iconSize + 20, 60);
-    const fallbackSize = Math.max(iconSize * 0.8, 40);
+    const iconComponentSize = Math.max(iconSize * 0.8, 40);
 
     return (
         <div
@@ -73,24 +90,18 @@ const StackItem = ({ icon, name, iconSize, delay }: StackItemProps) => {
             onMouseLeave={() => setIsHovered(false)}
         >
             <div className={`flex items-center justify-center transition-all duration-300 ${isHovered ? 'scale-110' : ''}`}>
-                {showFallback ? (
-                    <Code size={fallbackSize} className="text-zinc-400" />
-                ) : (
-                    <div
+                {IconComponent ? (
+                    <IconComponent
+                        size={iconComponentSize}
+                        className="text-zinc-400"
                         style={{
-                            width: `${iconSize}px`,
-                            height: `${iconSize}px`,
-                            backgroundImage: `url(${icon})`,
-                            backgroundSize: 'contain',
-                            backgroundPosition: 'center',
-                            backgroundRepeat: 'no-repeat',
                             opacity: isHovered ? 1 : 0.6,
                             filter: isHovered ? 'grayscale(0%)' : 'grayscale(100%)',
                             transition: 'all 0.3s ease'
                         }}
-                        title={name}
-                        onError={() => setImgError(true)}
                     />
+                ) : (
+                    <Code size={iconComponentSize} className="text-zinc-400" />
                 )}
             </div>
         </div>
@@ -220,18 +231,18 @@ const Stack = () => {
 
     // Fetch Stack Items - Use static data
     useEffect(() => {
-        // Static tech stack data
+        // Static tech stack data with lucide-react icon names
         const staticStackItems = [
-            { icon: '', name: 'React' },
-            { icon: '', name: 'TypeScript' },
-            { icon: '', name: 'Next.js' },
-            { icon: '', name: 'Tailwind CSS' },
-            { icon: '', name: 'Node.js' },
-            { icon: '', name: 'Firebase' },
-            { icon: '', name: 'Framer Motion' },
-            { icon: '', name: 'Git' },
-            { icon: '', name: 'Vite' },
-            { icon: '', name: 'JavaScript' },
+            { icon: 'code', name: 'React' },
+            { icon: 'file-code', name: 'TypeScript' },
+            { icon: 'zap', name: 'Next.js' },
+            { icon: 'wind', name: 'Tailwind CSS' },
+            { icon: 'server', name: 'Node.js' },
+            { icon: 'flame', name: 'Firebase' },
+            { icon: 'activity', name: 'Framer Motion' },
+            { icon: 'git-branch', name: 'Git' },
+            { icon: 'lightning', name: 'Vite' },
+            { icon: 'braces', name: 'JavaScript' },
         ];
         setStackItems(staticStackItems);
 

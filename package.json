@@ -1,6 +1,6 @@
 {
   "name": "y0ussef-website",
-  "version": "3.0.4",
+  "version": "3.0.5",
   "description": "Y0ussef Mahmoud Abdelgawad- Website",
   "private": true,
   "type": "module",
@@ -30,6 +30,7 @@
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^14.6.1",
     "@types/animejs": "^3.1.13",
+    "@types/node": "^20.0.0",
     "@vitejs/plugin-react": "^4.3.0",
     "@vitest/ui": "^4.1.5",
     "autoprefixer": "^10.4.20",

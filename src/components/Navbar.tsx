@@ -12,7 +12,7 @@
  * @component
  */
 
-import { Home, Layers, FolderKanban, Mail, Moon, Sun, FileText, Globe } from 'lucide-react';
+import { Home, Layers, Briefcase, FolderKanban, Mail, Moon, Sun, FileText, Globe } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -22,7 +22,7 @@ import { LanguageSwitcher } from './LanguageSwitcher';
  * Section type for navigation
  * Represents different sections of the portfolio
  */
-type NavigateSection = 'home' | 'stack' | 'projects' | 'secret' | 'dashboard' | 'view_link';
+type NavigateSection = 'home' | 'stack' | 'services' | 'projects' | 'secret' | 'dashboard' | 'view_link';
 
 /**
  * Navigation function type
@@ -215,20 +215,6 @@ const Navbar = ({ onNavigate, currentSection = 'home', onOpenContact, isContactO
 
                     <div className="relative">
                         <button
-                            className={getButtonClass('stack')}
-                            onClick={() => onNavigate?.('stack')}
-                            onMouseEnter={() => setHoveredTab('stack')}
-                            onMouseLeave={() => setHoveredTab(null)}
-                            aria-label="Navigate to Tech Stack section"
-                            aria-current={currentSection === 'stack' ? 'page' : undefined}
-                        >
-                            <Layers size={iconSize} strokeWidth={2} />
-                        </button>
-                        <Tooltip text="⚡ Stack" show={hoveredTab === 'stack'} isDark={isDark} />
-                    </div>
-
-                    <div className="relative">
-                        <button
                             className={getButtonClass('projects')}
                             onClick={() => onNavigate?.('projects')}
                             onMouseEnter={() => setHoveredTab('projects')}
@@ -239,6 +225,34 @@ const Navbar = ({ onNavigate, currentSection = 'home', onOpenContact, isContactO
                             <FolderKanban size={iconSize} strokeWidth={2} />
                         </button>
                         <Tooltip text="🚀 Projects" show={hoveredTab === 'projects' || autoTooltip === 'projects'} isDark={isDark} />
+                    </div>
+
+                    <div className="relative">
+                        <button
+                            className={getButtonClass('services')}
+                            onClick={() => onNavigate?.('services')}
+                            onMouseEnter={() => setHoveredTab('services')}
+                            onMouseLeave={() => setHoveredTab(null)}
+                            aria-label="Navigate to Services section"
+                            aria-current={currentSection === 'services' ? 'page' : undefined}
+                        >
+                            <Briefcase size={iconSize} strokeWidth={2} />
+                        </button>
+                        <Tooltip text="🎯 Services" show={hoveredTab === 'services'} isDark={isDark} />
+                    </div>
+
+                    <div className="relative">
+                        <button
+                            className={getButtonClass('stack')}
+                            onClick={() => onNavigate?.('stack')}
+                            onMouseEnter={() => setHoveredTab('stack')}
+                            onMouseLeave={() => setHoveredTab(null)}
+                            aria-label="Navigate to Tech Stack section"
+                            aria-current={currentSection === 'stack' ? 'page' : undefined}
+                        >
+                            <Layers size={iconSize} strokeWidth={2} />
+                        </button>
+                        <Tooltip text="⚡ Stack" show={hoveredTab === 'stack'} isDark={isDark} />
                     </div>
 
                     <div

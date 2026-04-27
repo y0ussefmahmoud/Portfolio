@@ -1,6 +1,6 @@
 /**
- * ProjectsRevil Component
- * 
+ * ProjectsY0 Component
+ *
  * Projects showcase with filtering, search, and animated cards.
  * Features:
  * - Project grid with image slideshow
@@ -43,6 +43,16 @@ interface Project {
  */
 const CardImage = ({ src, alt }: { src: string; alt: string }) => {
     const [isImageLoaded, setIsImageLoaded] = useState(false);
+    const [hasError, setHasError] = useState(false);
+
+    const handleLoad = () => {
+        setIsImageLoaded(true);
+    };
+
+    const handleError = () => {
+        setHasError(true);
+    };
+
     return (
         <>
             <div 
@@ -56,13 +66,19 @@ const CardImage = ({ src, alt }: { src: string; alt: string }) => {
             <img
                 src={src}
                 alt={alt}
-                onLoad={() => setIsImageLoaded(true)}
+                onLoad={handleLoad}
+                onError={handleError}
                 className={`w-full h-full object-cover group-hover:scale-105 transition-all duration-[1500ms] ease-out ${!isImageLoaded ? 'scale-105' : ''}`}
                 style={{
                     filter: isImageLoaded ? 'blur(0px)' : 'blur(20px)',
                     opacity: isImageLoaded ? 1 : 0
                 }}
             />
+            {hasError && (
+                <div className="absolute inset-0 flex items-center justify-center bg-red-500/10 text-red-500 text-xs">
+                    Image Error
+                </div>
+            )}
         </>
     );
 };
@@ -71,6 +87,7 @@ const ProjectCard = ({ project, index, onClick }: { project: Project; index: num
     const cardRef = useRef<HTMLDivElement>(null);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [isHovered, setIsHovered] = useState(false);
+    const [imgError, setImgError] = useState(false);
 
     // Slideshow logic (Card Hover)
     useEffect(() => {
@@ -180,7 +197,7 @@ const ProjectCard = ({ project, index, onClick }: { project: Project; index: num
     );
 };
 
-const ProjectsRevil = () => {
+const ProjectsY0 = () => {
     const { t } = useLanguage();
     const titleRef = useRef<HTMLHeadingElement>(null);
     const handwritingRef = useRef<HTMLDivElement>(null);
@@ -193,18 +210,37 @@ const ProjectsRevil = () => {
         ...((projectsJson as any).otherProjects || [])
     ];
 
-    const projectsData: Project[] = allProjects.map((p: any) => ({
-        id: p.id,
-        title: p.title,
-        description: p.description,
-        images: [p.image],
-        tags: p.tech?.filter((t: string) => t !== '#').map((t: string) => ({
-            name: t,
-            color: '#61dafb' // Default color, can be customized
-        })) || [],
-        repoLink: p.codeLink !== '#' ? p.codeLink || '' : '',
-        liveLink: p.viewLink !== '#' ? p.viewLink || '' : ''
-    }));
+    const projectsData: Project[] = allProjects.map((p: any) => {
+        let imageUrl = p.image;
+        
+        // Remove /Portfolio/ prefix if present (for Hostinger deployment)
+        // This converts /Portfolio/images/xxx.webp to /images/xxx.webp
+        if (imageUrl.startsWith('/Portfolio/')) {
+            imageUrl = imageUrl.replace('/Portfolio/', '/');
+        }
+        
+        // Ensure image path starts with /images/
+        // If path is /images/xxx.webp, keep it
+        // If path is /xxx.webp, convert to /images/xxx.webp
+        if (!imageUrl.startsWith('/images/') && !imageUrl.startsWith('/Portfolio/')) {
+            imageUrl = `/images/${imageUrl.replace(/^\//, '')}`;
+        }
+        
+        const fullImageUrl = imageUrl;
+        
+        return {
+            id: p.id,
+            title: p.title,
+            description: p.description,
+            images: [fullImageUrl],
+            tags: p.tech?.filter((t: string) => t !== '#').map((t: string) => ({
+                name: t,
+                color: '#61dafb' // Default color, can be customized
+            })) || [],
+            repoLink: p.codeLink !== '#' ? p.codeLink || '' : '',
+            liveLink: p.viewLink !== '#' ? p.viewLink || '' : ''
+        };
+    });
 
     // Extract unique tech tags
     const techSet = new Set<string>();
@@ -371,4 +407,4 @@ const ProjectsRevil = () => {
     );
 };
 
-export default ProjectsRevil;
+export default ProjectsY0;

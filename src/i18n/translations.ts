@@ -72,7 +72,40 @@ export interface Translations {
         offline: string;
       };
     };
-    freelance: {
+    uiux: {
+      title: string;
+      desc: string;
+      features: {
+        userResearch: string;
+        wireframing: string;
+        prototyping: string;
+        designSystem: string;
+        accessibility: string;
+      };
+    };
+    backend: {
+      title: string;
+      desc: string;
+      features: {
+        apiDesign: string;
+        database: string;
+        authentication: string;
+        security: string;
+        scalability: string;
+      };
+    };
+    cloud: {
+      title: string;
+      desc: string;
+      features: {
+        deployment: string;
+        ciCd: string;
+        monitoring: string;
+        optimization: string;
+        backup: string;
+      };
+    };
+    consulting: {
       title: string;
       desc: string;
       features: {
@@ -83,6 +116,17 @@ export interface Translations {
         support: string;
       };
     };
+    freelance: {
+      title: string;
+      desc: string;
+      features: {
+        planning: string;
+        updates: string;
+        quality: string;
+        documentation: string;
+        support: string;
+      };
+    }
   };
   projects: {
     title: string;
@@ -229,18 +273,50 @@ export const translations: { en: Translations; ar: Translations } = {
           offline: 'Offline Functionality',
         },
       },
-      /*api: {
-        title: 'APIs & Integrations',
-        desc: 'RESTful APIs, authentication, and third‑party integrations for robust backends.',
+      uiux: {
+        title: 'UI/UX Design',
+        desc: 'Beautiful, intuitive interfaces that users love.',
+        features: {
+          userResearch: 'User Research',
+          wireframing: 'Wireframing',
+          prototyping: 'Prototyping',
+          designSystem: 'Design Systems',
+          accessibility: 'Accessibility Standards',
+        },
       },
-      devops: {
-        title: 'Docker & DevOps',
-        desc: 'Containerized deployments and scalable setups using Docker best practices.',
+      backend: {
+        title: 'Backend Development',
+        desc: 'Robust server-side solutions and APIs.',
+        features: {
+          apiDesign: 'RESTful API Design',
+          database: 'Database Architecture',
+          authentication: 'Auth & Security',
+          security: 'Data Protection',
+          scalability: 'Scalable Infrastructure',
+        },
       },
-      db: {
-        title: 'Database Design',
-        desc: 'MySQL schema design, optimization, and data modeling for real‑world scale.',
-      },*/
+      cloud: {
+        title: 'Cloud Services',
+        desc: 'Deploy and scale with modern cloud infrastructure.',
+        features: {
+          deployment: 'Cloud Deployment',
+          ciCd: 'CI/CD Pipelines',
+          monitoring: 'Monitoring & Logging',
+          optimization: 'Cost Optimization',
+          backup: 'Backup & Recovery',
+        },
+      },
+      consulting: {
+        title: 'Tech Consulting',
+        desc: 'Expert guidance for your technical decisions.',
+        features: {
+          planning: 'Architecture Planning',
+          updates: 'Tech Stack Advice',
+          quality: 'Code Review',
+          documentation: 'Technical Docs',
+          support: 'Ongoing Support',
+        },
+      },
       freelance: {
         title: 'Freelance Projects',
         desc: 'End‑to‑end delivery with clear communication, timelines, and documentation.',
@@ -385,6 +461,50 @@ export const translations: { en: Translations; ar: Translations } = {
           appStore: '',
           pushNotifications: '',
           offline: '',
+        },
+      },
+      uiux: {
+        title: '',
+        desc: '',
+        features: {
+          userResearch: '',
+          wireframing: '',
+          prototyping: '',
+          designSystem: '',
+          accessibility: '',
+        },
+      },
+      backend: {
+        title: '',
+        desc: '',
+        features: {
+          apiDesign: '',
+          database: '',
+          authentication: '',
+          security: '',
+          scalability: '',
+        },
+      },
+      cloud: {
+        title: '',
+        desc: '',
+        features: {
+          deployment: '',
+          ciCd: '',
+          monitoring: '',
+          optimization: '',
+          backup: '',
+        },
+      },
+      consulting: {
+        title: '',
+        desc: '',
+        features: {
+          planning: '',
+          updates: '',
+          quality: '',
+          documentation: '',
+          support: '',
         },
       },
       freelance: {

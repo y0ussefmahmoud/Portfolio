@@ -677,7 +677,7 @@ const Projects = () => {
                             project={project}
                             index={index}
                             onClick={() => {
-                                window.dispatchEvent(new CustomEvent('revil:project_open', { detail: { id: project.id } }));
+                                window.dispatchEvent(new CustomEvent('y0:project_open', { detail: { id: project.id } }));
                                 setSelectedProjectId(project.id);
                             }}
                         />
@@ -690,7 +690,7 @@ const Projects = () => {
                         <MProjectView
                             project={selectedProject}
                             onClose={() => {
-                                window.dispatchEvent(new CustomEvent('revil:project_close'));
+                                window.dispatchEvent(new CustomEvent('y0:project_close'));
                                 setSelectedProjectId(null);
                             }}
                             onContributorClick={(contributor: ContributorData) => {

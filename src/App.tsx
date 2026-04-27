@@ -16,11 +16,12 @@
 import { useState, useCallback, useEffect, useRef, lazy, Suspense } from 'react';
 import { AnimatePresence, motion, LayoutGroup } from 'framer-motion';
 import { ChevronRight } from 'lucide-react';
-import Hero from './components/HeroRevil';
+import Hero from './components/HeroY0';
 import Navbar from './components/Navbar';
 import Stack from './components/Stack';
+import Services from './components/ServicesY0';
 import PageTransition from './components/PageTransition';
-import Projects from './components/ProjectsRevil';
+import Projects from './components/ProjectsY0';
 // import SecretPage from './components/SecretPage';
 // import Dashboard from './components/Dashboard';
 import Loader from './components/reactbits/Loader';
@@ -39,7 +40,7 @@ import { ProjectData as Project, ContributorData as Contributor } from './types'
  * Section type for navigation
  * Represents different sections of the portfolio
  */
-type Section = 'home' | 'stack' | 'projects' | 'secret' | 'dashboard' | 'view_link';
+type Section = 'home' | 'stack' | 'services' | 'projects' | 'secret' | 'dashboard' | 'view_link';
 
 function App() {
   const [currentSection, setCurrentSection] = useState<Section>(() => {
@@ -207,6 +208,8 @@ function App() {
         return <Hero />;
       case 'stack':
         return <Stack />;
+      case 'services':
+        return <Services />;
       case 'projects':
         return <Projects />;
       case 'view_link':
@@ -316,9 +319,10 @@ function App() {
           scrollAccumulator.current = 0;
           navigationCooldownUntil.current = now + 1500; // Lock for 1.5s
 
-          if (currentSection === 'home' || currentSection === 'view_link') navigateTo('stack');
-          else if (currentSection === 'stack') navigateTo('projects');
-          else if (currentSection === 'projects') navigateTo('home'); // Loop back to home
+          if (currentSection === 'home' || currentSection === 'view_link') navigateTo('projects');
+          else if (currentSection === 'projects') navigateTo('services');
+          else if (currentSection === 'services') navigateTo('stack');
+          else if (currentSection === 'stack') navigateTo('home'); // Loop back to home
         }
       } else if (isScrollUp && scrolledToTop) {
         scrollAccumulator.current += e.deltaY;
@@ -327,8 +331,9 @@ function App() {
           scrollAccumulator.current = 0;
           navigationCooldownUntil.current = now + 1500; // Lock for 1.5s
 
-          if (currentSection === 'projects') navigateTo('stack');
-          else if (currentSection === 'stack') navigateTo('home');
+          if (currentSection === 'stack') navigateTo('services');
+          else if (currentSection === 'services') navigateTo('projects');
+          else if (currentSection === 'projects') navigateTo('home');
         }
       } else {
         scrollAccumulator.current = 0;

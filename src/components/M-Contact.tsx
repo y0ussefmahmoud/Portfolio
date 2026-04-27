@@ -99,7 +99,7 @@ const MContact = ({ onClose, initialTab = 'message', hideTabs = false }: Omit<MC
 
   // User's contact information
   const contactInfo = {
-    email: 'temrevil@gmail.com',
+    email: 'temy0@gmail.com',
     phone: '+20 XXX XXX XXXX',
     github: 'https://github.com/y0ussefmahmoud',
     linkedin: 'https://linkedin.com/in/y0ussefmahmoud',
