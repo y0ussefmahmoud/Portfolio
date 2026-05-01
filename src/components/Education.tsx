@@ -51,10 +51,10 @@ const Education: React.FC<EducationProps> = ({ translations }) => {
       <div className="mx-auto max-w-6xl">
         <div className="text-center mb-8">
           <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-            {translations.education.title}
+            {'Education'}
           </h2>
           <p className="mt-2 text-sm text-muted-foreground sm:text-base">
-            {translations.education.subtitle}
+            {'Degrees and certifications'}
           </p>
         </div>
 
@@ -113,7 +113,7 @@ const Education: React.FC<EducationProps> = ({ translations }) => {
 
         <div className="mt-12">
           <h3 className="text-2xl font-semibold text-foreground mb-6">
-            {translations.education.d2.title}
+            {'Certifications'}
           </h3>
 
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">

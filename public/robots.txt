@@ -2,4 +2,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://y0ussefmahmoud.github.io/Portfolio/sitemap.xml
+Sitemap: https://y0ussef.com/sitemap.xml

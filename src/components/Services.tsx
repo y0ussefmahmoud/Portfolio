@@ -61,9 +61,8 @@ const Services: React.FC<ServicesProps> = ({ translations }) => {
       description: translations.services.mobile.desc,
       features: [
         translations.services.mobile.features.crossPlatform,
-        translations.services.mobile.features.nativePerformance,
+        translations.services.mobile.features.nativeUI,
         translations.services.mobile.features.appStore,
-        translations.services.mobile.features.pushNotifications,
         translations.services.mobile.features.offline,
       ],
       price: translations.services.price,
@@ -110,20 +109,6 @@ const Services: React.FC<ServicesProps> = ({ translations }) => {
       ],
       price: "Custom packages available",
     },*/
-    {
-      id: 6,
-      icon: Briefcase,
-      title: translations.services.freelance.title,
-      description: translations.services.freelance.desc,
-      features: [
-        translations.services.freelance.features.planning,
-        translations.services.freelance.features.updates,
-        translations.services.freelance.features.quality,
-        translations.services.freelance.features.documentation,
-        translations.services.freelance.features.support,
-      ],
-      price: translations.services.price,
-    },
   ];
 
   return (

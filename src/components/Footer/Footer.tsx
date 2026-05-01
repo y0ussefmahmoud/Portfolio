@@ -1,9 +1,17 @@
 /**
  * Footer Component
- * 
- * Simple footer with copyright information and tagline.
- * Displays current year dynamically.
- * 
+ *
+ * Footer section with copyright and tagline.
+ * Features:
+ * - Current year display
+ * - Multilingual support
+ * - Clean, minimal design
+ *
+ * @author      م / يوسف محمود عبد الجواد
+ * @author      Eng. Youssef Mahmoud Abdelgawad
+ * @website     https://y0ussef.com
+ * @version     3.0.7
+ * @copyright   2024-2025 Youssef Mahmoud Abdelgawad. All rights reserved.
  * @component
  */
 

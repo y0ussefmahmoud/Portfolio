@@ -1,8 +1,20 @@
+/**
+ * Internationalization Translations
+ *
+ * Translation keys for multi-language support.
+ * Supports English (en) and Arabic (ar) languages.
+ *
+ * @author      م / يوسف محمود عبد الجواد
+ * @author      Eng. Youssef Mahmoud Abdelgawad
+ * @website     https://y0ussef.com
+ * @version     3.0.7
+ * @copyright   2024-2025 Youssef Mahmoud Abdelgawad. All rights reserved.
+ */
+
 export interface Translations {
   nav: {
     home: string;
     about: string;
-    //skills: string;
     services: string;
     projects: string;
     education: string;
@@ -10,7 +22,6 @@ export interface Translations {
   };
   windowTitles: {
     about: string;
-    //skills: string;
     services: string;
     projects: string;
     education: string;
@@ -36,15 +47,7 @@ export interface Translations {
     whatsapp: string;
     location: string;
     cta: string;
-  };/*
-  skills: {
-    title: string;
-    subtitle: string;
-    frontend: string;
-    backend: string;
-    mobile: string;
-    tools: string;
-  };*/
+  };
   services: {
     title: string;
     subtitle: string;
@@ -66,9 +69,8 @@ export interface Translations {
       desc: string;
       features: {
         crossPlatform: string;
-        nativePerformance: string;
+        nativeUI: string;
         appStore: string;
-        pushNotifications: string;
         offline: string;
       };
     };
@@ -79,8 +81,7 @@ export interface Translations {
         userResearch: string;
         wireframing: string;
         prototyping: string;
-        designSystem: string;
-        accessibility: string;
+        testing: string;
       };
     };
     backend: {
@@ -101,7 +102,6 @@ export interface Translations {
         deployment: string;
         ciCd: string;
         monitoring: string;
-        optimization: string;
         backup: string;
       };
     };
@@ -109,85 +109,47 @@ export interface Translations {
       title: string;
       desc: string;
       features: {
-        planning: string;
-        updates: string;
-        quality: string;
-        documentation: string;
-        support: string;
+        codeReview: string;
+        architecture: string;
+        mentoring: string;
+        optimization: string;
       };
     };
-    freelance: {
-      title: string;
-      desc: string;
-      features: {
-        planning: string;
-        updates: string;
-        quality: string;
-        documentation: string;
-        support: string;
-      };
-    }
   };
   projects: {
     title: string;
     subtitle: string;
-    completed: string;
-    inProgress: string;
-    view: string;
-    code: string;
-    viewDetails: string;
-    projectDetails: string;
-    videoDemo: string;
-    imageGallery: string;
-    techStack: string;
-    challenges: string;
-    solutions: string;
-    features: string;
-    statistics: string;
-    projectLinks: string;
-    downloadPDF: string;
-    watchOnYoutube: string;
-    projectMeta: string;
-  };
-  education: {
-    title: string;
-    subtitle: string;
-    d1: {
-      title: string;
-      desc: string;
-    };
-    d2: {
-      title: string;
-      meta: string;
-      desc: string;
+    viewProject: string;
+    viewCode: string;
+    technologies: string;
+    status: {
+      completed: string;
+      inProgress: string;
+      planned: string;
     };
   };
-  feedback: {
+  stack: {
     title: string;
     subtitle: string;
-    t1: {
-      text: string;
-      role: string;
-    };
-    t2: {
-      text: string;
-      role: string;
-    };
-    t3: {
-      text: string;
-      role: string;
+    categories: {
+      frontend: string;
+      backend: string;
+      mobile: string;
+      database: string;
+      tools: string;
     };
   };
   contact: {
     title: string;
     subtitle: string;
-    name: string;
     email: string;
+    phone: string;
+    whatsapp: string;
+    location: string;
     message: string;
     send: string;
-    ph_name: string;
-    ph_email: string;
-    ph_message: string;
+    success: string;
+    error: string;
   };
   footer: {
     tag: string;
@@ -197,198 +159,146 @@ export interface Translations {
   };
 }
 
-export const translations: { en: Translations; ar: Translations } = {
+export const translations: Record<'en' | 'ar', Translations> = {
   en: {
     nav: {
       home: 'Home',
       about: 'About',
-      //skills: 'Skills',
       services: 'Services',
       projects: 'Projects',
       education: 'Education',
       contact: 'Contact',
     },
     windowTitles: {
-      about: '~/about-me',
-     // skills: '~/my-skills',
-      services: '~/services-offered',
-      projects: '~/featured-projects',
-      education: '~/education-background',
-      contact: '~/contact-me',
+      about: 'About',
+      services: 'Services',
+      projects: 'Projects',
+      education: 'Education',
+      contact: 'Contact',
     },
     hero: {
       greet: 'Hello, I\'m',
-      name: 'Y0ussef Mahmoud',
-      tagline: 'Full‑Stack Developer & Project Engineer at Shehabco.',
-      availability: 'Available for Freelance & Part-time',
+      name: 'Y0ussef Mahmoud Abdelgawad',
+      tagline: 'Full-Stack Developer & Project Engineer',
+      availability: 'Available for Work',
       badges: {
-        primary: 'React.js',
-        secondary: 'Node.js & Flutter',
+        primary: 'Full-Stack Developer',
+        secondary: 'Project Engineer',
       },
-      ctaPrimary: 'View Projects',
-      ctaSecondary: 'Get in Touch',
+      ctaPrimary: 'View My Work',
+      ctaSecondary: 'Get In Touch',
     },
     about: {
       title: 'About Me',
-      //bio: 'I\'m a Full‑Stack Developer and Project Engineer at Shehabco. I build responsive web and mobile apps using Node.js, MySQL, and Flutter, working with RESTful APIs and Docker to deliver scalable, maintainable solutions. I love solving real‑world problems with clean code and continuously learning.',
-      bio: "I\'m Youssef Mahmoud Abdelgawad, a Full-Stack Developer and Project Engineer at Shehabco with a unique dual profile – I bridge the gap between physical infrastructure and digital innovation, At Shehabco, I manage integrated security system projects from installation to handover – working with CCTV, Access Control, Fire Alarm, and Suppression Systems across commercial and industrial sites. I lead technical teams, ensure project timelines, and liaise directly with clients. As a Freelance Developer (Upwork & Khamsat), I build: 📱 Cross-platform mobile apps with Flutter & Dart 🌐 Full-stack web applications using React.js, Node.js, Express.js, and MySQL 🔗 RESTful APIs with JWT authentication and third-party integrations, Frontend: React.js, Flutter, HTML5, CSS3, JavaScript (ES6+), Backend: Node.js, Express.js, REST APIs, Database: MySQL, Database Design & Optimization, DevOps: Docker, Git, GitHub, Postman, Network Configuration, CCTV Systems.",
+      bio: 'Passionate Full-Stack Developer and Project Engineer at Shehabco, building responsive web and mobile applications using Node.js, MySQL, Flutter, RESTful APIs, and Docker. I solve real-world problems with clean, maintainable code.',
       email: 'Email',
       phone: 'Phone',
       whatsapp: 'WhatsApp',
       location: 'Location',
-      cta: 'Contact Me',
-    },/*
-    skills: {
-      title: 'Skills',
-      subtitle: 'Technologies I work with',
-      frontend: 'Frontend',
-      backend: 'Backend',
-      mobile: 'Mobile',
-      tools: 'Tools',
-    },*/
+      cta: 'Get In Touch',
+    },
     services: {
-      title: 'Services',
-      subtitle: 'What I can help you with',
+      title: 'My Services',
+      subtitle: 'Comprehensive development solutions for your digital needs',
       getQuote: 'Get Quote',
-      price: 'Price: Custom packages available',
+      price: 'From',
       web: {
         title: 'Web Development',
-        desc: 'Modern, responsive websites and dashboards built with clean, maintainable code.',
+        desc: 'Modern, responsive web applications using cutting-edge technologies',
         features: {
-          responsive: 'Responsive Web Design',
+          responsive: 'Responsive Design',
           modernUI: 'Modern UI/UX',
-          performance: 'Performance Optimization',
-          seo: 'SEO Friendly',
-          crossBrowser: 'Cross-browser Compatible',
+          performance: 'High Performance',
+          seo: 'SEO Optimized',
+          crossBrowser: 'Cross-Browser Compatible',
         },
       },
       mobile: {
         title: 'Mobile Apps',
-        desc: 'Cross‑platform apps with Flutter focusing on performance and user experience.',
+        desc: 'Native mobile applications for iOS and Android platforms',
         features: {
-          crossPlatform: 'Cross-platform Development',
-          nativePerformance: 'Native Performance',
+          crossPlatform: 'Cross-Platform Development',
+          nativeUI: 'Native UI Components',
           appStore: 'App Store Deployment',
-          pushNotifications: 'Push Notifications',
           offline: 'Offline Functionality',
         },
       },
       uiux: {
         title: 'UI/UX Design',
-        desc: 'Beautiful, intuitive interfaces that users love.',
+        desc: 'Beautiful and intuitive user interfaces with great user experience',
         features: {
           userResearch: 'User Research',
           wireframing: 'Wireframing',
           prototyping: 'Prototyping',
-          designSystem: 'Design Systems',
-          accessibility: 'Accessibility Standards',
+          testing: 'Usability Testing',
         },
       },
       backend: {
         title: 'Backend Development',
-        desc: 'Robust server-side solutions and APIs.',
+        desc: 'Robust server-side applications with scalable architecture',
         features: {
           apiDesign: 'RESTful API Design',
-          database: 'Database Architecture',
-          authentication: 'Auth & Security',
+          database: 'Database Design',
+          authentication: 'Authentication & Security',
           security: 'Data Protection',
-          scalability: 'Scalable Infrastructure',
+          scalability: 'Scalable Architecture',
         },
       },
       cloud: {
-        title: 'Cloud Services',
-        desc: 'Deploy and scale with modern cloud infrastructure.',
+        title: 'Cloud Solutions',
+        desc: 'Deploy and manage applications on cloud infrastructure',
         features: {
-          deployment: 'Cloud Deployment',
-          ciCd: 'CI/CD Pipelines',
-          monitoring: 'Monitoring & Logging',
-          optimization: 'Cost Optimization',
+          deployment: 'Automated Deployment',
+          ciCd: 'CI/CD Pipeline',
+          monitoring: 'Monitoring & Analytics',
           backup: 'Backup & Recovery',
         },
       },
       consulting: {
-        title: 'Tech Consulting',
-        desc: 'Expert guidance for your technical decisions.',
+        title: 'Technical Consulting',
+        desc: 'Expert advice on software development and system architecture',
         features: {
-          planning: 'Architecture Planning',
-          updates: 'Tech Stack Advice',
-          quality: 'Code Review',
-          documentation: 'Technical Docs',
-          support: 'Ongoing Support',
+          codeReview: 'Code Review',
+          architecture: 'System Architecture',
+          mentoring: 'Technical Mentoring',
+          optimization: 'Performance Optimization',
         },
       },
-      freelance: {
-        title: 'Freelance Projects',
-        desc: 'End‑to‑end delivery with clear communication, timelines, and documentation.',
-        features: {
-          planning: 'Project Planning',
-          updates: 'Regular Updates',
-          quality: 'Quality Assurance',
-          documentation: 'Documentation',
-          support: 'Post-launch Support',
-        },
-      }
     },
     projects: {
-      title: 'Projects',
-      subtitle: 'Recent work and selected case studies',
-      completed: 'Completed',
-      inProgress: 'In Progress',
-      view: 'View',
-      code: 'Code',
-      viewDetails: 'View Details',
-      projectDetails: 'Project Details',
-      videoDemo: 'Video Demo',
-      imageGallery: 'Image Gallery',
-      techStack: 'Tech Stack',
-      challenges: 'Challenges',
-      solutions: 'Solutions',
-      features: 'Features',
-      statistics: 'Statistics',
-      projectLinks: 'Project Links',
-      downloadPDF: 'Download PDF',
-      watchOnYoutube: 'Watch on YouTube',
-      projectMeta: 'Project Metadata',
-    },
-    education: {
-      title: 'Education',
-      subtitle: 'Degrees and certifications',
-      d1: {
-        title: 'B.Sc. in Engineering',
-        desc: 'Core studies in software engineering foundations, data structures, and systems design.',
-      },
-      d2: {
-        title: 'Certifications',
-        meta: 'Selected',
-        desc: 'Docker essentials, REST API design, and Flutter development best practices.',
+      title: 'My Projects',
+      subtitle: 'Some of my recent work',
+      viewProject: 'View Project',
+      viewCode: 'View Code',
+      technologies: 'Technologies Used',
+      status: {
+        completed: 'Completed',
+        inProgress: 'In Progress',
+        planned: 'Planned',
       },
     },
-    feedback: {
-      title: 'Feedback',
-      subtitle: 'What clients and teammates say',
-      t1: {
-        text: 'Delivered on time with clean, scalable code. Communication was smooth throughout.',
-        role: 'Product Manager',
-      },
-      t2: {
-        text: 'Great ownership and technical depth across backend and Flutter.',
-        role: 'Tech Lead',
-      },
-      t3: {
-        text: 'Understood requirements quickly and suggested better architecture decisions.',
-        role: 'Founder',
+    stack: {
+      title: 'My Tech Stack',
+      subtitle: 'Technologies and tools I work with',
+      categories: {
+        frontend: 'Frontend',
+        backend: 'Backend',
+        mobile: 'Mobile',
+        database: 'Database',
+        tools: 'Tools',
       },
     },
     contact: {
-      title: 'Contact',
-      subtitle: 'Let\'s build something great together',
-      name: 'Name',
+      title: 'Get In Touch',
+      subtitle: 'Let\'s work together on your next project',
       email: 'Email',
-      message: 'Message',
+      phone: 'Phone',
+      whatsapp: 'WhatsApp',
+      location: 'Location',
+      message: 'Your Message',
       send: 'Send Message',
-      ph_name: 'Your name',
-      ph_email: 'you@example.com',
-      ph_message: 'Tell me about your project...',
+      success: 'Your message has been sent successfully!',
+      error: 'Something went wrong. Please try again.',
     },
     footer: {
       tag: 'Building scalable web and mobile solutions.',
@@ -399,192 +309,149 @@ export const translations: { en: Translations; ar: Translations } = {
   },
   ar: {
     nav: {
-      home: '',
-      about: '',
-      //skills: '',
-      services: '',
-      projects: '',
-      education: '',
-      contact: '',
+      home: 'الرئيسية',
+      about: 'نبذة عني',
+      services: 'الخدمات',
+      projects: 'المشاريع',
+      education: 'التعليم',
+      contact: 'التواصل',
     },
     windowTitles: {
-      about: '',
-     // skills: '',
-      services: '',
-      projects: '',
-      education: '',
-      contact: '',
+      about: 'نبذة عني',
+      services: 'الخدمات',
+      projects: 'المشاريع',
+      education: 'التعليم',
+      contact: 'التواصل',
     },
     hero: {
-      greet: '',
-      name: '',
-      tagline: '',
-      availability: '',
+      greet: 'أهلاً بك',
+      name: 'يوسف محمود عبد الجواد',
+      tagline: 'مطور Full-Stack ومهندس مشاريع',
+      availability: 'متاح للعمل',
       badges: {
-        primary: '',
-        secondary: '',
+        primary: 'Full-Stack Developer',
+        secondary: 'Project Engineer',
       },
-      ctaPrimary: '',
-      ctaSecondary: '',
+      ctaPrimary: 'شاهد أعمالي',
+      ctaSecondary: 'تواصل معي',
     },
     about: {
-      title: '',
-      bio: '',
-      email: '',
-      phone: '',
-      whatsapp: '',
-      location: '',
-      cta: '',
+      title: 'نبذة عني',
+      bio: 'مطور Full-Stack شغوف ومهندس مشاريع في Shehabco. أقوم ببناء تطبيقات ويب وموبايل متجاوبة باستخدام Node.js, MySQL, Flutter, RESTful APIs, و Docker. أحل مشاكل العالم الحقيقي بكود نظيف وقابل للصيانة.',
+      email: 'البريد الإلكتروني',
+      phone: 'رقم الهاتف',
+      whatsapp: 'واتساب',
+      location: 'الموقع',
+      cta: 'تواصل معي',
     },
     services: {
-      title: '',
-      subtitle: '',
-      getQuote: '',
-      price: '',
+      title: 'خدماتي',
+      subtitle: 'حلول تطوير متكاملة لاحتياجاتك الرقمية',
+      getQuote: 'اطلب عرض سعر',
+      price: 'من',
       web: {
-        title: '',
-        desc: '',
+        title: 'تطوير الويب',
+        desc: 'تطبيقات ويب حديثة ومتجاوبة باستخدام أحدث التقنيات',
         features: {
-          responsive: '',
-          modernUI: '',
-          performance: '',
-          seo: '',
-          crossBrowser: '',
+          responsive: 'تصميم متجاوب',
+          modernUI: 'واجهة مستخدم حديثة',
+          performance: 'أداء عالي',
+          seo: 'تحسين محركات البحث',
+          crossBrowser: 'متوافق مع جميع المتصفحات',
         },
       },
       mobile: {
-        title: '',
-        desc: '',
+        title: 'تطبيقات الموبايل',
+        desc: 'تطبيقات موبايل أصلية لهواتف iOS و Android',
         features: {
-          crossPlatform: '',
-          nativePerformance: '',
-          appStore: '',
-          pushNotifications: '',
-          offline: '',
+          crossPlatform: 'تطوير متعدد المنصات',
+          nativeUI: 'واجهة مستخدم أصلية',
+          appStore: 'نشر على المتاجر',
+          offline: 'يعمل بدون انترنت',
         },
       },
       uiux: {
-        title: '',
-        desc: '',
+        title: 'تصميم UI/UX',
+        desc: 'تصاميم جذابة وسهلة الاستخدام',
         features: {
-          userResearch: '',
-          wireframing: '',
-          prototyping: '',
-          designSystem: '',
-          accessibility: '',
+          userResearch: 'بحث المستخدمين',
+          wireframing: 'النماذج الأولية',
+          prototyping: 'النماذج التفاعلية',
+          testing: 'اختبار قابلية الاستخدام',
         },
       },
       backend: {
-        title: '',
-        desc: '',
+        title: 'تطوير Backend',
+        desc: 'بناء واجهات برمجية قوية وقواعد بيانات فعالة',
         features: {
-          apiDesign: '',
-          database: '',
-          authentication: '',
-          security: '',
-          scalability: '',
+          apiDesign: 'تصميم واجهات برمجية',
+          database: 'قواعد البيانات',
+          authentication: 'المصادقة والأمان',
+          security: 'حماية البيانات',
+          scalability: 'قابلية التوسع',
         },
       },
       cloud: {
-        title: '',
-        desc: '',
+        title: 'الحلول السحابية',
+        desc: 'نشر وإدارة التطبيقات على السحابة',
         features: {
-          deployment: '',
-          ciCd: '',
-          monitoring: '',
-          optimization: '',
-          backup: '',
+          deployment: 'النشر التلقائي',
+          ciCd: 'CI/CD متكامل',
+          monitoring: 'المراقبة والتتبع',
+          backup: 'النسخ الاحتياطي',
         },
       },
       consulting: {
-        title: '',
-        desc: '',
+        title: 'الاستشارات التقنية',
+        desc: 'خبرة في تطوير البرمجيات وهندسة الأنظمة',
         features: {
-          planning: '',
-          updates: '',
-          quality: '',
-          documentation: '',
-          support: '',
+          codeReview: 'مراجعة الكود',
+          architecture: 'تصميم الأنظمة',
+          mentoring: 'التدريب والإرشاد',
+          optimization: 'تحسين الأداء',
         },
       },
-      freelance: {
-        title: '',
-        desc: '',
-        features: {
-          planning: '',
-          updates: '',
-          quality: '',
-          documentation: '',
-          support: '',
-        },
-      }
     },
     projects: {
-      title: '',
-      subtitle: '',
-      completed: '',
-      inProgress: '',
-      view: '',
-      code: '',
-      viewDetails: '',
-      projectDetails: '',
-      videoDemo: '',
-      imageGallery: '',
-      techStack: '',
-      challenges: '',
-      solutions: '',
-      features: '',
-      statistics: '',
-      projectLinks: '',
-      downloadPDF: '',
-      watchOnYoutube: '',
-      projectMeta: '',
-    },
-    education: {
-      title: '',
-      subtitle: '',
-      d1: {
-        title: '',
-        desc: '',
-      },
-      d2: {
-        title: '',
-        meta: '',
-        desc: '',
+      title: 'مشاريعي',
+      subtitle: 'بعض من أعمالي الأخيرة',
+      viewProject: 'عرض المشروع',
+      viewCode: 'عرض الكود',
+      technologies: 'التقنيات المستخدمة',
+      status: {
+        completed: 'مكتمل',
+        inProgress: 'قيد التنفيذ',
+        planned: 'مخطط',
       },
     },
-    feedback: {
-      title: '',
-      subtitle: '',
-      t1: {
-        text: '',
-        role: '',
-      },
-      t2: {
-        text: '',
-        role: '',
-      },
-      t3: {
-        text: '',
-        role: '',
+    stack: {
+      title: 'تقنياتي',
+      subtitle: 'الأدوات والتقنيات التي أستخدمها',
+      categories: {
+        frontend: 'الواجهات الأمامية',
+        backend: 'الواجهات الخلفية',
+        mobile: 'تطبيقات الموبايل',
+        database: 'قواعد البيانات',
+        tools: 'الأدوات',
       },
     },
     contact: {
-      title: '',
-      subtitle: '',
-      name: '',
-      email: '',
-      message: '',
-      send: '',
-      ph_name: '',
-      ph_email: '',
-      ph_message: '',
+      title: 'تواصل معي',
+      subtitle: 'دعنا نعمل معاً على مشروعك القادم',
+      email: 'البريد الإلكتروني',
+      phone: 'رقم الهاتف',
+      whatsapp: 'واتساب',
+      location: 'الموقع',
+      message: 'رسالتك',
+      send: 'إرسال',
+      success: 'تم إرسال رسالتك بنجاح!',
+      error: 'حدث خطأ، يرجى المحاولة مرة أخرى.',
     },
     footer: {
-      tag: '',
-      links: '',
-      follow: '',
-      rights: '',
+      tag: 'بناء حلول ويب وموبايل قابلة للتوسع.',
+      links: 'روابط',
+      follow: 'تابعني',
+      rights: 'جميع الحقوق محفوظة.',
     },
   },
 };

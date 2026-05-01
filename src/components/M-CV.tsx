@@ -1,6 +1,6 @@
 /**
  * M-CV Component
- * 
+ *
  * CV modal with personal information, projects, and tech stack.
  * Features:
  * - Personal information display
@@ -9,7 +9,12 @@
  * - Social media links
  * - Responsive design
  * - Smooth animations
- * 
+ *
+ * @author      م / يوسف محمود عبد الجواد
+ * @author      Eng. Youssef Mahmoud Abdelgawad
+ * @website     https://y0ussef.com
+ * @version     3.0.7
+ * @copyright   2024-2025 Youssef Mahmoud Abdelgawad. All rights reserved.
  * @component
  */
 
@@ -244,20 +249,20 @@ const MCV = ({ onClose, onProjectClick }: Omit<MCVProps, 'isOpen'>) => {
                                         animate={{ opacity: 1, x: 0 }}
                                         className="text-5xl md:text-7xl font-black tracking-tighter text-primary font-sans uppercase leading-none"
                                     >
-                                        Mohammed <span className="text-blue-500">Ahmed</span>
+                                        Y0ussef <span className="text-blue-500">Mahmoud</span>
                                     </motion.h1>
                                     <p className="text-blue-500/80 dark:text-blue-400/80 font-sans font-bold tracking-[0.2em] text-lg md:text-sm uppercase">Frontend Expert & AI Expert</p>
                                 </div>
 
                                 <div className="flex flex-wrap gap-x-8 gap-y-3 text-base text-sec font-sans">
                                     <a href="mailto:Y0@gmail.com" className="flex items-center gap-2.5 hover:text-primary transition-colors">
-                                        <Mail size={16} className="text-blue-500" /> temy0@gmail.com
+                                        <Mail size={16} className="text-blue-500" /> y0@gmail.com
                                     </a>
                                     <span className="flex items-center gap-2.5">
-                                        <Phone size={16} className="text-blue-500" /> +20 100 130 8280
+                                        <Phone size={16} className="text-blue-500" /> +20 1129334173
                                     </span>
                                     <span className="flex items-center gap-2.5">
-                                        <MapPin size={16} className="text-blue-500" /> Egypt, MA
+                                        <MapPin size={16} className="text-blue-500" /> Egypt, Cairo
                                     </span>
                                 </div>
                             </header>
@@ -396,8 +401,8 @@ const MCV = ({ onClose, onProjectClick }: Omit<MCVProps, 'isOpen'>) => {
                                     <span className="text-[10px] font-black text-muted uppercase tracking-[0.2em]">Arabic (Native)</span>
                                 </div>
                                 <p className="text-[9px] font-bold text-muted uppercase tracking-widest leading-loose text-center">
-                                    Engineered with precision using React & Firebase<br />
-                                    © {new Date().getFullYear()} Mohammed Ahmed
+                                    Engineered with precision using React <br />
+                                    © {new Date().getFullYear()} Y0ussef Mahmoud
                                 </p>
                             </footer>
                         </div>

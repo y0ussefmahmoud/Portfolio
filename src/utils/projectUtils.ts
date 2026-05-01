@@ -1,7 +1,25 @@
+/**
+ * Project Utilities
+ *
+ * Utility functions for project data manipulation.
+ * - Video file detection
+ * - Tech stack icon retrieval
+ * - Technology color mapping
+ *
+ * @author      م / يوسف محمود عبد الجواد
+ * @author      Eng. Youssef Mahmoud Abdelgawad
+ * @website     https://y0ussef.com
+ * @version     3.0.7
+ * @copyright   2024-2025 Youssef Mahmoud Abdelgawad. All rights reserved.
+ */
+
 import firebaseIcon from '../assets/svgs/firebase.svg';
 
 export const isVideoFile = (url: string) => {
-    return url.split('?')[0].toLowerCase().match(/\.(mp4|webm|ogg|mov)$/) || url.includes('/videos/');
+    const cleanUrl = url.split('?')[0].toLowerCase();
+    const hasVideoExtension = /\.(mp4|webm|ogg|mov)$/.test(cleanUrl);
+    const isVideoPath = url.includes('/videos/');
+    return hasVideoExtension || isVideoPath;
 };
 
 export const getStackIcon = (name: string) => {

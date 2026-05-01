@@ -36,7 +36,7 @@ if (sentryDsn && sentryDsn !== 'YOUR_SENTRY_DSN' && sentryDsn.startsWith('https:
   });
   console.log('Sentry initialized successfully');
 } else {
-  console.log('Sentry skipped: No valid DSN provided');
+  // Sentry skipped: No valid DSN provided
 }
 
 export default Sentry;

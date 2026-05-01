@@ -1,6 +1,6 @@
 /**
  * HeroY0 Component
- * 
+ *
  * Hero section with handwriting animation and interactive elements.
  * Features:
  * - Handwriting text animation using anime.js
@@ -8,7 +8,12 @@
  * - Interactive availability badge with tooltip
  * - Responsive design
  * - Smooth animations
- * 
+ *
+ * @author      م / يوسف محمود عبد الجواد
+ * @author      Eng. Youssef Mahmoud Abdelgawad
+ * @website     https://y0ussef.com
+ * @version     3.0.7
+ * @copyright   2024-2025 Youssef Mahmoud Abdelgawad. All rights reserved.
  * @component
  */
 
@@ -53,9 +58,11 @@ const HandwritingText = ({
 
         const startDelay = delay + 500;
 
+        // Get all letter elements for animation
         const letters = svgRef.current.querySelectorAll('.letter-path');
-        anime.remove(letters);
+        anime.remove(letters); // Clear any existing animations
 
+        // Create timeline for sequential letter animation
         const tl = anime.timeline({
             easing: 'easeOutSine',
             autoplay: true,
@@ -65,18 +72,20 @@ const HandwritingText = ({
             const textEl = letter as SVGTextElement;
             const estimatedLength = fontSize * 2;
 
-            // Explicitly reset to transparent outline
+            // Explicitly reset to transparent outline (stroke animation)
+            // This creates the "handwriting" effect by drawing the stroke first
             textEl.style.visibility = 'hidden';
             textEl.style.strokeDasharray = `${estimatedLength}`;
             textEl.style.strokeDashoffset = `${estimatedLength}`;
             textEl.style.fill = 'transparent';
 
+            // Add animation to timeline for each letter
             tl.add({
                 targets: textEl,
-                strokeDashoffset: [estimatedLength, 0],
-                opacity: [0, 1],
-                duration: 120, // Smooth & Elegant
-                delay: index === 0 ? startDelay : 0,
+                strokeDashoffset: [estimatedLength, 0], // Draw stroke from full to zero
+                opacity: [0, 1], // Fade in
+                duration: 120, // Smooth & Elegant per letter
+                delay: index === 0 ? startDelay : 0, // Only delay first letter
                 begin: () => {
                     textEl.style.visibility = 'visible';
                 },
@@ -319,12 +328,12 @@ const HeroY0 = ({ onLoaded, onAnimationComplete, isReady = true }: { onLoaded?: 
         });
 
         // Notify parent when entrance animations are finished
-        const revealTimeout = setTimeout(() => {
+        const revealTimeout = window.setTimeout(() => {
             if (onAnimationComplete) onAnimationComplete();
         }, timing.rest + 1700);
 
         return () => {
-            clearTimeout(revealTimeout);
+            window.clearTimeout(revealTimeout);
         };
     }, [isReady, timing.name, timing.rest, onAnimationComplete]);
 
@@ -432,7 +441,6 @@ const HeroY0 = ({ onLoaded, onAnimationComplete, isReady = true }: { onLoaded?: 
                                         opacity: isImageLoaded ? 1 : 0,
                                         transform: isImageLoaded ? 'scale(1)' : 'scale(1.05)'
                                     }}
-                                    fetchPriority="high"
                                 />
                             </div>
 

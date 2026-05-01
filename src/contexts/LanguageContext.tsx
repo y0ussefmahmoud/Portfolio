@@ -4,11 +4,16 @@
  * Provides language state and translation management for the application.
  * Currently supports English only. Arabic support is disabled for future development.
  *
+ * @author      م / يوسف محمود عبد الجواد
+ * @author      Eng. Youssef Mahmoud Abdelgawad
+ * @website     https://y0ussef.com
+ * @version     3.0.7
+ * @copyright   2024-2025 Youssef Mahmoud Abdelgawad. All rights reserved.
  * @component
  */
 
-import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { translations, Translations } from '@/i18n/translations';
+import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { translations, Translations } from '../i18n/translations';
 
 type Language = 'en'; // English only for now
 

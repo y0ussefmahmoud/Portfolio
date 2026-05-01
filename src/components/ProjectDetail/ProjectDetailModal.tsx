@@ -52,7 +52,7 @@ const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
           dir={document.documentElement.dir}
         >
           <WindowFrame
-            title={translations.projects.projectDetails}
+            title={'Project Details'}
             onClose={onClose}
             className="w-full max-w-5xl"
           >
@@ -65,7 +65,7 @@ const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
                     <p className="mt-2 text-muted-foreground">{project.description}</p>
                   </div>
                   <Badge variant={project.status === 'completed' ? 'default' : 'secondary'}>
-                    {project.status === 'completed' ? translations.projects.completed : translations.projects.inProgress}
+                    {project.status === 'completed' ? 'Completed' : 'In Progress'}
                   </Badge>
                 </div>
 
@@ -87,7 +87,7 @@ const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
                     <div>
                       <h3 className="flex items-center gap-2 text-lg font-semibold mb-3">
                         <Play className="h-5 w-5" />
-                        {translations.projects.videoDemo}
+                        {'Video Demo'}
                       </h3>
                       <div className="relative overflow-hidden rounded-lg border border-border/60 bg-muted">
                         <img
@@ -98,7 +98,7 @@ const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
                         <div className="absolute inset-0 flex items-center justify-center bg-black/40">
                           <Button size="lg" className="gap-2">
                             <Play className="h-5 w-5" />
-                            {translations.projects.watchOnYoutube}
+                            {'Watch on YouTube'}
                           </Button>
                         </div>
                       </div>
@@ -110,7 +110,7 @@ const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
                     <div>
                       <h3 className="flex items-center gap-2 text-lg font-semibold mb-3">
                         <ImageIcon className="h-5 w-5" />
-                        {translations.projects.imageGallery}
+                        {'Image Gallery'}
                       </h3>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         {project.details.gallery.map((image, index) => (
@@ -132,7 +132,7 @@ const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
                     <div>
                       <h3 className="flex items-center gap-2 text-lg font-semibold mb-3">
                         <CheckCircle className="h-5 w-5" />
-                        {translations.projects.features}
+                        {'Features'}
                       </h3>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         {project.details.features.map((feature, index) => (
@@ -155,7 +155,7 @@ const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
                     <div>
                       <h3 className="flex items-center gap-2 text-lg font-semibold mb-3">
                         <Lightbulb className="h-5 w-5" />
-                        {translations.projects.challenges}
+                        {'Challenges'}
                       </h3>
                       <div className="space-y-3">
                         {project.details.challenges.map((challenge, index) => (
@@ -173,7 +173,7 @@ const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
                     <div>
                       <h3 className="flex items-center gap-2 text-lg font-semibold mb-3">
                         <CheckCircle className="h-5 w-5" />
-                        {translations.projects.solutions}
+                        {'Solutions'}
                       </h3>
                       <div className="space-y-3">
                         {project.details.solutions.map((solution, index) => (
@@ -191,7 +191,7 @@ const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
                     <div>
                       <h3 className="flex items-center gap-2 text-lg font-semibold mb-3">
                         <BarChart3 className="h-5 w-5" />
-                        {translations.projects.statistics}
+                        {'Statistics'}
                       </h3>
                       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                         {project.details.stats.map((stat, index) => (
@@ -208,7 +208,7 @@ const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
 
                   {/* Project Meta */}
                   <div>
-                    <h3 className="text-lg font-semibold mb-3">{translations.projects.projectMeta}</h3>
+                    <h3 className="text-lg font-semibold mb-3">{'Project Metadata'}</h3>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
                       <div>
                         <span className="text-muted-foreground">Date:</span>
@@ -231,13 +231,13 @@ const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
 
               {/* Project Links */}
               <div>
-                <h3 className="text-lg font-semibold mb-3">{translations.projects.projectLinks}</h3>
+                <h3 className="text-lg font-semibold mb-3">{'Project Links'}</h3>
                 <div className="flex flex-wrap gap-3">
                   {project.viewLink && project.viewLink !== '#' && (
                     <Button asChild>
                       <a href={project.viewLink} target="_blank" rel="noopener noreferrer">
                         <ExternalLink className="h-4 w-4 mr-2" />
-                        {translations.projects.view}
+                        {'View'}
                       </a>
                     </Button>
                   )}
@@ -245,7 +245,7 @@ const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
                     <Button variant="outline" asChild>
                       <a href={project.codeLink} target="_blank" rel="noopener noreferrer">
                         <Github className="h-4 w-4 mr-2" />
-                        {translations.projects.code}
+                        {'Code'}
                       </a>
                     </Button>
                   )}
@@ -253,7 +253,7 @@ const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
                     <Button variant="outline" asChild>
                       <a href={project.details.links.pdf} target="_blank" rel="noopener noreferrer">
                         <Download className="h-4 w-4 mr-2" />
-                        {translations.projects.downloadPDF}
+                        {'Download PDF'}
                       </a>
                     </Button>
                   )}
@@ -261,7 +261,7 @@ const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
                     <Button variant="outline" asChild>
                       <a href={project.details.links.youtube} target="_blank" rel="noopener noreferrer">
                         <Play className="h-4 w-4 mr-2" />
-                        {translations.projects.watchOnYoutube}
+                        {'Watch on YouTube'}
                       </a>
                     </Button>
                   )}

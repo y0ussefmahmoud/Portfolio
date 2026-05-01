@@ -1,15 +1,20 @@
 /**
  * useNavigation Hook
- * 
+ *
  * Custom hook for managing section navigation and transitions.
  * Handles navigation logic, direction calculation, and transition states.
- * 
+ *
+ * @author      م / يوسف محمود عبد الجواد
+ * @author      Eng. Youssef Mahmoud Abdelgawad
+ * @website     https://y0ussef.com
+ * @version     3.0.7
+ * @copyright   2024-2025 Youssef Mahmoud Abdelgawad. All rights reserved.
  * @hook
  */
 
 import { useState, useCallback } from 'react';
 
-type Section = 'home' | 'stack' | 'projects' | 'secret' | 'dashboard' | 'view_link';
+type Section = 'home' | 'stack' | 'services' | 'projects' | 'secret' | 'dashboard' | 'view_link';
 
 interface UseNavigationReturn {
   currentSection: Section;
@@ -40,7 +45,7 @@ export const useNavigation = (initialSection: Section = 'home'): UseNavigationRe
    */
   const navigateTo = useCallback((section: Section) => {
     if (section !== currentSection && !isTransitioning) {
-      const order: Section[] = ['home', 'stack', 'projects'];
+      const order: Section[] = ['home', 'projects', 'services', 'stack'];
       const currIdx = order.indexOf(currentSection);
       const nextIdx = order.indexOf(section);
 

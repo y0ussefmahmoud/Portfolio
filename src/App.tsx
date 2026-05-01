@@ -1,6 +1,6 @@
 /**
  * App Component
- * 
+ *
  * Main application component that manages section navigation, modals, and page transitions.
  * Features:
  * - Section-based navigation (home, stack, projects)
@@ -9,7 +9,12 @@
  * - Page transitions with animation
  * - Loading state management
  * - Interviewer mode for auto-opening CV
- * 
+ *
+ * @author      م / يوسف محمود عبد الجواد
+ * @author      Eng. Youssef Mahmoud Abdelgawad
+ * @website     https://y0ussef.com
+ * @version     3.0.7
+ * @copyright   2024-2025 Youssef Mahmoud Abdelgawad. All rights reserved.
  * @component
  */
 
@@ -220,12 +225,15 @@ function App() {
   };
 
   // --- Touch Logic (Mobile) ---
+  // Implements swipe-based navigation for mobile devices
+  // Detects vertical swipes to navigate between sections
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
   const touchStartY = useRef(0);
   const touchEndY = useRef(0);
 
   const handleTouchStart = (e: React.TouchEvent) => {
+    // Record initial touch position
     touchStartX.current = e.targetTouches[0].clientX;
     touchStartY.current = e.targetTouches[0].clientY;
     touchEndX.current = e.targetTouches[0].clientX;
@@ -233,11 +241,13 @@ function App() {
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
+    // Update touch position as user moves finger
     touchEndX.current = e.targetTouches[0].clientX;
     touchEndY.current = e.targetTouches[0].clientY;
   };
 
   const handleTouchEnd = () => {
+    // Don't navigate if modal is open or page is locked
     if (isContactModalOpen || document.body.style.overflow === 'hidden') {
       touchStartX.current = 0; touchEndX.current = 0; touchStartY.current = 0; touchEndY.current = 0;
       return;
@@ -258,18 +268,22 @@ function App() {
     const container = getScrollContainer(currentSection);
     if (!container) return;
 
-    // Use a small buffer (5px)
+    // Use a small buffer (5px) for edge detection
     const scrolledToBottom = Math.ceil(container.clientHeight + container.scrollTop) >= container.scrollHeight - 5;
     const scrolledToTop = container.scrollTop <= 5;
 
+    // Determine swipe direction (horizontal vs vertical)
     if (Math.abs(deltaX) > Math.abs(deltaY)) {
       // Secret section disabled - no horizontal navigation
     } else {
+      // Vertical swipe detected
       if (deltaY > SWIPE_THRESHOLD && scrolledToBottom) {
+        // Swipe down at bottom - navigate to next section
         if (currentSection === 'home' || currentSection === 'view_link') navigateTo('stack');
         else if (currentSection === 'stack') navigateTo('projects');
       }
       else if (deltaY < -SWIPE_THRESHOLD && scrolledToTop) {
+        // Swipe up at top - navigate to previous section
         if (currentSection === 'projects') navigateTo('stack');
         else if (currentSection === 'stack') navigateTo('home');
       }
@@ -278,6 +292,8 @@ function App() {
 
 
   // --- Wheel/Scroll Logic (Desktop) ---
+  // Implements smooth scroll-based navigation with momentum handling
+  // Uses accumulator pattern to detect intentional scroll gestures vs accidental movements
   const scrollAccumulator = useRef(0);
   const lastWheelTime = useRef(0);
   const navigationCooldownUntil = useRef(0);
@@ -287,10 +303,11 @@ function App() {
       const now = Date.now();
 
       // HARD LOCK: After navigating, ignore ALL wheel events for 1.5s.
+      // This prevents trackpad momentum from triggering unwanted navigation
       // No exceptions. No debounce. No acceleration detection.
-      // This is the only reliable way to beat trackpad momentum.
       if (now < navigationCooldownUntil.current) return;
 
+      // Don't navigate if modal is open or page is locked
       if (isContactModalOpen || document.body.style.overflow === 'hidden') return;
       if (isTransitioning) return;
 
@@ -298,6 +315,7 @@ function App() {
       if (!container) return;
 
       // Reset accumulator if user paused scrolling for 200ms (new gesture)
+      // This distinguishes between continuous scrolling and separate scroll actions
       if (now - lastWheelTime.current > 200) {
         scrollAccumulator.current = 0;
       }
@@ -306,36 +324,43 @@ function App() {
       const isScrollDown = e.deltaY > 0;
       const isScrollUp = e.deltaY < 0;
 
-      // Check if at edges (5px buffer)
+      // Check if at edges (5px buffer for edge detection)
       const scrolledToBottom = Math.ceil(container.clientHeight + container.scrollTop) >= container.scrollHeight - 5;
       const scrolledToTop = container.scrollTop <= 5;
 
+      // Threshold for scroll gesture detection (50px)
       const THRESHOLD = 50;
 
+      // Handle scroll down - navigate to next section
       if (isScrollDown && scrolledToBottom) {
         scrollAccumulator.current += e.deltaY;
 
+        // Only navigate if accumulated scroll exceeds threshold
         if (scrollAccumulator.current > THRESHOLD) {
           scrollAccumulator.current = 0;
           navigationCooldownUntil.current = now + 1500; // Lock for 1.5s
 
+          // Navigation order: home -> projects -> services -> stack -> home (loop)
           if (currentSection === 'home' || currentSection === 'view_link') navigateTo('projects');
           else if (currentSection === 'projects') navigateTo('services');
           else if (currentSection === 'services') navigateTo('stack');
           else if (currentSection === 'stack') navigateTo('home'); // Loop back to home
         }
       } else if (isScrollUp && scrolledToTop) {
+        // Handle scroll up - navigate to previous section
         scrollAccumulator.current += e.deltaY;
 
         if (scrollAccumulator.current < -THRESHOLD) {
           scrollAccumulator.current = 0;
           navigationCooldownUntil.current = now + 1500; // Lock for 1.5s
 
+          // Reverse navigation order
           if (currentSection === 'stack') navigateTo('services');
           else if (currentSection === 'services') navigateTo('projects');
           else if (currentSection === 'projects') navigateTo('home');
         }
       } else {
+        // Reset accumulator if not at edge (user is scrolling within section)
         scrollAccumulator.current = 0;
       }
     };

@@ -1,6 +1,23 @@
-# Y0ussef Mahmoud Abdelgawad- Website
+# 🌐 Y0ussef.com - Business Website
 
-A modern, high-performance, and responsive portfolio website built with **React.js**, **TypeScript**, **Vite 6**, and **Tailwind CSS 4**.
+**م / يوسف محمود عبد الجواد**  
+**Eng. / Youssef Mahmoud Abdelgawad**
+
+A modern, high-performance, and responsive **business website** (not just a portfolio) built with **React.js**, **TypeScript**, **Vite 6**, and **Tailwind CSS 4**.
+
+**Live Site**: [https://y0ussef.com](https://y0ussef.com) 🚀
+
+**Developed by**: Youssef Mahmoud Abdelgawad (يوسف محمود عبد الجواد)  
+**Role**: Software Engineer & Full-Stack Developer
+**Company**: Y0ussef Software Solutions
+
+## What's New in V3.0.7
+
+- **Author Attribution**: Added comprehensive author documentation (م / يوسف محمود عبد الجواد) across all source files
+- **Business Website Branding**: Clarified that this is y0ussef.com business website, not just a portfolio
+- **Digital CV Updated**: Personal information in CV modal now displays correct contact details (Y0ussef Mahmoud, y0@gmail.com, +20 1129334173)
+- **README v3.0.7**: Updated documentation with author credits and business website branding
+- **TypeScript Fixes**: Fixed setTimeout type issues in Navbar component
 
 ## What's New in V3.0.6
 
@@ -159,9 +176,24 @@ Portfolio/
 └── tsconfig.json      # TypeScript configuration
 ```
 
+## �‍💻 About the Developer
+
+**Youssef Mahmoud Abdelgawad** (يوسف محمود عبد الجواد)
+
+- **Position**: Software Engineer & Full-Stack Developer
+- **Website**: [https://y0ussef.com](https://y0ussef.com)
+- **Email**: [y0@gmail.com](mailto:y0@gmail.com)
+- **Phone**: +20 1129334173
+- **LinkedIn**: [Y0ussef Mahmoud](https://linkedin.com/in/y0ussefmahmoud)
+- **GitHub**: [Y0ussefMahmoud](https://github.com/Y0ussefMahmoud)
+
+**This website was designed and developed entirely by Eng. Youssef Mahmoud Abdelgawad.**
+
+---
+
 ## 📞 Contact
 
-- **Email**: [youssef11mahmoud112002@gmail.com](mailto:youssef11mahmoud112002@gmail.com)
+- **Email**: [y0@gmail.com](mailto:y0@gmail.com)
 - **LinkedIn**: [Y0ussef Mahmoud](https://linkedin.com/in/y0ussefmahmoud)
 - **GitHub**: [Y0ussefMahmoud](https://github.com/Y0ussefMahmoud)
 
@@ -178,4 +210,5 @@ Portfolio/
 
 ---
 
-**Version 3.0.6** | Built with ❤️ by Y0ussef Mahmoud
+**Version 3.0.7** | Built with ❤️ by **Youssef Mahmoud Abdelgawad** (يوسف محمود عبد الجواد)  
+**All rights reserved © 2024-2025** | **Business Website**: [y0ussef.com](https://y0ussef.com)

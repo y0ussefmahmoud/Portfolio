@@ -1,3 +1,15 @@
+/**
+ * Type Definitions
+ *
+ * TypeScript interfaces and types for the application.
+ *
+ * @author      م / يوسف محمود عبد الجواد
+ * @author      Eng. Youssef Mahmoud Abdelgawad
+ * @website     https://y0ussef.com
+ * @version     3.0.7
+ * @copyright   2024-2025 Youssef Mahmoud Abdelgawad. All rights reserved.
+ */
+
 export interface TagData {
     id?: string | number;
     name: string;

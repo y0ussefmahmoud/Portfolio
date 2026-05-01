@@ -190,12 +190,12 @@ const Contact: React.FC<ContactProps> = ({ translations }) => {
                   {/* Name Input */}
                   <div className="space-y-2">
                     <label htmlFor="name" className="text-sm font-medium text-foreground">
-                      {translations.contact.name}
+                      {'Name'}
                     </label>
                     <Input
                       id="name"
                       type="text"
-                      placeholder={translations.contact.ph_name}
+                      placeholder={'Your name'}
                       value={formData.name}
                       onChange={(e) => handleInputChange('name', e.target.value)}
                       required
@@ -210,7 +210,7 @@ const Contact: React.FC<ContactProps> = ({ translations }) => {
                     <Input
                       id="email"
                       type="email"
-                      placeholder={translations.contact.ph_email}
+                      placeholder={'you@example.com'}
                       value={formData.email}
                       onChange={(e) => handleInputChange('email', e.target.value)}
                       required
@@ -224,7 +224,7 @@ const Contact: React.FC<ContactProps> = ({ translations }) => {
                     </label>
                     <Textarea
                       id="message"
-                      placeholder={translations.contact.ph_message}
+                      placeholder={'Tell me about your project...'}
                       value={formData.message}
                       onChange={(e) => handleInputChange('message', e.target.value)}
                       rows={5}

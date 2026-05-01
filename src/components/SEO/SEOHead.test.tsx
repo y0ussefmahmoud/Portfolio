@@ -47,10 +47,10 @@ describe('SEOHead Component', () => {
 
   it('should set keywords meta tag', () => {
     render(<SEOHead keywords={['React', 'TypeScript']} />);
-    
+
     const meta = document.querySelector('meta[name="keywords"]');
     expect(meta).toBeTruthy();
-    expect(meta?.getAttribute('content')).toBe('React,TypeScript');
+    expect(meta?.getAttribute('content')).toBe('React, TypeScript');
   });
 
   it('should set author meta tag', () => {

@@ -1,6 +1,6 @@
 /**
  * M-Contact Component
- * 
+ *
  * Contact modal with message form and contact information display.
  * Features:
  * - Contact form with name, email, phone, message fields
@@ -10,7 +10,12 @@
  * - Alert notifications for success/error states
  * - Responsive design for mobile/desktop
  * - Dark/light theme support
- * 
+ *
+ * @author      م / يوسف محمود عبد الجواد
+ * @author      Eng. Youssef Mahmoud Abdelgawad
+ * @website     https://y0ussef.com
+ * @version     3.0.7
+ * @copyright   2024-2025 Youssef Mahmoud Abdelgawad. All rights reserved.
  * @component
  */
 
@@ -99,8 +104,8 @@ const MContact = ({ onClose, initialTab = 'message', hideTabs = false }: Omit<MC
 
   // User's contact information
   const contactInfo = {
-    email: 'temy0@gmail.com',
-    phone: '+20 XXX XXX XXXX',
+    email: 'y0@gmail.com',
+    phone: '+20 1129334173',
     github: 'https://github.com/y0ussefmahmoud',
     linkedin: 'https://linkedin.com/in/y0ussefmahmoud',
     twitter: 'https://twitter.com/y0ussefmahmoud'

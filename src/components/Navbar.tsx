@@ -1,6 +1,6 @@
 /**
  * Navbar Component
- * 
+ *
  * Navigation bar with section navigation, theme toggle, and modal triggers.
  * Features:
  * - Section navigation (home, stack, projects)
@@ -8,7 +8,12 @@
  * - Contact and CV modal triggers
  * - Responsive design for mobile/desktop
  * - Tooltips for navigation items
- * 
+ *
+ * @author      م / يوسف محمود عبد الجواد
+ * @author      Eng. Youssef Mahmoud Abdelgawad
+ * @website     https://y0ussef.com
+ * @version     3.0.7
+ * @copyright   2024-2025 Youssef Mahmoud Abdelgawad. All rights reserved.
  * @component
  */
 
@@ -117,13 +122,13 @@ const Navbar = ({ onNavigate, currentSection = 'home', onOpenContact, isContactO
 
     // Auto-show tooltips logic: Projects (3s) -> Contact (3s) -> 10s wait
     useEffect(() => {
-        let cycleTimeout: ReturnType<typeof setTimeout>;
+        let cycleTimeout: number;
 
         const runCycle = () => {
             if (isHoveringNav) {
                 setAutoTooltip(null);
                 // If hovering, check again in 2s to see if we can resume
-                cycleTimeout = setTimeout(runCycle, 2000);
+                cycleTimeout = window.setTimeout(runCycle, 2000);
                 return;
             }
 
@@ -132,11 +137,11 @@ const Navbar = ({ onNavigate, currentSection = 'home', onOpenContact, isContactO
                 setAutoTooltip('projects');
             }
 
-            cycleTimeout = setTimeout(() => {
+            cycleTimeout = window.setTimeout(() => {
                 setAutoTooltip(null);
 
                 // Gap between tooltips
-                cycleTimeout = setTimeout(() => {
+                cycleTimeout = window.setTimeout(() => {
                     if (isHoveringNav) { runCycle(); return; }
 
                     // Step 2: Show Contact (3s)
@@ -144,11 +149,11 @@ const Navbar = ({ onNavigate, currentSection = 'home', onOpenContact, isContactO
                         setAutoTooltip('mail');
                     }
 
-                    cycleTimeout = setTimeout(() => {
+                    cycleTimeout = window.setTimeout(() => {
                         setAutoTooltip(null);
 
                         // Step 3: Wait 10s before restart
-                        cycleTimeout = setTimeout(runCycle, 10000);
+                        cycleTimeout = window.setTimeout(runCycle, 10000);
                     }, 3000);
                 }, 400); // Tiny gap for smooth transition
             }, 3000);
@@ -158,7 +163,7 @@ const Navbar = ({ onNavigate, currentSection = 'home', onOpenContact, isContactO
         runCycle();
 
         return () => {
-            clearTimeout(cycleTimeout);
+            window.clearTimeout(cycleTimeout);
         };
     }, [currentSection, isContactOpen, isHoveringNav]);
 
